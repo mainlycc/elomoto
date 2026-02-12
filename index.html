@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elomoto.eco - Przyszłość Elektromobilności</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-green: #0a1a14;
+            --vibrant-green: #00ff88;
+        }
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--deep-green);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        .text-primary { color: var(--vibrant-green); }
+        .bg-primary { background-color: var(--vibrant-green); }
+        .border-primary { border-color: var(--vibrant-green); }
+        
+        .tech-grid {
+            background-image: radial-gradient(circle, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .glass {
+            background: rgba(10, 26, 20, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mesh-glow {
+            background: radial-gradient(circle at 50% 50%, rgba(0, 255, 136, 0.15) 0%, transparent 70%);
+        }
+
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.1); }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 8s ease-in-out infinite;
+        }
+
+        /* Dodatkowe wygładzenie renderowania czcionek */
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <div id="root"></div>
+<script type="module" src="/index.tsx"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "Copy of Elomoto.eco Landing Page",
+  "description": "A modern, responsive landing page for Elomoto.eco, a Polish EV charging station network provider, featuring a sleek green aesthetic, service overviews, and interactive sections.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
