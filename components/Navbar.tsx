@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { NAV_LINKS } from '../constants';
 import { navigateTo } from '../utils/navigation';
+import logoWhite from '../Logo Png white.png';
 
 const ofertaSubLinks = [
   { label: 'Przegląd oferty', href: '/oferta' },
@@ -27,9 +28,19 @@ export const Navbar: React.FC = () => {
   const handleNavigate = (href: string) => {
     if (href.startsWith('/')) {
       navigateTo(href);
-    } else {
+    } else if (href.startsWith('#')) {
       // sekcje na stronie głównej
-      window.location.hash = href;
+      const currentPath = window.location.pathname;
+      if (currentPath !== '/') {
+        // Jeśli jesteśmy na innej podstronie, przejdź na stronę główną z hashem
+        navigateTo('/' + href);
+      } else {
+        // Jeśli już jesteśmy na stronie głównej, przewiń do sekcji
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
     }
   };
 
@@ -45,11 +56,11 @@ export const Navbar: React.FC = () => {
               className="flex-shrink-0 flex items-center group cursor-pointer bg-transparent border-0 p-0"
               aria-label="Przejdź do strony głównej"
             >
-              <div className="flex flex-col">
-                <span className="text-2xl font-black text-white leading-none tracking-tighter group-hover:text-[#00ff88] transition-colors">
-                  elomoto<span className="text-[#00ff88] transition-colors">.eco</span>
-                </span>
-              </div>
+              <img
+                src={logoWhite}
+                alt="elomoto.eco"
+                className="h-32 w-auto object-contain"
+              />
             </button>
 
             {/* Desktop Menu */}
@@ -61,7 +72,7 @@ export const Navbar: React.FC = () => {
                       <button
                         type="button"
                         onClick={() => setIsOfertaOpenDesktop((prev) => !prev)}
-                        className="px-4 py-2 text-xs font-extrabold text-gray-400 hover:text-[#00ff88] transition-all uppercase tracking-wider inline-flex items-center space-x-1"
+                        className="px-4 py-2 text-xs font-extrabold text-gray-400 hover:text-[#8ab925] transition-all uppercase tracking-wider inline-flex items-center space-x-1"
                       >
                         <span>{link.label}</span>
                         <span className="text-[10px]">{isOfertaOpenDesktop ? '▴' : '▾'}</span>
@@ -82,7 +93,7 @@ export const Navbar: React.FC = () => {
                                 handleNavigate(sub.href);
                                 setIsOfertaOpenDesktop(false);
                               }}
-                              className="w-full text-left px-4 py-2 text-xs font-semibold text-gray-200 hover:text-[#00ff88] hover:bg-white/5 transition-colors"
+                              className="w-full text-left px-4 py-2 text-xs font-semibold text-gray-200 hover:text-[#8ab925] hover:bg-white/5 transition-colors"
                             >
                               {sub.label}
                             </button>
@@ -101,15 +112,18 @@ export const Navbar: React.FC = () => {
                       setIsOfertaOpenDesktop(false);
                       handleNavigate(link.href);
                     }}
-                    className="px-4 py-2 text-xs font-extrabold text-gray-400 hover:text-[#00ff88] transition-all uppercase tracking-wider"
+                    className="px-4 py-2 text-xs font-extrabold text-gray-400 hover:text-[#8ab925] transition-all uppercase tracking-wider"
                   >
                     {link.label}
                   </button>
                 );
               })}
               <div className="h-6 w-[1px] bg-white/10 mx-3"></div>
-              <button className="bg-white text-black text-xs font-extrabold px-6 py-3 rounded-xl hover:bg-[#00ff88] hover:shadow-[0_0_20px_rgba(0,255,136,0.3)] transition-all tracking-wider shadow-md active:scale-95">
-                APLIKACJA
+              <button
+                onClick={() => navigateTo('/platnosc-bez-rejestracji')}
+                className="bg-white text-black text-xs font-extrabold px-6 py-3 rounded-xl hover:bg-[#8ab925] hover:shadow-[0_0_20px_rgba(138,185,37,0.3)] transition-all tracking-wider shadow-md active:scale-95"
+              >
+                PŁAĆ BEZ REJESTRACJI
               </button>
             </div>
 
@@ -117,7 +131,7 @@ export const Navbar: React.FC = () => {
             <div className="lg:hidden flex items-center">
               <button onClick={() => setIsOpen(!isOpen)} className="text-white p-2 focus:outline-none">
                 <div className={`w-6 h-0.5 bg-white mb-1.5 transition-all ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></div>
-                <div className={`w-6 h-0.5 bg-[#00ff88] mb-1.5 transition-all ${isOpen ? 'opacity-0' : ''}`}></div>
+                <div className={`w-6 h-0.5 bg-[#8ab925] mb-1.5 transition-all ${isOpen ? 'opacity-0' : ''}`}></div>
                 <div className={`w-6 h-0.5 bg-white transition-all ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></div>
               </button>
             </div>
@@ -127,7 +141,7 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu */}
       <div className={`lg:hidden fixed inset-x-4 top-24 transition-all duration-500 ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10 pointer-events-none'}`}>
-        <div className="glass rounded-[32px] p-8 shadow-2xl border border-[#00ff88]/20 max-h-[70vh] overflow-y-auto">
+        <div className="glass rounded-[32px] p-8 shadow-2xl border border-[#8ab925]/20 max-h-[70vh] overflow-y-auto">
           <div className="flex flex-col space-y-4">
             {NAV_LINKS.map((link) => {
               if (link.label === 'OFERTA') {
@@ -138,7 +152,7 @@ export const Navbar: React.FC = () => {
                       onClick={() => {
                         setIsOfertaOpenMobile((prev) => !prev);
                       }}
-                      className="w-full flex items-center justify-between text-sm font-extrabold text-white hover:text-[#00ff88] py-1 tracking-wider uppercase"
+                      className="w-full flex items-center justify-between text-sm font-extrabold text-white hover:text-[#8ab925] py-1 tracking-wider uppercase"
                     >
                       <span>{link.label}</span>
                       <span className="text-xs">{isOfertaOpenMobile ? '▴' : '▾'}</span>
@@ -153,7 +167,7 @@ export const Navbar: React.FC = () => {
                             setIsOpen(false);
                             setIsOfertaOpenMobile(false);
                           }}
-                          className="w-full text-left py-1 hover:text-[#00ff88] transition-colors"
+                          className="w-full text-left py-1 hover:text-[#8ab925] transition-colors"
                         >
                           {sub.label}
                         </button>
@@ -171,14 +185,20 @@ export const Navbar: React.FC = () => {
                     handleNavigate(link.href);
                     setIsOpen(false);
                   }}
-                  className="text-sm font-extrabold text-white hover:text-[#00ff88] py-1 tracking-wider uppercase border-b border-white/5 text-left"
+                  className="text-sm font-extrabold text-white hover:text-[#8ab925] py-1 tracking-wider uppercase border-b border-white/5 text-left"
                 >
                   {link.label}
                 </button>
               );
             })}
-            <button className="w-full bg-[#00ff88] text-black font-extrabold py-4 rounded-2xl tracking-wider text-sm uppercase shadow-lg active:scale-95">
-              Pobierz Aplikację
+            <button
+              onClick={() => {
+                navigateTo('/platnosc-bez-rejestracji');
+                setIsOpen(false);
+              }}
+              className="w-full bg-[#8ab925] text-black font-extrabold py-4 rounded-2xl tracking-wider text-sm uppercase shadow-lg active:scale-95"
+            >
+              Płać bez rejestracji
             </button>
           </div>
         </div>

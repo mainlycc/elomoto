@@ -37,7 +37,7 @@ export const SettingsPage: React.FC = () => {
         type="file" 
         accept="image/*" 
         onChange={(e) => handleFileUpload(e, id)}
-        className="block w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#00ff88] file:text-black hover:file:bg-[#00e67a] cursor-pointer"
+        className="block w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-[#8ab925] file:text-black hover:file:bg-[#9ed02e] cursor-pointer"
       />
     </div>
   );
@@ -47,7 +47,7 @@ export const SettingsPage: React.FC = () => {
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-start mb-12">
           <div>
-            <h1 className="text-4xl font-black mb-2 uppercase tracking-tighter">Panel Sterowania <span className="text-[#00ff88]">Obrazami</span></h1>
+            <h1 className="text-4xl font-black mb-2 uppercase tracking-tighter">Panel Sterowania <span className="text-[#8ab925]">Obrazami</span></h1>
             <p className="text-gray-400">Wgraj własne zdjęcia, aby zastąpić domyślne grafiki na stronie głównej.</p>
           </div>
           <button 
@@ -59,7 +59,7 @@ export const SettingsPage: React.FC = () => {
         </div>
 
         {status && (
-          <div className="fixed top-8 right-8 bg-[#00ff88] text-black px-6 py-4 rounded-2xl font-bold shadow-2xl animate-bounce z-50">
+          <div className="fixed top-8 right-8 bg-[#8ab925] text-black px-6 py-4 rounded-2xl font-bold shadow-2xl animate-bounce z-50">
             {status}
           </div>
         )}

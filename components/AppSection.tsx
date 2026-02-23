@@ -6,14 +6,14 @@ export const AppSection: React.FC = () => {
     <section id="app-download" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="relative overflow-hidden bg-[#0a1a14] rounded-[40px] p-8 md:p-16 border border-white/5 shadow-2xl">
         {/* Subtle radial glow in the corner */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#00ff88]/10 blur-[120px] rounded-full -mr-64 -mt-64"></div>
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#8ab925]/10 blur-[120px] rounded-full -mr-64 -mt-64"></div>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
           {/* Left Content */}
           <div className="space-y-8">
             <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.1] tracking-tight">
               Lokalizuj, Ładuj, Płać. <br />
-              <span className="text-[#00ff88]">Wszystko w jednej aplikacji.</span>
+              <span className="text-[#8ab925]">Wszystko w jednej aplikacji.</span>
             </h2>
             
             <p className="text-gray-400 text-lg leading-relaxed max-w-md font-medium">
@@ -75,13 +75,13 @@ export const AppSection: React.FC = () => {
                 {/* App UI Card Overlay */}
                 <div className="mt-auto relative z-10 bg-white rounded-3xl p-5 shadow-2xl mb-4">
                   <div className="flex items-center space-x-2 mb-2">
-                    <div className="w-2 h-2 rounded-full bg-[#00ff88]"></div>
-                    <div className="text-[10px] font-bold text-[#00ff88] uppercase tracking-widest">DOSTĘPNA</div>
+                    <div className="w-2 h-2 rounded-full bg-[#8ab925]"></div>
+                    <div className="text-[10px] font-bold text-[#8ab925] uppercase tracking-widest">DOSTĘPNA</div>
                   </div>
                   <h4 className="text-xl font-black text-gray-900 mb-1">Stacja #402</h4>
                   <p className="text-xs text-gray-400 font-bold mb-6">22kW AC • CCS2</p>
                   
-                  <button className="w-full bg-[#00ff88] text-[#0a1a14] font-extrabold py-4 rounded-2xl text-xs uppercase tracking-wider hover:bg-[#00e67a] transition-all transform active:scale-95 shadow-lg shadow-[#00ff88]/20">
+                  <button className="w-full bg-[#8ab925] text-[#0a1a14] font-extrabold py-4 rounded-2xl text-xs uppercase tracking-wider hover:bg-[#9ed02e] transition-all transform active:scale-95 shadow-lg shadow-[#8ab925]/20">
                     Rozpocznij Ładowanie
                   </button>
                 </div>

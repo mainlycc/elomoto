@@ -36,9 +36,9 @@ export const FaqSection: React.FC = () => {
     <section id="faq" className="py-24 bg-slate-50 overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-[#00ff88] font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Baza wiedzy</span>
+          <span className="text-[#8ab925] font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Baza wiedzy</span>
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-slate-900">
-            PYTANIA I <span className="text-[#00ff88]">ODPOWIEDZI</span>
+            PYTANIA I <span className="text-[#8ab925]">ODPOWIEDZI</span>
           </h2>
           <p className="mt-4 text-slate-500 font-medium">
             Wszystko, co musisz wiedzieć o ładowaniu pojazdów elektrycznych z Elomoto.
@@ -51,7 +51,7 @@ export const FaqSection: React.FC = () => {
               key={index}
               className={`group rounded-[32px] border transition-all duration-300 ${
                 openIndex === index 
-                  ? 'bg-white border-[#00ff88]/30 shadow-xl shadow-[#00ff88]/5' 
+                  ? 'bg-white border-[#8ab925]/30 shadow-xl shadow-[#8ab925]/5' 
                   : 'bg-white/50 border-slate-200 hover:border-slate-300'
               }`}
             >
@@ -60,12 +60,12 @@ export const FaqSection: React.FC = () => {
                 className="w-full px-8 py-7 flex items-center justify-between text-left focus:outline-none"
               >
                 <span className={`text-sm md:text-base font-black uppercase tracking-tight transition-colors ${
-                  openIndex === index ? 'text-[#00ff88]' : 'text-slate-700'
+                  openIndex === index ? 'text-[#8ab925]' : 'text-slate-700'
                 }`}>
                   {item.question}
                 </span>
                 <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
-                  openIndex === index ? 'bg-[#00ff88] rotate-180' : 'bg-slate-100 rotate-0'
+                  openIndex === index ? 'bg-[#8ab925] rotate-180' : 'bg-slate-100 rotate-0'
                 }`}>
                   <svg 
                     className={`w-4 h-4 transition-colors ${openIndex === index ? 'text-white' : 'text-slate-400'}`} 
@@ -95,7 +95,7 @@ export const FaqSection: React.FC = () => {
 
         <div className="mt-12 text-center">
           <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
-            Nie znalazłeś odpowiedzi? <a href="#contact" className="text-[#00ff88] hover:underline">Zadaj nam pytanie bezpośrednio.</a>
+            Nie znalazłeś odpowiedzi? <a href="#contact" className="text-[#8ab925] hover:underline">Zadaj nam pytanie bezpośrednio.</a>
           </p>
         </div>
       </div>

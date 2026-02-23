@@ -20,9 +20,9 @@ export const ContactSection: React.FC = () => {
           {/* Lewa strona: Nagłówek i Tematy */}
           <div className="lg:w-5/12 space-y-12">
             <div>
-              <span className="text-[#00ff88] font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Zacznijmy współpracę</span>
+              <span className="text-[#8ab925] font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Zacznijmy współpracę</span>
               <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
-                NAPISZ <br /><span className="text-[#00ff88]">DO NAS</span>
+                NAPISZ <br /><span className="text-[#8ab925]">DO NAS</span>
               </h2>
               <p className="text-slate-500 font-medium leading-relaxed max-w-sm">
                 Wybierz interesujący Cię temat i wyślij zapytanie. Nasz zespół inżynierów odpowie w ciągu 24h.
@@ -38,7 +38,7 @@ export const ContactSection: React.FC = () => {
                     onClick={() => setSelectedTopic(topic.id)}
                     className={`flex items-center space-x-3 p-4 rounded-2xl border-2 transition-all text-left group ${
                       selectedTopic === topic.id 
-                        ? 'border-[#00ff88] bg-[#00ff88]/5 shadow-lg shadow-[#00ff88]/10' 
+                        ? 'border-[#8ab925] bg-[#8ab925]/5 shadow-lg shadow-[#8ab925]/10' 
                         : 'border-slate-100 hover:border-slate-200 bg-slate-50'
                     }`}
                   >
@@ -57,11 +57,11 @@ export const ContactSection: React.FC = () => {
             <div className="flex flex-wrap gap-8 pt-8 border-t border-slate-100">
               <div>
                 <span className="block text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] mb-2">E-mail</span>
-                <a href="mailto:biuro@elomoto.eco" className="text-sm font-black hover:text-[#00ff88] transition-colors">biuro@elomoto.eco</a>
+                <a href="mailto:biuro@elomoto.eco" className="text-sm font-black hover:text-[#8ab925] transition-colors">biuro@elomoto.eco</a>
               </div>
               <div>
                 <span className="block text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] mb-2">Telefon</span>
-                <a href="tel:+48222692022" className="text-sm font-black hover:text-[#00ff88] transition-colors">+48 222 692 022</a>
+                <a href="tel:+48222692022" className="text-sm font-black hover:text-[#8ab925] transition-colors">+48 222 692 022</a>
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@ export const ContactSection: React.FC = () => {
                   <input 
                     type="text" 
                     placeholder="np. Jan Kowalski"
-                    className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-[#00ff88] focus:ring-4 focus:ring-[#00ff88]/5 outline-none transition-all placeholder:text-slate-300"
+                    className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
                   />
                 </div>
                 <div className="space-y-1">
@@ -83,7 +83,7 @@ export const ContactSection: React.FC = () => {
                   <input 
                     type="email" 
                     placeholder="twoj@email.pl"
-                    className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-[#00ff88] focus:ring-4 focus:ring-[#00ff88]/5 outline-none transition-all placeholder:text-slate-300"
+                    className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
                   />
                 </div>
                 <div className="md:col-span-2 space-y-1">
@@ -91,21 +91,21 @@ export const ContactSection: React.FC = () => {
                   <textarea 
                     rows={4}
                     placeholder="Opisz krótko swoje potrzeby..."
-                    className="w-full bg-white border border-slate-200 rounded-3xl py-4 px-6 text-sm font-bold focus:border-[#00ff88] focus:ring-4 focus:ring-[#00ff88]/5 outline-none transition-all placeholder:text-slate-300 resize-none"
+                    className="w-full bg-white border border-slate-200 rounded-3xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300 resize-none"
                   ></textarea>
                 </div>
 
                 <div className="md:col-span-2 pt-4">
                   <div className="space-y-3 mb-8">
                     <label className="flex items-start space-x-3 cursor-pointer group">
-                      <input type="checkbox" className="mt-1 w-4 h-4 rounded border-slate-300 text-[#00ff88] focus:ring-[#00ff88]" />
+                      <input type="checkbox" className="mt-1 w-4 h-4 rounded border-slate-300 text-[#8ab925] focus:ring-[#8ab925]" />
                       <span className="text-[10px] text-slate-400 font-medium leading-relaxed">
                         Wyrażam zgodę na przetwarzanie danych przez Elomoto Sp. z o.o. zgodnie z <a href="#" className="text-slate-900 underline font-black">Polityką Prywatności</a>.
                       </span>
                     </label>
                   </div>
                   
-                  <button className="w-full sm:w-auto bg-[#00ff88] text-white font-black py-5 px-16 rounded-2xl text-xs uppercase tracking-[0.2em] shadow-lg shadow-[#00ff88]/20 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95">
+                  <button className="w-full sm:w-auto bg-[#8ab925] text-white font-black py-5 px-16 rounded-2xl text-xs uppercase tracking-[0.2em] shadow-lg shadow-[#8ab925]/20 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95">
                     Wyślij zapytanie
                   </button>
                 </div>
@@ -129,8 +129,8 @@ export const ContactSection: React.FC = () => {
                       ul. Czereśniowa 98/117<br />
                       02-456 Warszawa
                     </p>
-                    <div className="mt-4 inline-flex items-center space-x-2 bg-slate-900 text-[#00ff88] px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest">
-                      <span className="w-1.5 h-1.5 bg-[#00ff88] rounded-full animate-pulse"></span>
+                    <div className="mt-4 inline-flex items-center space-x-2 bg-slate-900 text-[#8ab925] px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest">
+                      <span className="w-1.5 h-1.5 bg-[#8ab925] rounded-full animate-pulse"></span>
                       <span>Ubezpieczenie OC 2 mln PLN</span>
                     </div>
                   </div>

@@ -10,7 +10,7 @@ export const AboutSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
           <div className="relative">
-            <div className="absolute -top-6 -left-6 w-24 h-24 bg-[#00ff88] rounded-full blur-3xl opacity-10 -z-10 animate-pulse-slow"></div>
+            <div className="absolute -top-6 -left-6 w-24 h-24 bg-[#8ab925] rounded-full blur-3xl opacity-10 -z-10 animate-pulse-slow"></div>
             <div className="relative rounded-[40px] overflow-hidden shadow-2xl border border-white/5">
               <img 
                 src={aboutImg} 
@@ -19,7 +19,7 @@ export const AboutSection: React.FC = () => {
               />
               <div className="absolute bottom-8 left-8 right-8 glass p-6 rounded-3xl border border-white/20">
                  <div className="text-white font-black text-xl mb-1 uppercase tracking-tighter">Doświadczenie</div>
-                 <div className="text-[#00ff88] font-extrabold text-xs uppercase tracking-widest">Lider Innowacji od 2023</div>
+                 <div className="text-[#8ab925] font-extrabold text-xs uppercase tracking-widest">Lider Innowacji od 2023</div>
               </div>
             </div>
           </div>
@@ -27,12 +27,12 @@ export const AboutSection: React.FC = () => {
           <div className="space-y-8">
             <div>
               <div className="flex items-center space-x-3 mb-4">
-                <span className="w-8 h-[2px] bg-[#00ff88]"></span>
-                <p className="text-[#00ff88] font-extrabold uppercase tracking-widest text-xs">O NAS</p>
+                <span className="w-8 h-[2px] bg-[#8ab925]"></span>
+                <p className="text-[#8ab925] font-extrabold uppercase tracking-widest text-xs">O NAS</p>
               </div>
               <h2 className="text-4xl md:text-5xl font-black text-white leading-tight uppercase tracking-tighter">
                 ELEKTROMOBILNOŚĆ <br />
-                <span className="text-[#00ff88]">TO NASZA PASJA</span>
+                <span className="text-[#8ab925]">TO NASZA PASJA</span>
               </h2>
             </div>
             
@@ -53,8 +53,8 @@ export const AboutSection: React.FC = () => {
                   'Własny system rozliczeniowy i aplikacja mobilna'
                 ].map((item, i) => (
                   <li key={i} className="flex items-center space-x-3 text-sm font-extrabold text-gray-300 uppercase tracking-tight">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#00ff88]/10 flex items-center justify-center">
-                      <svg className="w-3 h-3 text-[#00ff88]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#8ab925]/10 flex items-center justify-center">
+                      <svg className="w-3 h-3 text-[#8ab925]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -65,7 +65,7 @@ export const AboutSection: React.FC = () => {
             </div>
 
             <div className="pt-6">
-              <button className="bg-white text-black hover:bg-[#00ff88] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-xs tracking-wider shadow-lg transform hover:-translate-y-1 active:scale-95">
+              <button className="bg-white text-black hover:bg-[#8ab925] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-xs tracking-wider shadow-lg transform hover:-translate-y-1 active:scale-95">
                 Poznaj Nas Lepiej
               </button>
             </div>

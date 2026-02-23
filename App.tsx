@@ -28,6 +28,7 @@ import { KarieraPage } from './components/KarieraPage';
 import { PlatnoscBezRejestracjiPage } from './components/PlatnoscBezRejestracjiPage';
 import { REALIZATIONS } from './constants';
 import { BlogPage } from './components/BlogPage';
+import { MapaStacjiPage } from './components/MapaStacjiPage';
 
 const App: React.FC = () => {
   const [path, setPath] = useState(window.location.pathname);
@@ -39,6 +40,23 @@ const App: React.FC = () => {
   }, []);
 
   const normalizedPath = (path || '/').replace(/\/+$/, '') || '/';
+
+  // Zawsze przewijaj widok na górę przy zmianie podstrony (ścieżki)
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (normalizedPath === '/' && hash) {
+      // Jeśli jesteśmy na stronie głównej z hashem, przewiń do sekcji po załadowaniu
+      setTimeout(() => {
+        const element = document.querySelector(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    } else {
+      // W przeciwnym razie przewiń na górę
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  }, [normalizedPath]);
 
   if (normalizedPath === '/ustaw') {
     return <SettingsPage />;
@@ -112,7 +130,7 @@ const App: React.FC = () => {
       <div className="min-h-screen relative bg-[#020617]">
         <Navbar />
         <main className="pt-32 md:pt-36">
-          <ChargingStationsMapSection />
+          <MapaStacjiPage />
         </main>
         <Footer />
       </div>

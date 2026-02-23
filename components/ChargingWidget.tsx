@@ -47,7 +47,7 @@ export const ChargingWidget: React.FC = () => {
     <div className="relative flex items-center justify-center group select-none transition-transform duration-500 hover:scale-110" style={{ width: size, height: size }}>
       {/* Dynamic Glow */}
       <div 
-        className="absolute inset-10 bg-[#00E676]/10 blur-[80px] rounded-full -z-10 transition-opacity duration-700" 
+        className="absolute inset-10 bg-[#8ab925]/10 blur-[80px] rounded-full -z-10 transition-opacity duration-700" 
         style={{ opacity: scrollProgress + 0.2 }}
       ></div>
       
@@ -72,7 +72,7 @@ export const ChargingWidget: React.FC = () => {
           cx={center}
           cy={center}
           r={radius}
-          stroke="#00E676"
+          stroke="#8ab925"
           strokeWidth="32"
           strokeDasharray={circumference}
           style={{ 
@@ -81,7 +81,7 @@ export const ChargingWidget: React.FC = () => {
           }}
           strokeLinecap="round"
           fill="transparent"
-          className="drop-shadow-[0_0_15px_rgba(0,230,118,0.6)]"
+          className="drop-shadow-[0_0_15px_rgba(138,185,37,0.6)]"
         />
       </svg>
 
@@ -96,7 +96,7 @@ export const ChargingWidget: React.FC = () => {
         </div>
 
         <div className="flex items-center space-x-2 px-4 py-1.5 bg-gray-50 rounded-full border border-gray-100 scale-90">
-          <svg className={`w-4 h-4 text-[#00E676] ${scrollProgress > 0 && scrollProgress < 1 ? 'animate-pulse' : ''}`} fill="currentColor" viewBox="0 0 24 24">
+          <svg className={`w-4 h-4 text-[#8ab925] ${scrollProgress > 0 && scrollProgress < 1 ? 'animate-pulse' : ''}`} fill="currentColor" viewBox="0 0 24 24">
             <path d="M13 10V3L4 14h7v7l9-11h-7z" />
           </svg>
           <div className="text-[11px] font-black tracking-tight flex items-center">

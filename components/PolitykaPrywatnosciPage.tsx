@@ -8,7 +8,7 @@ export const PolitykaPrywatnosciPage: React.FC = () => {
         <div className="flex justify-between items-start mb-12 gap-6">
           <div>
             <h1 className="text-4xl font-black mb-2 uppercase tracking-tighter">
-              Polityka <span className="text-[#00ff88]">Prywatności</span>
+              Polityka <span className="text-[#8ab925]">Prywatności</span>
             </h1>
             <p className="text-gray-300">
               To jest szablon polityki prywatności dla strony informacyjnej. Uzupełnij go zgodnie z faktycznym sposobem

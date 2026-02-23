@@ -4,7 +4,7 @@ export const OfertaPage: React.FC = () => {
   return (
     <section className="max-w-5xl mx-auto px-4 pb-24">
       <header className="mb-12">
-        <p className="text-xs font-semibold tracking-[0.3em] text-[#00ff88] uppercase mb-4">
+        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">
           elomoto.eco / oferta
         </p>
         <h1 className="text-3xl md:text-4xl font-black text-white mb-4">
@@ -46,7 +46,7 @@ export const OfertaPage: React.FC = () => {
         </h2>
         <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-200">
           <div className="glass border border-white/10 rounded-3xl p-5">
-            <p className="text-xs font-semibold text-[#00ff88] uppercase mb-2">
+            <p className="text-xs font-semibold text-[#8ab925] uppercase mb-2">
               finansowanie
             </p>
             <p className="font-semibold text-white mb-2">Darmowa ładowarka</p>
@@ -56,7 +56,7 @@ export const OfertaPage: React.FC = () => {
             </p>
           </div>
           <div className="glass border border-white/10 rounded-3xl p-5">
-            <p className="text-xs font-semibold text-[#00ff88] uppercase mb-2">
+            <p className="text-xs font-semibold text-[#8ab925] uppercase mb-2">
               instalacja
             </p>
             <p className="font-semibold text-white mb-2">Montaż i ekspertyzy</p>
@@ -66,7 +66,7 @@ export const OfertaPage: React.FC = () => {
             </p>
           </div>
           <div className="glass border border-white/10 rounded-3xl p-5">
-            <p className="text-xs font-semibold text-[#00ff88] uppercase mb-2">
+            <p className="text-xs font-semibold text-[#8ab925] uppercase mb-2">
               operacja
             </p>
             <p className="font-semibold text-white mb-2">Operator i serwis</p>
@@ -78,7 +78,7 @@ export const OfertaPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="glass border border-[#00ff88]/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="glass border border-[#8ab925]/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h2 className="text-lg font-semibold text-white mb-2">
             Nie wiesz od czego zacząć?
@@ -90,7 +90,7 @@ export const OfertaPage: React.FC = () => {
         </div>
         <a
           href="#contact"
-          className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-[#00ff88] text-black text-xs font-extrabold tracking-wider uppercase shadow-lg hover:bg-[#4dffac] active:scale-95 transition-all"
+          className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-[#8ab925] text-black text-xs font-extrabold tracking-wider uppercase shadow-lg hover:bg-[#9ed02e] active:scale-95 transition-all"
         >
           Skontaktuj się z nami
         </a>

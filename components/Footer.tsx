@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { navigateTo } from '../utils/navigation';
+import logoWhite from '../Logo Png white.png';
 
 const FooterLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => {
   const isInternal = href.startsWith('/');
@@ -9,7 +10,7 @@ const FooterLink: React.FC<{ href: string; children: React.ReactNode }> = ({ hre
     return (
       <a
         href={href}
-        className="text-gray-500 hover:text-[#00ff88] text-xs font-bold transition-colors"
+        className="text-gray-500 hover:text-[#8ab925] text-xs font-bold transition-colors"
       >
         {children}
       </a>
@@ -20,7 +21,7 @@ const FooterLink: React.FC<{ href: string; children: React.ReactNode }> = ({ hre
     <button
       type="button"
       onClick={() => navigateTo(href)}
-      className="text-gray-500 hover:text-[#00ff88] text-xs font-bold transition-colors text-left"
+      className="text-gray-500 hover:text-[#8ab925] text-xs font-bold transition-colors text-left"
     >
       {children}
     </button>
@@ -29,9 +30,44 @@ const FooterLink: React.FC<{ href: string; children: React.ReactNode }> = ({ hre
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-white pt-10 pb-10 border-t border-gray-100">
+    <footer className="bg-white pt-12 pb-8 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
+
+          {/* Kolumna 0 – Logo + opis + dane firmy */}
+          <div className="lg:col-span-1">
+            <button
+              type="button"
+              onClick={() => navigateTo('/')}
+              className="bg-transparent border-0 p-0 cursor-pointer mb-4 block"
+              aria-label="Przejdź do strony głównej"
+            >
+              <img
+                src={logoWhite}
+                alt="elomoto.eco"
+                className="h-24 w-auto object-contain"
+              />
+            </button>
+            <p className="text-[11px] text-gray-400 leading-relaxed mb-5">
+              Power up your future. Infrastruktura ładowania pojazdów elektrycznych.
+            </p>
+            <div className="text-[10px] text-gray-400 leading-relaxed font-medium">
+              <p className="font-bold text-gray-500 mb-1">ELOMOTO SP. Z O.O.</p>
+              <p>NIP: 5223246605</p>
+              <p>ul. Czereśniowa 98/117</p>
+              <p>02-456 Warszawa</p>
+              <p className="mt-2">
+                tel. <a href="tel:+48222692022" className="hover:text-[#8ab925]">+48 222 692 022</a>
+              </p>
+              <p>
+                e-mail{' '}
+                <a href="mailto:biuro@elomoto.eco" className="hover:text-[#8ab925]">
+                  biuro@elomoto.eco
+                </a>
+              </p>
+            </div>
+          </div>
+
           {/* Kolumna 1 – Firma */}
           <div>
             <h4 className="text-gray-900 font-bold uppercase text-[10px] tracking-widest mb-4">
@@ -94,12 +130,12 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Kolumna 4 – Prawne + dane firmy */}
+          {/* Kolumna 4 – Prawne */}
           <div>
             <h4 className="text-gray-900 font-bold uppercase text-[10px] tracking-widest mb-4">
               Prawne
             </h4>
-            <ul className="space-y-3 text-xs font-bold mb-4">
+            <ul className="space-y-3 text-xs font-bold">
               <li>
                 <FooterLink href="/polityka-prywatnosci">Polityka prywatności</FooterLink>
               </li>
@@ -107,21 +143,6 @@ export const Footer: React.FC = () => {
                 <FooterLink href="/regulamin">Regulamin</FooterLink>
               </li>
             </ul>
-            <div className="text-[10px] text-gray-400 leading-relaxed font-medium">
-              <p className="font-bold text-gray-500 mb-1">ELOMOTO SP. Z O.O.</p>
-              <p>NIP: 5223246605</p>
-              <p>ul. Czereśniowa 98/117</p>
-              <p>02-456 Warszawa</p>
-              <p className="mt-2">
-                tel. <a href="tel:+48222692022" className="hover:text-[#00ff88]">+48 222 692 022</a>
-              </p>
-              <p>
-                e-mail{' '}
-                <a href="mailto:biuro@elomoto.eco" className="hover:text-[#00ff88]">
-                  biuro@elomoto.eco
-                </a>
-              </p>
-            </div>
           </div>
         </div>
 

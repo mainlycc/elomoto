@@ -29,16 +29,16 @@ export const ChargingStationsMapSection: React.FC = () => {
   return (
     <section id="charging-map" className="py-32 bg-[#020617] relative overflow-hidden">
       {/* Tła glow podobne do innych sekcji */}
-      <div className="absolute top-0 right-0 w-72 h-72 bg-[#00ff88]/10 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#00ff88]/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute top-0 right-0 w-72 h-72 bg-[#8ab925]/10 rounded-full blur-3xl -z-10"></div>
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-[#8ab925]/10 rounded-full blur-3xl -z-10"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Nagłówek sekcji */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16">
+        <div className="flex flex-col md:flex-row md:items-start justify-between mb-16">
           <div className="max-w-xl">
             <div className="flex items-center space-x-4 mb-4">
-              <div className="h-[2px] w-12 bg-[#00ff88]"></div>
-              <p className="text-[#00ff88] font-black uppercase tracking-[0.3em] text-xs">
+              <div className="h-[2px] w-12 bg-[#8ab925]"></div>
+              <p className="text-[#8ab925] font-black uppercase tracking-[0.3em] text-xs">
                 MAPA STACJI
               </p>
             </div>
@@ -54,8 +54,8 @@ export const ChargingStationsMapSection: React.FC = () => {
               codzienny ruch – od biurowców po obiekty hotelowe i parkingi miejskie.
             </p>
             <div className="inline-flex md:justify-end w-full">
-              <div className="inline-flex flex-col items-start md:items-end gap-2 bg-white/5 border border-[#00ff88]/30 rounded-2xl px-4 py-3 shadow-[0_0_25px_rgba(0,255,136,0.2)]">
-                <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#00ff88]">
+              <div className="inline-flex flex-col items-start md:items-end gap-2 bg-white/5 border border-[#8ab925]/30 rounded-2xl px-4 py-3 shadow-[0_0_25px_rgba(138,185,37,0.2)]">
+                <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#8ab925]">
                   PŁATNOŚĆ BEZ REJESTRACJI
                 </p>
                 <p className="text-gray-200 text-xs md:text-sm max-w-xs">
@@ -65,7 +65,7 @@ export const ChargingStationsMapSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => navigateTo('https://zaplac.elomoto.eco/')}
-                  className="mt-1 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#00ff88] text-black text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-[0_0_25px_rgba(0,255,136,0.5)] hover:bg-white hover:shadow-[0_0_30px_rgba(0,255,136,0.7)] transition-all active:scale-95"
+                  className="mt-1 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#8ab925] text-black text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-[0_0_25px_rgba(138,185,37,0.5)] hover:bg-white hover:shadow-[0_0_30px_rgba(138,185,37,0.7)] transition-all active:scale-95"
                 >
                   Zapłać bez rejestracji
                   <span className="text-xs">↗</span>
@@ -80,7 +80,7 @@ export const ChargingStationsMapSection: React.FC = () => {
           {/* Lista stacji */}
           <div className="space-y-6">
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-gray-300 uppercase tracking-[0.2em]">
-              <span className="w-2 h-2 rounded-full bg-[#00ff88] mr-2"></span>
+              <span className="w-2 h-2 rounded-full bg-[#8ab925] mr-2"></span>
               Dostępne lokalizacje pilotażowe
             </div>
 
@@ -94,17 +94,17 @@ export const ChargingStationsMapSection: React.FC = () => {
               {STATIONS.map((station, index) => (
                 <div
                   key={station.name}
-                  className="group flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-[#00ff88]/40 hover:bg-white/10 transition-all cursor-default"
+                  className="group flex items-start gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:border-[#8ab925]/40 hover:bg-white/10 transition-all cursor-default"
                 >
                   <div className="mt-1">
-                    <div className="w-3 h-3 rounded-full bg-[#00ff88] shadow-[0_0_10px_rgba(0,255,136,0.6)]" />
+                    <div className="w-3 h-3 rounded-full bg-[#8ab925] shadow-[0_0_10px_rgba(138,185,37,0.6)]" />
                   </div>
                   <div>
                     <div className="flex items-center gap-2 mb-1">
                       <span className="text-[10px] uppercase tracking-[0.25em] text-gray-500 font-bold">
                         STACJA 0{index + 1}
                       </span>
-                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#00ff88] font-bold">
+                      <span className="text-[10px] uppercase tracking-[0.2em] text-[#8ab925] font-bold">
                         {station.city}
                       </span>
                     </div>
@@ -118,11 +118,31 @@ export const ChargingStationsMapSection: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* Sekcja z tekstem o stacjach i przyciskiem do pobrania cennika */}
+            <div className="mt-8 pt-8 border-t border-white/10">
+              <h3 className="text-xl md:text-2xl font-black text-white mb-4 uppercase tracking-tight">
+                Stacje ładowania <span className="text-[#8ab925]">elomoto.eco</span>
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed mb-6">
+                Infrastrukturę ładowania projektujemy w pierwszej kolejności z myślą o lokalizacjach
+                mieszkaniowych, biurowych i hotelowych— tam, gdzie samochody elektryczne parkują
+                najdłużej i gdzie realnie odbywa się codzienne ładowanie.
+              </p>
+              <a
+                href="/cennik-elomoto.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-[#8ab925] text-white text-xs font-extrabold tracking-[0.2em] uppercase shadow-lg shadow-[#8ab925]/30 hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all"
+              >
+                Pobierz aktualny cennik stacji ładowania
+              </a>
+            </div>
           </div>
 
           {/* Makieta mapy */}
           <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-tr from-[#00ff88]/10 via-transparent to-[#00ff88]/10 blur-3xl -z-10" />
+            <div className="absolute -inset-4 bg-gradient-to-tr from-[#8ab925]/10 via-transparent to-[#8ab925]/10 blur-3xl -z-10" />
 
             <div className="relative h-[340px] md:h-[420px] rounded-[32px] bg-white/5 border border-white/10 overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
               {/* Pasek nagłówka „mapy” */}
@@ -138,7 +158,7 @@ export const ChargingStationsMapSection: React.FC = () => {
                   </span>
                 </div>
                 <div className="flex items-center gap-2 text-[10px] text-gray-400 uppercase tracking-[0.15em]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00ff88]" />
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#8ab925]" />
                   Widok sieci stacji
                 </div>
               </div>
@@ -153,9 +173,9 @@ export const ChargingStationsMapSection: React.FC = () => {
 
                 {/* Delikatny gradient „drogowy” */}
                 <div className="absolute inset-0 opacity-50">
-                  <div className="absolute -left-10 top-10 w-72 h-1 rounded-full bg-[#00ff88]/60 blur-sm rotate-6" />
-                  <div className="absolute left-8 top-40 w-80 h-1 rounded-full bg-[#00ff88]/40 blur-sm -rotate-3" />
-                  <div className="absolute right-4 bottom-16 w-64 h-1 rounded-full bg-[#00ff88]/30 blur-sm -rotate-12" />
+                  <div className="absolute -left-10 top-10 w-72 h-1 rounded-full bg-[#8ab925]/60 blur-sm rotate-6" />
+                  <div className="absolute left-8 top-40 w-80 h-1 rounded-full bg-[#8ab925]/40 blur-sm -rotate-3" />
+                  <div className="absolute right-4 bottom-16 w-64 h-1 rounded-full bg-[#8ab925]/30 blur-sm -rotate-12" />
                 </div>
 
                 {/* Pinezki stacji – rozmieszczone symbolicznie */}
@@ -163,8 +183,8 @@ export const ChargingStationsMapSection: React.FC = () => {
                   {/* Poznań */}
                   <div className="absolute left-[22%] top-[48%] flex flex-col items-center gap-1">
                     <div className="relative">
-                      <div className="w-3 h-3 rounded-full bg-[#00ff88] shadow-[0_0_18px_rgba(0,255,136,0.9)]" />
-                      <div className="absolute inset-0 rounded-full border border-[#00ff88]/60 animate-ping" />
+                      <div className="w-3 h-3 rounded-full bg-[#8ab925] shadow-[0_0_18px_rgba(138,185,37,0.9)]" />
+                      <div className="absolute inset-0 rounded-full border border-[#8ab925]/60 animate-ping" />
                     </div>
                     <span className="text-[9px] font-semibold text-[#e5e7eb] uppercase tracking-[0.18em] bg-black/50 px-2 py-1 rounded-full border border-white/10">
                       POZNAŃ
@@ -174,8 +194,8 @@ export const ChargingStationsMapSection: React.FC = () => {
                   {/* Warszawa */}
                   <div className="absolute right-[20%] top-[32%] flex flex-col items-center gap-1">
                     <div className="relative">
-                      <div className="w-3 h-3 rounded-full bg-[#00ff88] shadow-[0_0_18px_rgba(0,255,136,0.9)]" />
-                      <div className="absolute inset-0 rounded-full border border-[#00ff88]/60 animate-ping" />
+                      <div className="w-3 h-3 rounded-full bg-[#8ab925] shadow-[0_0_18px_rgba(138,185,37,0.9)]" />
+                      <div className="absolute inset-0 rounded-full border border-[#8ab925]/60 animate-ping" />
                     </div>
                     <span className="text-[9px] font-semibold text-[#e5e7eb] uppercase tracking-[0.18em] bg-black/50 px-2 py-1 rounded-full border border-white/10">
                       WARSZAWA
@@ -185,8 +205,8 @@ export const ChargingStationsMapSection: React.FC = () => {
                   {/* Kraków */}
                   <div className="absolute right-[26%] bottom-[16%] flex flex-col items-center gap-1">
                     <div className="relative">
-                      <div className="w-3 h-3 rounded-full bg-[#00ff88] shadow-[0_0_18px_rgba(0,255,136,0.9)]" />
-                      <div className="absolute inset-0 rounded-full border border-[#00ff88]/60 animate-ping" />
+                      <div className="w-3 h-3 rounded-full bg-[#8ab925] shadow-[0_0_18px_rgba(138,185,37,0.9)]" />
+                      <div className="absolute inset-0 rounded-full border border-[#8ab925]/60 animate-ping" />
                     </div>
                     <span className="text-[9px] font-semibold text-[#e5e7eb] uppercase tracking-[0.18em] bg-black/50 px-2 py-1 rounded-full border border-white/10">
                       KRAKÓW
@@ -201,7 +221,7 @@ export const ChargingStationsMapSection: React.FC = () => {
                   </p>
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#00ff88] animate-pulse" />
+                      <span className="w-2 h-2 rounded-full bg-[#8ab925] animate-pulse" />
                       <span className="text-xs text-gray-200 font-medium">
                         {STATIONS.length} aktywne punkty pilotażowe
                       </span>

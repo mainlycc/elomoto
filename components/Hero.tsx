@@ -19,19 +19,19 @@ export const Hero: React.FC = () => {
           className="w-full h-full object-cover saturate-[1.1] brightness-[0.9] contrast-[1.1]"
         />
         
-        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-[#00ff88]/20 blur-[100px] z-30 animate-pulse-slow"></div>
+        <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-[#8ab925]/20 blur-[100px] z-30 animate-pulse-slow"></div>
       </div>
 
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-2xl">
           <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-10 backdrop-blur-md">
-            <span className="flex h-2 w-2 rounded-full bg-[#00ff88] shadow-[0_0_10px_#00ff88] animate-pulse"></span>
+            <span className="flex h-2 w-2 rounded-full bg-[#8ab925] shadow-[0_0_10px_#8ab925] animate-pulse"></span>
             <span className="text-xs font-extrabold text-gray-300 uppercase tracking-widest">Design & Technologia</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-8 leading-[1.05] tracking-tight">
             Energia <br />
-            <span className="text-[#00ff88]">Przyszłości</span> <br />
+            <span className="text-[#8ab925]">Przyszłości</span> <br />
             W Twoim Zasięgu.
           </h1>
           
@@ -40,10 +40,10 @@ export const Hero: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="bg-[#00ff88] hover:bg-[#00e67a] text-[#0a1a14] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 shadow-[0_15px_30px_rgba(0,255,136,0.3)] uppercase text-sm tracking-wider transform hover:-translate-y-1 active:scale-95">
+            <button className="bg-[#8ab925] hover:bg-[#9ed02e] text-[#0a1a14] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 shadow-[0_15px_30px_rgba(138,185,37,0.3)] uppercase text-sm tracking-wider transform hover:-translate-y-1 active:scale-95">
               Skonfiguruj stację
             </button>
-            <button className="border border-white/10 hover:border-[#00ff88]/50 text-white font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-sm tracking-wider bg-white/5 backdrop-blur-sm shadow-sm hover:bg-white/10 active:scale-95">
+            <button className="border border-white/10 hover:border-[#8ab925]/50 text-white font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-sm tracking-wider bg-white/5 backdrop-blur-sm shadow-sm hover:bg-white/10 active:scale-95">
               Oferta dla domu
             </button>
           </div>
@@ -54,7 +54,7 @@ export const Hero: React.FC = () => {
               <div className="text-xs text-gray-500 font-extrabold uppercase tracking-widest mt-2">Wykończenie</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-[#00ff88]">Smart</div>
+              <div className="text-3xl font-bold text-[#8ab925]">Smart</div>
               <div className="text-xs text-gray-500 font-extrabold uppercase tracking-widest mt-2">Zarządzanie</div>
             </div>
             <div>
