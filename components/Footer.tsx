@@ -38,7 +38,10 @@ export const Footer: React.FC = () => {
           <div className="lg:col-span-1">
             <button
               type="button"
-              onClick={() => navigateTo('/')}
+              onClick={() => {
+                navigateTo('/');
+                window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+              }}
               className="bg-transparent border-0 p-0 cursor-pointer mb-4 block"
               aria-label="Przejdź do strony głównej"
             >

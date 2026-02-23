@@ -52,7 +52,10 @@ export const Navbar: React.FC = () => {
             {/* Logo */}
             <button
               type="button"
-              onClick={() => navigateTo('/')}
+              onClick={() => {
+                navigateTo('/');
+                window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+              }}
               className="flex-shrink-0 flex items-center group cursor-pointer bg-transparent border-0 p-0"
               aria-label="Przejdź do strony głównej"
             >

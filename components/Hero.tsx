@@ -27,7 +27,7 @@ export const Hero: React.FC = () => {
         <div className="max-w-2xl">
           <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-10 backdrop-blur-md">
             <span className="flex h-2 w-2 rounded-full bg-[#8ab925] shadow-[0_0_10px_#8ab925] animate-pulse"></span>
-            <span className="text-xs font-extrabold text-gray-300 uppercase tracking-widest">Design & Technologia</span>
+            <span className="text-xs font-extrabold text-gray-300 uppercase tracking-widest">Technologia jutra</span>
           </div>
           
           <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-8 leading-[1.05] tracking-tight">
