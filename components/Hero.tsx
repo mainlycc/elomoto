@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { getImage } from '../utils/db';
+import { navigateTo } from '../utils/navigation';
 
 export const Hero: React.FC = () => {
   const heroImage = getImage('hero', 'https://images.unsplash.com/photo-1593941707882-a5bba14938c7?auto=format&fit=crop&q=80&w=1600');
@@ -40,10 +41,18 @@ export const Hero: React.FC = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
-            <button className="bg-[#8ab925] hover:bg-[#9ed02e] text-[#0a1a14] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 shadow-[0_15px_30px_rgba(138,185,37,0.3)] uppercase text-sm tracking-wider transform hover:-translate-y-1 active:scale-95">
+            <button
+              type="button"
+              onClick={() => navigateTo('/oferta/montaz')}
+              className="bg-[#8ab925] hover:bg-[#9ed02e] text-[#0a1a14] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 shadow-[0_15px_30px_rgba(138,185,37,0.3)] uppercase text-sm tracking-wider transform hover:-translate-y-1 active:scale-95"
+            >
               Skonfiguruj stację
             </button>
-            <button className="border border-white/10 hover:border-[#8ab925]/50 text-white font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-sm tracking-wider bg-white/5 backdrop-blur-sm shadow-sm hover:bg-white/10 active:scale-95">
+            <button
+              type="button"
+              onClick={() => navigateTo('/oferta/darmowa-ladowarka')}
+              className="border border-white/10 hover:border-[#8ab925]/50 text-white font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-sm tracking-wider bg-white/5 backdrop-blur-sm shadow-sm hover:bg-white/10 active:scale-95"
+            >
               Oferta dla domu
             </button>
           </div>
