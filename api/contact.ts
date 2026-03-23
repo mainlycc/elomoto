@@ -12,6 +12,18 @@ const TOPIC_LABELS: Record<ContactTopicId, string> = {
 const isValidEmail = (value: string): boolean =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
+const parseRequestBody = (body: unknown): unknown => {
+  if (typeof body !== 'string') {
+    return body;
+  }
+
+  try {
+    return JSON.parse(body);
+  } catch {
+    return null;
+  }
+};
+
 const normalizePayload = (body: unknown): ContactFormPayload | null => {
   if (!body || typeof body !== 'object') {
     return null;
@@ -80,7 +92,7 @@ export default async function handler(req: any, res: any) {
 
   const resend = new Resend(resendApiKey);
 
-  const payload = normalizePayload(req.body);
+  const payload = normalizePayload(parseRequestBody(req.body));
 
   if (!payload) {
     return res.status(400).json({ ok: false, message: 'Invalid form payload.' });
@@ -110,12 +122,22 @@ export default async function handler(req: any, res: any) {
     });
 
     if (sendResult.error) {
-      return res.status(502).json({ ok: false, message: 'Email provider error.' });
+      const providerMessage =
+        typeof sendResult.error.message === 'string' && sendResult.error.message.length > 0
+          ? sendResult.error.message
+          : 'Email provider error.';
+
+      return res.status(502).json({ ok: false, message: providerMessage });
     }
 
     return res.status(200).json({ ok: true, message: 'Message sent successfully.' });
   } catch (error) {
     console.error('Contact email error:', error);
-    return res.status(500).json({ ok: false, message: 'Unexpected server error.' });
+    const errorMessage = error instanceof Error ? error.message : null;
+
+    return res.status(500).json({
+      ok: false,
+      message: errorMessage || 'Unexpected server error.',
+    });
   }
 }
