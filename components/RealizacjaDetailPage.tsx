@@ -1,19 +1,48 @@
+import { PortableText } from '@portabletext/react';
 import React from 'react';
-import type { Realization } from '../types';
-import { REALIZATIONS } from '../constants';
+import { useRealizationBySlug } from '../hooks/useRealizationBySlug';
+import { useRealizations } from '../hooks/useRealizations';
 import { navigateTo } from '../utils/navigation';
+import { realizationPortableTextComponents } from './portableTextComponents';
 
 interface Props {
-  realization: Realization | null;
+  slug: string;
 }
 
-export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
+const defaultIntro =
+  'Przykładowa realizacja infrastruktury ładowania w obiekcie komercyjnym. Opis poniżej ma charakter poglądowy – możesz go później zastąpić szczegółowym case study.';
+
+export const RealizacjaDetailPage: React.FC<Props> = ({ slug }) => {
+  const { realization, loading, error } = useRealizationBySlug(slug);
+  const { realizations } = useRealizations();
+
+  if (loading) {
+    return (
+      <section className="max-w-5xl mx-auto px-4 pb-24">
+        <p className="text-gray-400 text-sm font-bold uppercase tracking-widest">Ładowanie realizacji…</p>
+      </section>
+    );
+  }
+
+  if (error && !realization) {
+    return (
+      <section className="max-w-4xl mx-auto px-4 pb-24">
+        <h1 className="text-2xl md:text-3xl font-black text-white mb-4">Nie udało się załadować realizacji</h1>
+        <p className="text-sm text-gray-300 mb-6">Spróbuj ponownie później lub wróć do listy.</p>
+        <button
+          onClick={() => navigateTo('/realizacje')}
+          className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-[#8ab925] text-black text-xs font-extrabold tracking-wider uppercase shadow-lg hover:bg-[#9ed02e] active:scale-95 transition-all"
+        >
+          Wróć do realizacji
+        </button>
+      </section>
+    );
+  }
+
   if (!realization) {
     return (
       <section className="max-w-4xl mx-auto px-4 pb-24">
-        <h1 className="text-2xl md:text-3xl font-black text-white mb-4">
-          Realizacja nie została znaleziona
-        </h1>
+        <h1 className="text-2xl md:text-3xl font-black text-white mb-4">Realizacja nie została znaleziona</h1>
         <p className="text-sm text-gray-300 mb-6">
           Sprawdź poprawność adresu URL lub wróć do listy wszystkich realizacji.
         </p>
@@ -27,37 +56,37 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
     );
   }
 
+  const others = realizations.filter((r) => r.slug !== realization.slug).slice(0, 4);
+  const orderLabel = String(realization.order).padStart(2, '0');
+
   return (
     <section className="max-w-5xl mx-auto px-4 pb-24">
-      {/* Nagłówek główny */}
       <header className="mb-16">
-        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">
-          nasze projekty
-        </p>
+        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">nasze projekty</p>
         <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
           Realizacje <span className="text-[#8ab925]">elomoto.eco</span>
         </h1>
         <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
-          Wybrane wdrożenia infrastruktury ładowania w biurowcach, hotelach, centrach handlowych i 
-          na osiedlach mieszkaniowych. Różne lokalizacje, jeden standard – wygodne, bezpieczne i 
-          nowoczesne ładowanie pojazdów elektrycznych.
+          Wybrane wdrożenia infrastruktury ładowania w biurowcach, hotelach, centrach handlowych i na osiedlach
+          mieszkaniowych. Różne lokalizacje, jeden standard – wygodne, bezpieczne i nowoczesne ładowanie pojazdów
+          elektrycznych.
         </p>
       </header>
 
-      {/* Szczegóły realizacji */}
       <div className="mb-16">
         <div className="mb-10">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">
-            realizacja 0{realization.id}
+            realizacja {orderLabel}
           </p>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">
-            {realization.title}
-          </h2>
-          <p className="text-gray-300 text-sm max-w-2xl">
-            Przykładowa realizacja infrastruktury ładowania w obiekcie komercyjnym. Opis poniżej
-            ma charakter poglądowy – możesz go później zastąpić szczegółowym case study.
-          </p>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-4">{realization.title}</h2>
+          <p className="text-gray-300 text-sm max-w-2xl">{realization.intro ?? defaultIntro}</p>
         </div>
+
+        {realization.body && realization.body.length > 0 ? (
+          <div className="mb-12">
+            <PortableText value={realization.body} components={realizationPortableTextComponents} />
+          </div>
+        ) : null}
 
         <div className="grid md:grid-cols-2 gap-8 mb-12">
           <div className="rounded-3xl overflow-hidden border border-white/10 bg-white/5">
@@ -68,13 +97,10 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
             />
           </div>
           <div className="space-y-4 text-sm text-gray-200 leading-relaxed">
-            <h3 className="text-lg font-semibold text-white">
-              Zakres projektu
-            </h3>
+            <h3 className="text-lg font-semibold text-white">Zakres projektu</h3>
             <p>
-              W ramach projektu wykonano analizę zapotrzebowania na ładowanie, przygotowano
-              koncepcję techniczną oraz zrealizowano kompletny montaż punktów ładowania wraz
-              z uruchomieniem systemu rozliczeń.
+              W ramach projektu wykonano analizę zapotrzebowania na ładowanie, przygotowano koncepcję techniczną oraz
+              zrealizowano kompletny montaż punktów ładowania wraz z uruchomieniem systemu rozliczeń.
             </p>
             <ul className="space-y-2">
               <li>• instalacja kilku punktów ładowania AC / DC,</li>
@@ -86,31 +112,22 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
         </div>
 
         <div className="glass border border-white/10 rounded-3xl p-6 md:p-8 mb-10">
-          <h3 className="text-lg font-semibold text-white mb-3">
-            Efekty dla inwestora
-          </h3>
+          <h3 className="text-lg font-semibold text-white mb-3">Efekty dla inwestora</h3>
           <p className="text-sm text-gray-200 mb-4">
-            Dzięki wdrożeniu infrastruktury ładowania obiekt zyskał nową wartość dla użytkowników,
-            a także możliwość raportowania danych związanych z wykorzystaniem stacji i zużyciem
-            energii elektrycznej.
+            Dzięki wdrożeniu infrastruktury ładowania obiekt zyskał nową wartość dla użytkowników, a także możliwość
+            raportowania danych związanych z wykorzystaniem stacji i zużyciem energii elektrycznej.
           </p>
           <ul className="grid md:grid-cols-3 gap-4 text-sm text-gray-200">
             <li className="bg-white/5 rounded-2xl p-4 border border-white/10">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">
-                komfort
-              </p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">komfort</p>
               <p>Ładowanie dostępne tam, gdzie użytkownicy spędzają najwięcej czasu.</p>
             </li>
             <li className="bg-white/5 rounded-2xl p-4 border border-white/10">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">
-                wizerunek
-              </p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">wizerunek</p>
               <p>Wzmocnienie proekologicznego wizerunku inwestycji.</p>
             </li>
             <li className="bg-white/5 rounded-2xl p-4 border border-white/10">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">
-                dane
-              </p>
+              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">dane</p>
               <p>Lepsze zrozumienie realnego zapotrzebowania na ładowanie dzięki raportom.</p>
             </li>
           </ul>
@@ -124,13 +141,12 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
         </button>
       </div>
 
-      {/* Galeria innych realizacji */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-6 uppercase tracking-tight">
           Inne <span className="text-[#8ab925]">realizacje</span>
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {REALIZATIONS.filter(r => r.id !== realization.id).slice(0, 4).map((item) => (
+          {others.map((item) => (
             <button
               key={item.id}
               type="button"
@@ -146,11 +162,9 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-80" />
                 <div className="absolute bottom-3 left-3 right-3">
                   <p className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#8ab925] mb-1">
-                    realizacja 0{item.id}
+                    realizacja {String(item.order).padStart(2, '0')}
                   </p>
-                  <h3 className="text-sm font-black text-white leading-tight">
-                    {item.title}
-                  </h3>
+                  <h3 className="text-sm font-black text-white leading-tight">{item.title}</h3>
                 </div>
               </div>
             </button>
@@ -158,15 +172,17 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
         </div>
       </div>
 
-      {/* Formularz kontaktowy */}
       <div className="bg-white rounded-[40px] p-8 md:p-12 border border-slate-100 shadow-2xl">
         <div className="mb-10">
-          <span className="text-[#8ab925] font-black uppercase tracking-[0.4em] text-[10px] mb-3 block">Formularz kontaktowy</span>
+          <span className="text-[#8ab925] font-black uppercase tracking-[0.4em] text-[10px] mb-3 block">
+            Formularz kontaktowy
+          </span>
           <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter leading-[0.95] mb-4">
-            Chcesz podobną <br /><span className="text-[#8ab925]">realizację?</span>
+            Chcesz podobną <br />
+            <span className="text-[#8ab925]">realizację?</span>
           </h2>
           <p className="text-slate-500 font-medium text-sm leading-relaxed max-w-xl">
-            Skontaktuj się z nami, aby omówić możliwości wdrożenia infrastruktury ładowania w Twoim obiekcie. 
+            Skontaktuj się z nami, aby omówić możliwości wdrożenia infrastruktury ładowania w Twoim obiekcie.
             Przygotujemy indywidualną ofertę dopasowaną do Twoich potrzeb.
           </p>
         </div>
@@ -189,12 +205,14 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
             />
           </div>
           <div className="md:col-span-2 space-y-1">
-            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Treść wiadomości</label>
+            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+              Treść wiadomości
+            </label>
             <textarea
               rows={4}
               placeholder="Opisz swój projekt, liczbę miejsc postojowych, typ obiektu..."
               className="w-full bg-white border border-slate-200 rounded-3xl py-4 px-6 text-sm font-bold text-slate-900 focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300 resize-none"
-            ></textarea>
+            />
           </div>
 
           <div className="md:col-span-2 pt-4">
@@ -202,7 +220,11 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
               <label className="flex items-start space-x-3 cursor-pointer group">
                 <input type="checkbox" className="mt-1 w-4 h-4 rounded border-slate-300 text-[#8ab925] focus:ring-[#8ab925]" />
                 <span className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                  Wyrażam zgodę na przetwarzanie danych przez Elomoto Sp. z o.o. zgodnie z <a href="/polityka-prywatnosci" className="text-slate-900 underline font-black">Polityką Prywatności</a>.
+                  Wyrażam zgodę na przetwarzanie danych przez Elomoto Sp. z o.o. zgodnie z{' '}
+                  <a href="/polityka-prywatnosci" className="text-slate-900 underline font-black">
+                    Polityką Prywatności
+                  </a>
+                  .
                 </span>
               </label>
             </div>
@@ -213,7 +235,6 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
           </div>
         </form>
 
-        {/* Dane firmy */}
         <div className="bg-slate-50 rounded-3xl p-6 border border-slate-100">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
             <div>
@@ -228,11 +249,12 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
             <div className="md:text-right">
               <h5 className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-3">Siedziba</h5>
               <p className="text-[10px] font-bold text-slate-500 leading-relaxed">
-                ul. Czereśniowa 98/117<br />
+                ul. Czereśniowa 98/117
+                <br />
                 02-456 Warszawa
               </p>
               <div className="mt-4 inline-flex items-center space-x-2 bg-slate-900 text-[#8ab925] px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest">
-                <span className="w-1.5 h-1.5 bg-[#8ab925] rounded-full animate-pulse"></span>
+                <span className="w-1.5 h-1.5 bg-[#8ab925] rounded-full animate-pulse" />
                 <span>Ubezpieczenie OC 2 mln PLN</span>
               </div>
             </div>
@@ -242,4 +264,3 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ realization }) => {
     </section>
   );
 };
-

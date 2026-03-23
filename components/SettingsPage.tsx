@@ -1,9 +1,11 @@
 
 import React, { useState } from 'react';
-import { SERVICES, BLOG_POSTS } from '../constants';
-import { saveImage, clearImages, getImage } from '../utils/db';
+import { SERVICES } from '../constants';
+import { useBlogPosts } from '../hooks/useBlogPosts';
+import { saveImage, clearImages } from '../utils/db';
 
 export const SettingsPage: React.FC = () => {
+  const { posts: blogPosts } = useBlogPosts();
   const [status, setStatus] = useState<string>('');
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
@@ -81,9 +83,17 @@ export const SettingsPage: React.FC = () => {
           </section>
 
           <section>
-            <h2 className="text-xl font-black mb-6 border-b border-white/10 pb-2">BLOG (3 ZDJĘCIA)</h2>
+            <h2 className="text-xl font-black mb-6 border-b border-white/10 pb-2">BLOG (ZDJĘCIA WPISÓW)</h2>
+            <p className="text-gray-500 text-xs mb-4 max-w-xl">
+              Klucze są powiązane ze slugiem wpisu z CMS (np. blog_moj-slug). Po dodaniu nowych wpisów w Sanity
+              pojawią się tutaj automatycznie.
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {BLOG_POSTS.map((p, i) => renderUploadBox(`Wpis: ${p.title}`, `blog_${i}`))}
+              {blogPosts.length === 0 ? (
+                <p className="text-gray-500 text-sm col-span-full">Brak wpisów z CMS — zaimportuj dane lub dodaj wpisy w Studio.</p>
+              ) : (
+                blogPosts.map((p) => renderUploadBox(`Wpis: ${p.title}`, `blog_${p.slug}`))
+              )}
             </div>
           </section>
 

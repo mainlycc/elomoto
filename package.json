@@ -10,8 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@portabletext/react": "^3.2.0",
+    "@portabletext/types": "^2.0.13",
+    "@sanity/client": "^6.24.1",
+    "@sanity/image-url": "^1.1.0",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "resend": "^6.9.4"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",

@@ -26,8 +26,8 @@ import { RealizacjePage } from './components/RealizacjePage';
 import { RealizacjaDetailPage } from './components/RealizacjaDetailPage';
 import { KarieraPage } from './components/KarieraPage';
 import { PlatnoscBezRejestracjiPage } from './components/PlatnoscBezRejestracjiPage';
-import { REALIZATIONS } from './constants';
 import { BlogPage } from './components/BlogPage';
+import { BlogPostPage } from './components/BlogPostPage';
 import { MapaStacjiPage } from './components/MapaStacjiPage';
 
 const App: React.FC = () => {
@@ -112,13 +112,12 @@ const App: React.FC = () => {
 
   if (normalizedPath.startsWith('/realizacje/')) {
     const slug = normalizedPath.split('/')[2] || '';
-    const realization = REALIZATIONS.find((r) => r.slug === slug) || null;
 
     return (
       <div className="min-h-screen relative bg-[#020617]">
         <Navbar />
         <main className="pt-32 md:pt-36">
-          <RealizacjaDetailPage realization={realization} />
+          <RealizacjaDetailPage slug={slug} />
         </main>
         <Footer />
       </div>
@@ -179,6 +178,20 @@ const App: React.FC = () => {
         <Navbar />
         <main className="pt-32 md:pt-36">
           <PlatnoscBezRejestracjiPage />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (normalizedPath.startsWith('/blog/')) {
+    const blogSlug = normalizedPath.slice('/blog/'.length).split('/')[0] || '';
+
+    return (
+      <div className="min-h-screen relative bg-[#020617]">
+        <Navbar />
+        <main className="pt-32 md:pt-36 bg-white">
+          <BlogPostPage slug={blogSlug} />
         </main>
         <Footer />
       </div>

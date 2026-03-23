@@ -1,0 +1,121 @@
+import { Resend } from 'resend';
+import { CONTACT_TOPIC_IDS, type ContactFormPayload, type ContactTopicId } from '../types';
+
+const TOPIC_LABELS: Record<ContactTopicId, string> = {
+  subsidies: 'Dotacje',
+  install: 'Zakup i montaz',
+  lease: 'Dzierzawa parkingu',
+  operator: 'Usluga operatorska',
+  audit: 'Ekspertyza punktu',
+};
+
+const isValidEmail = (value: string): boolean =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+const normalizePayload = (body: unknown): ContactFormPayload | null => {
+  if (!body || typeof body !== 'object') {
+    return null;
+  }
+
+  const candidate = body as Partial<ContactFormPayload>;
+  const name = typeof candidate.name === 'string' ? candidate.name.trim() : '';
+  const email = typeof candidate.email === 'string' ? candidate.email.trim() : '';
+  const message = typeof candidate.message === 'string' ? candidate.message.trim() : '';
+  const topic = typeof candidate.topic === 'string' ? candidate.topic : '';
+  const consent = candidate.consent === true;
+
+  if (!name || name.length < 2 || name.length > 120) {
+    return null;
+  }
+
+  if (!isValidEmail(email) || email.length > 200) {
+    return null;
+  }
+
+  if (!message || message.length < 10 || message.length > 5000) {
+    return null;
+  }
+
+  if (!CONTACT_TOPIC_IDS.includes(topic as ContactTopicId)) {
+    return null;
+  }
+
+  if (!consent) {
+    return null;
+  }
+
+  return {
+    name,
+    email,
+    message,
+    topic: topic as ContactTopicId,
+    consent,
+  };
+};
+
+export default async function handler(req: any, res: any) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ ok: false, message: 'Method not allowed' });
+  }
+
+  const resendApiKey = process.env.RESEND_API_KEY;
+  const resendFromEmail = process.env.RESEND_FROM_EMAIL;
+  const missingVars: string[] = [];
+
+  if (!resendApiKey) {
+    missingVars.push('RESEND_API_KEY');
+  }
+  if (!resendFromEmail) {
+    missingVars.push('RESEND_FROM_EMAIL');
+  }
+
+  if (missingVars.length > 0) {
+    return res
+      .status(500)
+      .json({
+        ok: false,
+        message: `Missing email configuration on server: ${missingVars.join(', ')}`,
+      });
+  }
+
+  const resend = new Resend(resendApiKey);
+
+  const payload = normalizePayload(req.body);
+
+  if (!payload) {
+    return res.status(400).json({ ok: false, message: 'Invalid form payload.' });
+  }
+
+  const topicLabel = TOPIC_LABELS[payload.topic];
+  const submittedAt = new Date().toISOString();
+
+  try {
+    const sendResult = await resend.emails.send({
+      from: resendFromEmail,
+      to: payload.email,
+      subject: `Potwierdzenie zgloszenia: ${topicLabel}`,
+      text: [
+        'Dziekujemy za zgloszenie z formularza kontaktowego.',
+        '',
+        `Temat: ${topicLabel}`,
+        `Imie i nazwisko: ${payload.name}`,
+        `Email: ${payload.email}`,
+        `Data wyslania (UTC): ${submittedAt}`,
+        '',
+        'Twoja wiadomosc:',
+        payload.message,
+        '',
+        'Skontaktujemy sie z Toba najszybciej, jak to mozliwe.',
+      ].join('\n'),
+    });
+
+    if (sendResult.error) {
+      return res.status(502).json({ ok: false, message: 'Email provider error.' });
+    }
+
+    return res.status(200).json({ ok: true, message: 'Message sent successfully.' });
+  } catch (error) {
+    console.error('Contact email error:', error);
+    return res.status(500).json({ ok: false, message: 'Unexpected server error.' });
+  }
+}

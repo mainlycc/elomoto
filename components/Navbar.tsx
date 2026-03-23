@@ -62,7 +62,7 @@ export const Navbar: React.FC = () => {
               <img
                 src={logoWhite}
                 alt="elomoto.eco"
-                className="h-32 w-auto object-contain"
+                className="h-16 w-auto object-contain brightness-[1.15]"
               />
             </button>
 

@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import type { ContactFormPayload, ContactTopicId } from '../types';
 
-const CONTACT_TOPICS = [
+const CONTACT_TOPICS: Array<{ id: ContactTopicId; label: string; icon: string }> = [
   { id: 'subsidies', label: 'Dotacje', icon: '💰' },
   { id: 'install', label: 'Zakup i montaż', icon: '⚡' },
   { id: 'lease', label: 'Dzierżawa parkingu', icon: '🅿️' },
@@ -9,8 +10,121 @@ const CONTACT_TOPICS = [
   { id: 'audit', label: 'Ekspertyza punktu', icon: '📋' },
 ];
 
+type FormStatus = 'idle' | 'success' | 'error';
+
 export const ContactSection: React.FC = () => {
-  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [selectedTopic, setSelectedTopic] = useState<ContactTopicId>('subsidies');
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<FormStatus>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
+
+  const canSubmit = useMemo(() => {
+    if (isSubmitting) {
+      return false;
+    }
+
+    return (
+      name.trim().length >= 2 &&
+      email.trim().length > 0 &&
+      message.trim().length >= 10 &&
+      consent
+    );
+  }, [consent, email, isSubmitting, message, name]);
+
+  const validatePayload = (payload: ContactFormPayload): string | null => {
+    if (payload.name.trim().length < 2) {
+      return 'Podaj poprawne imię i nazwisko.';
+    }
+
+    const simpleEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!simpleEmailRegex.test(payload.email.trim())) {
+      return 'Podaj poprawny adres e-mail.';
+    }
+
+    if (payload.message.trim().length < 10) {
+      return 'Wiadomość powinna mieć minimum 10 znaków.';
+    }
+
+    if (!payload.consent) {
+      return 'Aby wysłać formularz, zaakceptuj politykę prywatności.';
+    }
+
+    return null;
+  };
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setStatus('idle');
+    setStatusMessage('');
+
+    const payload: ContactFormPayload = {
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+      topic: selectedTopic,
+      consent,
+    };
+
+    const validationError = validatePayload(payload);
+    if (validationError) {
+      setStatus('error');
+      setStatusMessage(validationError);
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const rawBody = await response.text();
+      let result: { ok?: boolean; message?: string } = {};
+
+      if (rawBody) {
+        try {
+          result = JSON.parse(rawBody) as { ok?: boolean; message?: string };
+        } catch {
+          result = {};
+        }
+      }
+
+      if (!response.ok || !result.ok) {
+        if (response.status === 404) {
+          throw new Error(
+            'Endpoint /api/contact nie jest dostępny w tym trybie uruchomienia. Użyj środowiska Vercel.'
+          );
+        }
+
+        throw new Error(
+          result.message || `Nie udało się wysłać formularza (HTTP ${response.status}).`
+        );
+      }
+
+      setStatus('success');
+      setStatusMessage('Dziękujemy! Twoja wiadomość została wysłana.');
+      setName('');
+      setEmail('');
+      setMessage('');
+      setConsent(false);
+      setSelectedTopic('subsidies');
+    } catch (error) {
+      setStatus('error');
+      setStatusMessage(
+        error instanceof Error
+          ? error.message
+          : 'Wystąpił błąd podczas wysyłki. Spróbuj ponownie za chwilę.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <section id="contact" className="py-32 bg-white text-slate-900 overflow-hidden">
@@ -69,12 +183,16 @@ export const ContactSection: React.FC = () => {
           {/* Prawa strona: Formularz i Dane firmy */}
           <div className="lg:w-7/12">
             <div className="bg-slate-50 rounded-[40px] p-8 md:p-12 border border-slate-100 shadow-2xl shadow-slate-200/50">
-              <form className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                 <div className="space-y-1">
                   <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Twoje Imię</label>
                   <input 
                     type="text" 
+                    value={name}
+                    onChange={(event) => setName(event.target.value)}
+                    disabled={isSubmitting}
                     placeholder="np. Jan Kowalski"
+                    required
                     className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
                   />
                 </div>
@@ -82,7 +200,11 @@ export const ContactSection: React.FC = () => {
                   <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">E-mail</label>
                   <input 
                     type="email" 
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                    disabled={isSubmitting}
                     placeholder="twoj@email.pl"
+                    required
                     className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
                   />
                 </div>
@@ -90,7 +212,11 @@ export const ContactSection: React.FC = () => {
                   <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Treść wiadomości</label>
                   <textarea 
                     rows={4}
+                    value={message}
+                    onChange={(event) => setMessage(event.target.value)}
+                    disabled={isSubmitting}
                     placeholder="Opisz krótko swoje potrzeby..."
+                    required
                     className="w-full bg-white border border-slate-200 rounded-3xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300 resize-none"
                   ></textarea>
                 </div>
@@ -98,16 +224,35 @@ export const ContactSection: React.FC = () => {
                 <div className="md:col-span-2 pt-4">
                   <div className="space-y-3 mb-8">
                     <label className="flex items-start space-x-3 cursor-pointer group">
-                      <input type="checkbox" className="mt-1 w-4 h-4 rounded border-slate-300 text-[#8ab925] focus:ring-[#8ab925]" />
+                      <input
+                        type="checkbox"
+                        checked={consent}
+                        onChange={(event) => setConsent(event.target.checked)}
+                        disabled={isSubmitting}
+                        className="mt-1 w-4 h-4 rounded border-slate-300 text-[#8ab925] focus:ring-[#8ab925]"
+                      />
                       <span className="text-[10px] text-slate-400 font-medium leading-relaxed">
                         Wyrażam zgodę na przetwarzanie danych przez Elomoto Sp. z o.o. zgodnie z <a href="#" className="text-slate-900 underline font-black">Polityką Prywatności</a>.
                       </span>
                     </label>
                   </div>
                   
-                  <button className="w-full sm:w-auto bg-[#8ab925] text-white font-black py-5 px-16 rounded-2xl text-xs uppercase tracking-[0.2em] shadow-lg shadow-[#8ab925]/20 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95">
-                    Wyślij zapytanie
+                  <button
+                    type="submit"
+                    disabled={!canSubmit}
+                    className="w-full sm:w-auto bg-[#8ab925] disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-black py-5 px-16 rounded-2xl text-xs uppercase tracking-[0.2em] shadow-lg shadow-[#8ab925]/20 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95"
+                  >
+                    {isSubmitting ? 'Wysyłanie...' : 'Wyślij zapytanie'}
                   </button>
+                  {status !== 'idle' ? (
+                    <p
+                      className={`mt-4 text-sm font-bold ${
+                        status === 'success' ? 'text-emerald-600' : 'text-red-500'
+                      }`}
+                    >
+                      {statusMessage}
+                    </p>
+                  ) : null}
                 </div>
               </form>
 
