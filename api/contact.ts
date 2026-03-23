@@ -1,5 +1,15 @@
 import { Resend } from 'resend';
-import { CONTACT_TOPIC_IDS, type ContactFormPayload, type ContactTopicId } from '../types';
+
+const CONTACT_TOPIC_IDS = ['subsidies', 'install', 'lease', 'operator', 'audit'] as const;
+type ContactTopicId = (typeof CONTACT_TOPIC_IDS)[number];
+
+interface ContactFormPayload {
+  name: string;
+  email: string;
+  message: string;
+  topic: ContactTopicId;
+  consent: boolean;
+}
 
 const TOPIC_LABELS: Record<ContactTopicId, string> = {
   subsidies: 'Dotacje',
