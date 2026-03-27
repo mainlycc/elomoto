@@ -139,7 +139,7 @@ export const ContactSection: React.FC = () => {
                 NAPISZ <br /><span className="text-[#8ab925]">DO NAS</span>
               </h2>
               <p className="text-slate-500 font-medium leading-relaxed max-w-sm">
-                Wybierz interesujący Cię temat i wyślij zapytanie. Nasz zespół inżynierów odpowie w ciągu 24h.
+                Wybierz interesujący Cię temat i wyślij zapytanie. Nasz zespół odpowie w ciągu 24h.
               </p>
             </div>
 

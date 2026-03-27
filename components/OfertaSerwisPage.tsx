@@ -1,4 +1,5 @@
 import React from 'react';
+import { SubpageContactSection } from './SubpageContactSection';
 
 export const OfertaSerwisPage: React.FC = () => {
   return (
@@ -145,86 +146,13 @@ export const OfertaSerwisPage: React.FC = () => {
         </p>
       </div>
 
-      {/* Formularz kontaktowy */}
-      <div className="bg-white rounded-[40px] p-8 md:p-12 border border-slate-100 shadow-2xl">
-        <div className="mb-10">
-          <span className="text-[#8ab925] font-black uppercase tracking-[0.4em] text-[10px] mb-3 block">Serwis i utrzymanie</span>
-          <h2 className="text-3xl md:text-4xl font-black text-slate-900 uppercase tracking-tighter leading-[0.95] mb-4">
-            Potrzebujesz serwisu <br /><span className="text-[#8ab925]">stacji ładowania?</span>
-          </h2>
-          <p className="text-slate-500 font-medium text-sm leading-relaxed max-w-xl">
-            Napisz do nas — przedstawimy zakres obsługi serwisowej, warunki współpracy i możliwości utrzymania Twojej infrastruktury ładowania AC.
-          </p>
-        </div>
-
-        <form className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
-          <div className="space-y-1">
-            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Twoje Imię</label>
-            <input
-              type="text"
-              placeholder="np. Jan Kowalski"
-              className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold text-slate-900 focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
-            />
-          </div>
-          <div className="space-y-1">
-            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">E-mail</label>
-            <input
-              type="email"
-              placeholder="twoj@email.pl"
-              className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold text-slate-900 focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
-            />
-          </div>
-          <div className="md:col-span-2 space-y-1">
-            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Treść wiadomości</label>
-            <textarea
-              rows={4}
-              placeholder="Opisz typ stacji, liczbę urządzeń, lokalizację i potrzeby serwisowe..."
-              className="w-full bg-white border border-slate-200 rounded-3xl py-4 px-6 text-sm font-bold text-slate-900 focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300 resize-none"
-            ></textarea>
-          </div>
-
-          <div className="md:col-span-2 pt-4">
-            <div className="space-y-3 mb-8">
-              <label className="flex items-start space-x-3 cursor-pointer group">
-                <input type="checkbox" className="mt-1 w-4 h-4 rounded border-slate-300 text-[#8ab925] focus:ring-[#8ab925]" />
-                <span className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                  Wyrażam zgodę na przetwarzanie danych przez Elomoto Sp. z o.o. zgodnie z <a href="/polityka-prywatnosci" className="text-slate-900 underline font-black">Polityką Prywatności</a>.
-                </span>
-              </label>
-            </div>
-
-            <button className="w-full sm:w-auto bg-[#8ab925] text-white font-black py-5 px-16 rounded-2xl text-xs uppercase tracking-[0.2em] shadow-lg shadow-[#8ab925]/20 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95">
-              Wyślij zapytanie
-            </button>
-          </div>
-        </form>
-
-        {/* Dane firmy */}
-        <div className="bg-slate-50 rounded-3xl p-6 border border-slate-100">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-            <div>
-              <h5 className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-3">Rejestracja spółki</h5>
-              <div className="text-[10px] font-bold text-slate-500 space-y-1 leading-relaxed">
-                <p>ELOMOTO SP. Z O.O.</p>
-                <p>KRS: 0001012969 | NIP: 5223246605</p>
-                <p>REGON: 524171300</p>
-                <p>Kapitał: 3 000 000 PLN</p>
-              </div>
-            </div>
-            <div className="md:text-right">
-              <h5 className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-3">Siedziba</h5>
-              <p className="text-[10px] font-bold text-slate-500 leading-relaxed">
-                ul. Czereśniowa 98/117<br />
-                02-456 Warszawa
-              </p>
-              <div className="mt-4 inline-flex items-center space-x-2 bg-slate-900 text-[#8ab925] px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest">
-                <span className="w-1.5 h-1.5 bg-[#8ab925] rounded-full animate-pulse"></span>
-                <span>Ubezpieczenie OC 2 mln PLN</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <SubpageContactSection
+        kicker="Serwis i utrzymanie"
+        title="Potrzebujesz serwisu"
+        highlightedTitle="stacji ładowania?"
+        description="Napisz do nas, a przedstawimy zakres obsługi serwisowej, warunki współpracy i możliwości utrzymania Twojej infrastruktury ładowania AC."
+        messagePlaceholder="Opisz typ stacji, liczbę urządzeń, lokalizację i potrzeby serwisowe..."
+      />
     </section>
   );
 };

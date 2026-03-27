@@ -32,25 +32,33 @@ export const AboutSection: React.FC = () => {
               </div>
               <h2 className="text-4xl md:text-5xl font-black text-white leading-tight uppercase tracking-tighter">
                 ELEKTROMOBILNOŚĆ <br />
-                <span className="text-[#8ab925]">TO NASZA PASJA</span>
+                <span className="text-[#8ab925]">TO NASZA SPECJALIZACJA</span>
               </h2>
             </div>
             
             <div className="space-y-6">
               <p className="text-gray-300 leading-relaxed text-lg font-medium">
-                <strong className="text-white">Elomoto Sp. z o.o.</strong> to wyspecjalizowany podmiot w ekosystemie Energomix, dedykowany wyłącznie technologii ładowania pojazdów.
+                Jesteśmy Polskim operatorem ogólnopolskiej sieci ładowania pojazdów elektrycznych, tworzonym z myślą o przyszłości miast i codziennej wygodzie ich mieszkańców.
               </p>
-              
+
               <p className="text-gray-400 leading-relaxed">
-                Skupiamy się na rozwoju ogólnopolskiej, niezależnej sieci ładowarek elomoto. Nasz zespół inżynierów i ekspertów zapewnia kompleksowość: od audytu lokalizacji, przez projektowanie, aż po finalny montaż i cyfrową obsługę operatorską.
+                Koncentrujemy się na przestrzeniach, które definiują rytm nowoczesnego życia - osiedlach wielorodzinnych oraz kompleksach biurowych. To właśnie tam rozwijamy infrastrukturę, która realnie wspiera transformację w kierunku elektromobilności.
+              </p>
+
+              <p className="text-gray-400 leading-relaxed">
+                Projektujemy i realizujemy inwestycje w sposób kompleksowy - od koncepcji i analiz, przez procesy formalne i przyłączeniowe, aż po budowę, zarządzanie i rozwój sieci. Każdy projekt traktujemy indywidualnie, dbając o najwyższe standardy technologiczne i operacyjne.
+              </p>
+
+              <p className="text-gray-400 leading-relaxed">
+                Tworzymy rozwiązania, które łączą estetykę, wydajność i skalowalność - gotowe na potrzeby dzisiejsze i wyzwania jutra.
               </p>
 
               <ul className="space-y-4">
                 {[
-                  'Indywidualne podejście do każdej lokalizacji',
-                  'Najnowocześniejsze ładowarki DC i AC',
-                  'Pełne wsparcie w pozyskiwaniu dotacji',
-                  'Własny system rozliczeniowy i aplikacja mobilna'
+                  'Własna, ogólnopolska sieć ładowania',
+                  'Specjalizacja: osiedla mieszkaniowe i biura',
+                  'Szybkie i wydajne ładowarki AC i DC',
+                  'Kompleksowa realizacja inwestycji'
                 ].map((item, i) => (
                   <li key={i} className="flex items-center space-x-3 text-sm font-extrabold text-gray-300 uppercase tracking-tight">
                     <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#8ab925]/10 flex items-center justify-center">

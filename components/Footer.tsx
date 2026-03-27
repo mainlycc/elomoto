@@ -99,16 +99,16 @@ export const Footer: React.FC = () => {
                 <FooterLink href="/oferta/darmowa-ladowarka">Darmowa ładowarka</FooterLink>
               </li>
               <li>
-                <FooterLink href="/oferta/montaz">Montaż stacji</FooterLink>
+                <FooterLink href="/oferta/montaz">Montaż stacji ładowania</FooterLink>
               </li>
               <li>
-                <FooterLink href="/oferta/ekspertyzy">Ekspertyzy techniczne</FooterLink>
+                <FooterLink href="/oferta/ekspertyzy">Ekspertyzy stacji ładowania</FooterLink>
               </li>
               <li>
-                <FooterLink href="/oferta/operator">Usługa operatorska</FooterLink>
+                <FooterLink href="/oferta/operator">Usługa operatorska stacji ładowania</FooterLink>
               </li>
               <li>
-                <FooterLink href="/oferta/serwis">Serwis i utrzymanie</FooterLink>
+                <FooterLink href="/oferta/serwis">Serwis stacji ładowania AC</FooterLink>
               </li>
             </ul>
           </div>

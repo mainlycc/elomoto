@@ -32,6 +32,16 @@ export interface Realization {
   body?: PortableTextBlock[];
 }
 
+export interface TeamMember {
+  id: string;
+  order: number;
+  fullName: string;
+  position: string;
+  bio: string;
+  photo: string;
+  photoAlt: string;
+}
+
 export const CONTACT_TOPIC_IDS = ['subsidies', 'install', 'lease', 'operator', 'audit'] as const;
 
 export type ContactTopicId = (typeof CONTACT_TOPIC_IDS)[number];

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { AboutSection } from './components/AboutSection';
+import { AboutPage } from './components/AboutPage';
 import { ServicesSection } from './components/ServicesSection';
 import { ProcessSection } from './components/ProcessSection';
 import { AppSection } from './components/AppSection';
@@ -15,6 +16,7 @@ import { ChargingWidget } from './components/ChargingWidget';
 import { RegulaminPage } from './components/RegulaminPage';
 import { PolitykaPrywatnosciPage } from './components/PolitykaPrywatnosciPage';
 import { ChargingStationsMapSection } from './components/ChargingStationsMapSection';
+import { RealizationsSection } from './components/RealizationsSection';
 import { OfertaPage } from './components/OfertaPage';
 import { OfertaDarmowaLadowarkaPage } from './components/OfertaDarmowaLadowarkaPage';
 import { OfertaMontazPage } from './components/OfertaMontazPage';
@@ -141,7 +143,7 @@ const App: React.FC = () => {
       <div className="min-h-screen relative bg-[#020617]">
         <Navbar />
         <main className="pt-32 md:pt-36">
-          <AboutSection />
+          <AboutPage />
         </main>
         <Footer />
       </div>
@@ -303,6 +305,7 @@ const App: React.FC = () => {
         <AppSection />
         <BlogSection />
         <FaqSection />
+        <RealizationsSection />
         <ContactSection />
       </main>
       <Footer />

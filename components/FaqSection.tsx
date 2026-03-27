@@ -8,24 +8,32 @@ interface FaqItem {
 
 const FAQ_DATA: FaqItem[] = [
   {
-    question: "Czy każdy może wydzierżawić miejsce parkingowe pod ładowarkę?",
-    answer: "Tak, współpracujemy zarówno z właścicielami prywatnych posesji, jak i zarządcami biurowców, hoteli czy galerii handlowych. Kluczowym warunkiem jest dostępność odpowiedniej mocy przyłączeniowej lub możliwość jej zwiększenia, co oceniamy podczas bezpłatnego audytu."
+    question: "Gdzie możecie zainstalować ładowarki?",
+    answer: "Praktycznie wszędzie — od prywatnych miejsc postojowych po ogólnodostępne lokalizacje."
   },
   {
-    question: "Ile trwa proces montażu stacji ładowania?",
-    answer: "Standardowy montaż ładowarki ściennej (Wallbox) w domu jednorodzinnym trwa zazwyczaj od 4 do 6 godzin. W przypadku instalacji komercyjnych i szybkich ładowarek DC (prądu stałego), proces może trwać od kilku dni do kilku tygodni, ze względu na konieczność wykonania prac ziemnych i odbiorów UDT."
+    question: "Jak wygląda proces uruchomienia stacji ładowania?",
+    answer: "Zajmujemy się wszystkim za Ciebie. Od analizy lokalizacji i projektu, przez formalności i uzyskanie niezbędnych zgód, aż po montaż, odbiory, uruchomienie i obsługę infrastruktury."
   },
   {
-    question: "Czy Elomoto pomaga w uzyskaniu dotacji?",
-    answer: "Oczywiście. Nasz zespół ekspertów kompleksowo wspiera klientów w pozyskiwaniu dofinansowań z programów takich jak 'Mój Elektryk'. Przygotowujemy niezbędną dokumentację techniczną oraz pomagamy w poprawnym wypełnieniu wniosków."
+    question: "Kiedy Elomoto może sfinansować inwestycję?",
+    answer: "Wszystko zależy od potencjału lokalizacji. Skontaktuj się z nami — przeanalizujemy projekt i wspólnie znajdziemy najlepszy model współpracy."
   },
   {
-    question: "Jakie są korzyści z usługi operatorskiej Elomoto?",
-    answer: "Decydując się na naszą usługę operatorską, zdejmujesz z siebie ciężar zarządzania stacją. My zajmujemy się serwisem 24/7, rozliczeniami z użytkownikami, aktualizacją oprogramowania oraz promocją Twojego punktu w naszej aplikacji mobilnej i mapach Google."
+    question: "Mam już ładowarkę — czy możecie ją przejąć w zarządzanie?",
+    answer: "Tak. Możemy kompleksowo zarządzać istniejącą infrastrukturą — zapewniając jej ciągłe działanie, serwis, monitoring oraz rozliczenia użytkowników."
   },
   {
-    question: "Czy ładowarki Elomoto są odporne na warunki atmosferyczne?",
-    answer: "Wszystkie nasze urządzenia posiadają stopień ochrony IP54 lub wyższy oraz klasę odporności mechanicznej IK10. Są w pełni przystosowane do pracy w ekstremalnych temperaturach od -30°C do +50°C, deszczu oraz śniegu."
+    question: "Ile trwa instalacja stacji ładowania?",
+    answer: "Czas realizacji zależy od lokalizacji i warunków technicznych. W optymalnym scenariuszu sam montaż może zająć nawet kilka godzin (2-3h), jednak cały proces inwestycyjny obejmuje również przygotowania, formalności oraz odbiory."
+  },
+  {
+    question: "Czy stacje są przystosowane do pracy na zewnątrz?",
+    answer: "Tak. Korzystamy wyłącznie z certyfikowanych urządzeń AC i DC, przystosowanych do pracy w wymagających warunkach atmosferycznych. Jesteśmy oficjalnym dystrybutorem sprawdzonych, europejskich producentów infrastruktury ładowania."
+  },
+  {
+    question: "Czy trzeba się rejestrować, żeby skorzystać z ładowarki?",
+    answer: "Nie. Możesz skorzystać z ładowania bez rejestracji — oferujemy wygodne płatności jednorazowe, bez konieczności zakładania konta."
   }
 ];
 
@@ -41,7 +49,7 @@ export const FaqSection: React.FC = () => {
             PYTANIA I <span className="text-[#8ab925]">ODPOWIEDZI</span>
           </h2>
           <p className="mt-4 text-slate-500 font-medium">
-            Wszystko, co musisz wiedzieć o ładowaniu pojazdów elektrycznych z Elomoto.
+            Wszystko, co warto wiedzieć o infrastrukturze ładowania z Elomoto.
           </p>
         </div>
 

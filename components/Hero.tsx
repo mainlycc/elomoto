@@ -31,9 +31,8 @@ export const Hero: React.FC = () => {
           </div>
           
           <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-8 leading-[1.05] tracking-tight">
-            Energia <br />
-            <span className="text-[#8ab925]">Przyszłości</span> <br />
-            W Twoim Zasięgu.
+            Power up <br />
+            your <span className="text-[#8ab925]">future</span>
           </h1>
           
           <p className="text-gray-400 text-lg md:text-xl mb-12 max-w-lg leading-relaxed font-medium">
@@ -43,17 +42,17 @@ export const Hero: React.FC = () => {
           <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
             <button
               type="button"
-              onClick={() => navigateTo('/oferta/montaz')}
+              onClick={() => navigateTo('/oferta/darmowa-ladowarka')}
               className="bg-[#8ab925] hover:bg-[#9ed02e] text-[#0a1a14] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 shadow-[0_15px_30px_rgba(138,185,37,0.3)] uppercase text-sm tracking-wider transform hover:-translate-y-1 active:scale-95"
             >
-              Skonfiguruj stację
+              Darmowa stacja ładowania
             </button>
             <button
               type="button"
-              onClick={() => navigateTo('/oferta/darmowa-ladowarka')}
+              onClick={() => navigateTo('/oferta/montaz')}
               className="border border-white/10 hover:border-[#8ab925]/50 text-white font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-sm tracking-wider bg-white/5 backdrop-blur-sm shadow-sm hover:bg-white/10 active:scale-95"
             >
-              Oferta dla domu
+              Prywatna stacja ładowania
             </button>
           </div>
           

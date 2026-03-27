@@ -1,4 +1,5 @@
 import React from 'react';
+import { SubpageContactSection } from './SubpageContactSection';
 
 export const OfertaPage: React.FC = () => {
   return (
@@ -78,23 +79,13 @@ export const OfertaPage: React.FC = () => {
         </div>
       </div>
 
-      <div className="glass border border-[#8ab925]/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        <div>
-          <h2 className="text-lg font-semibold text-white mb-2">
-            Nie wiesz od czego zacząć?
-          </h2>
-          <p className="text-sm text-gray-200 max-w-xl">
-            Zacznij od krótkiej rozmowy lub zgłoszenia przez formularz kontaktowy. Pomożemy dobrać
-            właściwy model współpracy i wyjaśnimy różnice między poszczególnymi wariantami oferty.
-          </p>
-        </div>
-        <a
-          href="#contact"
-          className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-[#8ab925] text-black text-xs font-extrabold tracking-wider uppercase shadow-lg hover:bg-[#9ed02e] active:scale-95 transition-all"
-        >
-          Skontaktuj się z nami
-        </a>
-      </div>
+      <SubpageContactSection
+        kicker="Porozmawiajmy o ofercie"
+        title="Nie wiesz od czego zacząć?"
+        highlightedTitle="Napisz do nas"
+        description="Pomożemy dobrać właściwy model współpracy i wyjaśnimy różnice między poszczególnymi wariantami oferty."
+        messagePlaceholder="Opisz krótko swój obiekt, potrzeby i zakres współpracy..."
+      />
     </section>
   );
 };

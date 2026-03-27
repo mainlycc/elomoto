@@ -1,7 +1,7 @@
 import { NavItem, ServiceItem } from './types';
 
 export const NAV_LINKS: NavItem[] = [
-  { label: 'O NAS', href: '#about' },
+  { label: 'O NAS', href: '/o-nas' },
   { label: 'OFERTA', href: '#services' },
   { label: 'PROCES', href: '#process' },
   { label: 'MAPA STACJI', href: '#charging-map' },

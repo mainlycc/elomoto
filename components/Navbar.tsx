@@ -7,10 +7,10 @@ import logoWhite from '../Logo Png white.png';
 const ofertaSubLinks = [
   { label: 'Przegląd oferty', href: '/oferta' },
   { label: 'Darmowa ładowarka', href: '/oferta/darmowa-ladowarka' },
-  { label: 'Montaż', href: '/oferta/montaz' },
-  { label: 'Ekspertyzy', href: '/oferta/ekspertyzy' },
-  { label: 'Operator', href: '/oferta/operator' },
-  { label: 'Serwis', href: '/oferta/serwis' },
+  { label: 'Montaż stacji ładowania', href: '/oferta/montaz' },
+  { label: 'Ekspertyzy stacji ładowania', href: '/oferta/ekspertyzy' },
+  { label: 'Usługa operatorska stacji ładowania', href: '/oferta/operator' },
+  { label: 'Serwis stacji ładowania AC', href: '/oferta/serwis' },
 ];
 
 export const Navbar: React.FC = () => {
@@ -123,7 +123,7 @@ export const Navbar: React.FC = () => {
               })}
               <div className="h-6 w-[1px] bg-white/10 mx-3"></div>
               <button
-                onClick={() => navigateTo('/platnosc-bez-rejestracji')}
+                onClick={() => navigateTo('https://zaplac.elomoto.eco/')}
                 className="bg-white text-black text-xs font-extrabold px-6 py-3 rounded-xl hover:bg-[#8ab925] hover:shadow-[0_0_20px_rgba(138,185,37,0.3)] transition-all tracking-wider shadow-md active:scale-95"
               >
                 PŁAĆ BEZ REJESTRACJI
@@ -196,7 +196,7 @@ export const Navbar: React.FC = () => {
             })}
             <button
               onClick={() => {
-                navigateTo('/platnosc-bez-rejestracji');
+                navigateTo('https://zaplac.elomoto.eco/');
                 setIsOpen(false);
               }}
               className="w-full bg-[#8ab925] text-black font-extrabold py-4 rounded-2xl tracking-wider text-sm uppercase shadow-lg active:scale-95"
