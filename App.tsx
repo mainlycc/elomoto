@@ -31,6 +31,39 @@ import { PlatnoscBezRejestracjiPage } from './components/PlatnoscBezRejestracjiP
 import { BlogPage } from './components/BlogPage';
 import { BlogPostPage } from './components/BlogPostPage';
 import { MapaStacjiPage } from './components/MapaStacjiPage';
+import { HomeContactSection } from './components/HomeContactSection';
+
+type PageShellProps = {
+  children: React.ReactNode;
+  wrapperClassName?: string;
+  mainClassName?: string;
+  mainProps?: React.HTMLAttributes<HTMLElement>;
+};
+
+const PageShell: React.FC<PageShellProps> = ({
+  children,
+  wrapperClassName = 'min-h-screen relative',
+  mainClassName = 'pt-32 md:pt-36',
+  mainProps,
+}) => {
+  return (
+    <div className={wrapperClassName}>
+      <Navbar />
+
+      {/* Floating Charging Widget - Follows the user */}
+      <div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden xl:block pointer-events-none scale-75 origin-right">
+        <div className="pointer-events-auto">
+          <ChargingWidget />
+        </div>
+      </div>
+
+      <main className={mainClassName} {...mainProps}>
+        {children}
+      </main>
+      <Footer />
+    </div>
+  );
+};
 
 const App: React.FC = () => {
   const [path, setPath] = useState(window.location.pathname);
@@ -61,54 +94,42 @@ const App: React.FC = () => {
   }, [normalizedPath]);
 
   if (normalizedPath === '/ustaw') {
-    return <SettingsPage />;
+    return (
+      <PageShell>
+        <SettingsPage />
+      </PageShell>
+    );
   }
 
   if (normalizedPath === '/regulamin') {
     return (
-      <div className="min-h-screen relative">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <RegulaminPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell>
+        <RegulaminPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/polityka-prywatnosci') {
     return (
-      <div className="min-h-screen relative">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <PolitykaPrywatnosciPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell>
+        <PolitykaPrywatnosciPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/darmowa-stacja') {
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <DarmowaStacjaPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+        <DarmowaStacjaPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/realizacje') {
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <RealizacjePage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+        <RealizacjePage />
+      </PageShell>
     );
   }
 
@@ -116,73 +137,49 @@ const App: React.FC = () => {
     const slug = normalizedPath.split('/')[2] || '';
 
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <RealizacjaDetailPage slug={slug} />
-        </main>
-        <Footer />
-      </div>
+      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+        <RealizacjaDetailPage slug={slug} />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/mapa') {
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <MapaStacjiPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+        <MapaStacjiPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/o-nas') {
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <AboutPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+        <AboutPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/kariera') {
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <KarieraPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+        <KarieraPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/kontakt') {
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <ContactSection />
-        </main>
-        <Footer />
-      </div>
+      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+        <ContactSection />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/platnosc-bez-rejestracji') {
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <PlatnoscBezRejestracjiPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+        <PlatnoscBezRejestracjiPage />
+      </PageShell>
     );
   }
 
@@ -190,126 +187,84 @@ const App: React.FC = () => {
     const blogSlug = normalizedPath.slice('/blog/'.length).split('/')[0] || '';
 
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36 bg-white">
-          <BlogPostPage slug={blogSlug} />
-        </main>
-        <Footer />
-      </div>
+      <PageShell
+        wrapperClassName="min-h-screen relative bg-[#020617]"
+        mainClassName="pt-32 md:pt-36 bg-white"
+      >
+        <BlogPostPage slug={blogSlug} />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/blog') {
     return (
-      <div className="min-h-screen relative bg-[#020617]">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <BlogPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+        <BlogPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/oferta') {
     return (
-      <div className="min-h-screen relative">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <OfertaPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell>
+        <OfertaPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/oferta/darmowa-ladowarka') {
     return (
-      <div className="min-h-screen relative">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <OfertaDarmowaLadowarkaPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell>
+        <OfertaDarmowaLadowarkaPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/oferta/montaz') {
     return (
-      <div className="min-h-screen relative">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <OfertaMontazPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell>
+        <OfertaMontazPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/oferta/ekspertyzy') {
     return (
-      <div className="min-h-screen relative">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <OfertaEkspertyzyPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell>
+        <OfertaEkspertyzyPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/oferta/operator') {
     return (
-      <div className="min-h-screen relative">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <OfertaOperatorPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell>
+        <OfertaOperatorPage />
+      </PageShell>
     );
   }
 
   if (normalizedPath === '/oferta/serwis') {
     return (
-      <div className="min-h-screen relative">
-        <Navbar />
-        <main className="pt-32 md:pt-36">
-          <OfertaSerwisPage />
-        </main>
-        <Footer />
-      </div>
+      <PageShell>
+        <OfertaSerwisPage />
+      </PageShell>
     );
   }
 
   return (
-    <div className="min-h-screen relative">
-      <Navbar />
-
-      {/* Floating Charging Widget - Follows the user */}
-      <div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden xl:block pointer-events-none scale-75 origin-right">
-        <div className="pointer-events-auto">
-          <ChargingWidget />
-        </div>
-      </div>
-
-      {/* Na stronie głównej Hero ma już własne odstępy, więc nie dodajemy extra paddingu pod navbar */}
-      <main>
-        <Hero />
-        <AboutSection />
-        <ServicesSection />
-        <ProcessSection />
-        <ChargingStationsMapSection />
-        <AppSection />
-        <BlogSection />
-        <FaqSection />
-        <RealizationsSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <PageShell mainClassName="">
+      <Hero />
+      <AboutSection />
+      <ServicesSection />
+      <ProcessSection />
+      <ChargingStationsMapSection />
+      <AppSection />
+      <BlogSection />
+      <FaqSection />
+      <RealizationsSection />
+      <HomeContactSection />
+    </PageShell>
   );
 };
 
