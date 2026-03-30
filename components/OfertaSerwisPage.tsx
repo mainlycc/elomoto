@@ -133,17 +133,29 @@ export const OfertaSerwisPage: React.FC = () => {
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
           Specjalizujemy się w serwisie wybranych producentów infrastruktury AC.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {/* Placeholder na loga producentów */}
-          {['Producent 1', 'Producent 2', 'Producent 3', 'Producent 4'].map((brand) => (
-            <div key={brand} className="flex items-center justify-center bg-white/5 border border-white/10 rounded-2xl h-20 text-sm text-gray-500 font-medium">
-              {brand}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+          {[
+            { src: '/brands/Elinta_Charge_Logo_RGB.webp', alt: 'Elinta Charge' },
+            { src: '/brands/Morek-logo.png', alt: 'Morek' },
+            { src: '/brands/Enelion_main_logo_color_20221212.svg', alt: 'Enelion' },
+            { src: '/brands/evb-logo-DQMQmUMH.png', alt: 'EVB' },
+          ].map((logo) => (
+            <div
+              key={logo.alt}
+              className="flex items-center justify-center bg-white rounded-2xl h-20 px-4 border border-white/10"
+            >
+              <img
+                src={logo.src}
+                alt={logo.alt}
+                loading="lazy"
+                className="block max-h-12 w-auto max-w-full object-contain opacity-95"
+                onError={(e) => {
+                  (e.currentTarget as HTMLImageElement).style.display = 'none';
+                }}
+              />
             </div>
           ))}
         </div>
-        <p className="text-xs text-gray-500 mt-4 italic">
-          Miejsce na logotypy marek serwisowanych ładowarek AC.
-        </p>
       </div>
 
       <SubpageContactSection
