@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { getImage } from '../utils/db';
+import { navigateTo } from '../utils/navigation';
 
 export const AboutSection: React.FC = () => {
   const aboutImg = getImage('about', 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800');
@@ -73,7 +74,11 @@ export const AboutSection: React.FC = () => {
             </div>
 
             <div className="pt-6">
-              <button className="bg-white text-black hover:bg-[#8ab925] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-xs tracking-wider shadow-lg transform hover:-translate-y-1 active:scale-95">
+              <button
+                type="button"
+                onClick={() => navigateTo('/o-nas')}
+                className="bg-white text-black hover:bg-[#8ab925] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-xs tracking-wider shadow-lg transform hover:-translate-y-1 active:scale-95"
+              >
                 Poznaj Nas Lepiej
               </button>
             </div>
