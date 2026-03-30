@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { navigateTo } from '../utils/navigation';
 
 const steps = [
   {
@@ -97,7 +98,11 @@ export const ProcessSection: React.FC = () => {
 
         {/* Bottom CTA for Section */}
         <div className="mt-28 text-center">
-          <button className="inline-flex items-center space-x-6 bg-white/5 border border-white/10 hover:border-[#8ab925]/40 px-10 py-5 rounded-2xl transition-all group backdrop-blur-sm transform hover:-translate-y-1 active:scale-95">
+          <button
+            type="button"
+            onClick={() => navigateTo('/oferta/darmowa-ladowarka')}
+            className="inline-flex items-center space-x-6 bg-white/5 border border-white/10 hover:border-[#8ab925]/40 px-10 py-5 rounded-2xl transition-all group backdrop-blur-sm transform hover:-translate-y-1 active:scale-95"
+          >
             <span className="text-white font-extrabold text-xs uppercase tracking-wider">Poznaj model biznesowy</span>
             <div className="w-10 h-10 rounded-full bg-[#8ab925]/10 flex items-center justify-center group-hover:bg-[#8ab925] transition-all">
               <svg className="w-5 h-5 text-[#8ab925] group-hover:text-black transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">

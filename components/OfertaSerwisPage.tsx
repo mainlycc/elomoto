@@ -138,7 +138,7 @@ export const OfertaSerwisPage: React.FC = () => {
             { src: '/brands/Elinta_Charge_Logo_RGB.webp', alt: 'Elinta Charge' },
             { src: '/brands/Morek-logo.png', alt: 'Morek' },
             { src: '/brands/Enelion_main_logo_color_20221212.svg', alt: 'Enelion' },
-            { src: '/brands/evb-logo-DQMQmUMH.png', alt: 'EVB' },
+            { src: '/brands/evb.png', alt: 'EVB' },
           ].map((logo) => (
             <div
               key={logo.alt}

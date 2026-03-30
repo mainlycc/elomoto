@@ -28,7 +28,7 @@ export const RealizationsSection: React.FC = () => {
         ) : null}
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {realizations.slice(0, 5).map((item) => (
+          {realizations.slice(0, 3).map((item) => (
             <button
               key={item.id}
               type="button"
