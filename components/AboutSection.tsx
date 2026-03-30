@@ -1,10 +1,10 @@
 
 import React from 'react';
-import { getImage } from '../utils/db';
 import { navigateTo } from '../utils/navigation';
+import polonusWarszawaImg from '../Polonus Warszawa.jpeg';
 
 export const AboutSection: React.FC = () => {
-  const aboutImg = getImage('about', 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=800');
+  const aboutImg = polonusWarszawaImg;
 
   return (
     <section id="about" className="py-24 bg-[#0a1a14] overflow-hidden">

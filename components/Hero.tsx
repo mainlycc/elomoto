@@ -25,12 +25,7 @@ export const Hero: React.FC = () => {
 
       <div className="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div className="max-w-2xl">
-          <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-10 backdrop-blur-md">
-            <span className="flex h-2 w-2 rounded-full bg-[#8ab925] shadow-[0_0_10px_#8ab925] animate-pulse"></span>
-            <span className="text-xs font-extrabold text-gray-300 uppercase tracking-widest">Technologia jutra</span>
-          </div>
-          
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-8 leading-[1.05] tracking-tight">
+          <h1 className="text-6xl md:text-8xl lg:text-9xl font-extrabold text-white mb-8 leading-[1.05] tracking-tight">
             Power up <br />
             your <span className="text-[#8ab925]">future</span>
           </h1>
@@ -52,23 +47,8 @@ export const Hero: React.FC = () => {
               onClick={() => navigateTo('/oferta/montaz')}
               className="border border-white/10 hover:border-[#8ab925]/50 text-white font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 uppercase text-sm tracking-wider bg-white/5 backdrop-blur-sm shadow-sm hover:bg-white/10 active:scale-95"
             >
-              Prywatna stacja ładowania
+              Kup stację ładowania
             </button>
-          </div>
-          
-          <div className="mt-20 grid grid-cols-3 gap-8 border-t border-white/5 pt-12">
-            <div>
-              <div className="text-3xl font-bold text-white">Premium</div>
-              <div className="text-xs text-gray-500 font-extrabold uppercase tracking-widest mt-2">Wykończenie</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-[#8ab925]">Smart</div>
-              <div className="text-xs text-gray-500 font-extrabold uppercase tracking-widest mt-2">Zarządzanie</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-white">Eko</div>
-              <div className="text-xs text-gray-500 font-extrabold uppercase tracking-widest mt-2">Lifestyle</div>
-            </div>
           </div>
         </div>
       </div>

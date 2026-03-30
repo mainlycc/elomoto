@@ -1,13 +1,11 @@
 import React from 'react';
 import { useTeamMembers } from '../hooks/useTeamMembers';
-import { getImage } from '../utils/db';
+import { navigateTo } from '../utils/navigation';
+import polonusWarszawaImg from '../Polonus Warszawa.jpeg';
 
 export const AboutPage: React.FC = () => {
   const { members, loading, error } = useTeamMembers();
-  const aboutImg = getImage(
-    'about',
-    'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200'
-  );
+  const aboutImg = polonusWarszawaImg;
 
   return (
     <section className="pb-24 bg-[#020617]">
@@ -103,6 +101,16 @@ export const AboutPage: React.FC = () => {
               ))}
             </div>
           )}
+        </div>
+
+        <div className="mt-20 flex justify-center">
+          <button
+            type="button"
+            onClick={() => navigateTo('/kariera')}
+            className="bg-[#8ab925] hover:bg-[#9ed02e] text-[#0a1a14] font-extrabold py-5 px-10 rounded-2xl transition-all duration-300 shadow-[0_15px_30px_rgba(138,185,37,0.3)] uppercase text-sm tracking-wider transform hover:-translate-y-1 active:scale-95"
+          >
+            Dołącz do nas!
+          </button>
         </div>
       </div>
     </section>

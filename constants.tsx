@@ -4,6 +4,7 @@ export const NAV_LINKS: NavItem[] = [
   { label: 'O NAS', href: '/o-nas' },
   { label: 'OFERTA', href: '#services' },
   { label: 'PROCES', href: '#process' },
+  { label: 'REALIZACJE', href: '/realizacje' },
   { label: 'MAPA STACJI', href: '#charging-map' },
   { label: 'BLOG', href: '/blog' },
   { label: 'KONTAKT', href: '#contact' },

@@ -39,7 +39,7 @@ export const ProcessSection: React.FC = () => {
           </div>
           <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none">
             Proces Wdrożenia <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8ab925] to-[#22c55e]">Krok Po Kroku</span>
+            <span className="text-[#8ab925]">Krok Po Kroku</span>
           </h2>
         </div>
 
