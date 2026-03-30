@@ -49,6 +49,7 @@ export type ContactTopicId = (typeof CONTACT_TOPIC_IDS)[number];
 export interface ContactFormPayload {
   name: string;
   email: string;
+  phone?: string;
   message: string;
   topic: ContactTopicId;
   consent: boolean;
