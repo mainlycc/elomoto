@@ -3,8 +3,11 @@ import React from 'react';
 import { SERVICES } from '../constants';
 import { getImage } from '../utils/db';
 import { navigateTo } from '../utils/navigation';
+import { useI18n } from '../i18n/I18nProvider';
 
 export const ServicesSection: React.FC = () => {
+  const { t } = useI18n();
+
   return (
     <section id="services" className="py-32 bg-[#0a1a14] relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#8ab925]/5 rounded-full blur-3xl -z-10"></div>
@@ -15,19 +18,25 @@ export const ServicesSection: React.FC = () => {
           <div className="max-w-xl">
             <div className="flex items-center space-x-4 mb-4">
               <div className="h-[2px] w-12 bg-[#8ab925]"></div>
-              <p className="text-[#8ab925] font-black uppercase tracking-[0.3em] text-xs">Ecosystem</p>
+              <p className="text-[#8ab925] font-black uppercase tracking-[0.3em] text-xs">{t('services.eyebrow')}</p>
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
-              Infrastruktura <br /> jutra
+              {t('services.headingLine1')} <br /> {t('services.headingLine2')}
             </h2>
           </div>
           <p className="text-gray-400 text-sm mt-6 md:mt-0 md:text-right max-w-xs font-medium">
-            Zapewniamy kompletne rozwiązania od dzierżawy gruntów po zaawansowane systemy operatorskie.
+            {t('services.intro')}
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {SERVICES.map((service, index) => (
+            (() => {
+              const title = service.titleKey ? t(service.titleKey) : service.title || '';
+              const description = service.descriptionKey ? t(service.descriptionKey) : service.description || '';
+              const labelNumber = `0${index + 1}`;
+
+              return (
             <div 
               key={index} 
               className="group relative bg-white/5 rounded-[32px] p-2 transition-all duration-500 hover:bg-white/10 hover:shadow-2xl flex flex-col h-full border border-white/5 hover:border-[#8ab925]/20"
@@ -35,7 +44,7 @@ export const ServicesSection: React.FC = () => {
               <div className="relative h-64 overflow-hidden rounded-[26px]">
                 <img 
                   src={getImage(`service_${index}`, service.image)} 
-                  alt={service.title} 
+                  alt={title} 
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
                 />
               </div>
@@ -43,13 +52,15 @@ export const ServicesSection: React.FC = () => {
               <div className="p-8 flex flex-col flex-grow">
                 <div className="flex items-center space-x-2 mb-4">
                    <div className="w-2 h-2 rounded-full bg-[#8ab925]"></div>
-                   <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Usługa 0{index + 1}</span>
+                   <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+                    {t('services.itemLabel', { number: labelNumber })}
+                   </span>
                 </div>
                 <h3 className="text-lg font-black text-white mb-4 uppercase leading-tight group-hover:text-[#8ab925] transition-colors">
-                  {service.title}
+                  {title}
                 </h3>
                 <p className="text-gray-400 text-sm mb-8 flex-grow leading-relaxed font-medium">
-                  {service.description}
+                  {description}
                 </p>
                 
                 <button
@@ -63,6 +74,8 @@ export const ServicesSection: React.FC = () => {
                 </button>
               </div>
             </div>
+              );
+            })()
           ))}
         </div>
       </div>

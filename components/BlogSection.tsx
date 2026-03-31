@@ -2,8 +2,10 @@ import React from 'react';
 import { useBlogPosts } from '../hooks/useBlogPosts';
 import { getImage } from '../utils/db';
 import { navigateTo } from '../utils/navigation';
+import { useI18n } from '../i18n/I18nProvider';
 
 export const BlogSection: React.FC = () => {
+  const { t } = useI18n();
   const { posts, loading, error } = useBlogPosts();
 
   return (
@@ -12,27 +14,38 @@ export const BlogSection: React.FC = () => {
         <div className="flex justify-between items-end mb-12">
           <div>
             <p className="text-primary font-extrabold uppercase tracking-widest text-xs mb-2">
-              BLOG & WIADOMOŚCI
+              {t('blog.eyebrow')}
             </p>
-            <h2 className="text-4xl font-black text-gray-900 uppercase">CO NOWEGO W ŚWIECIE EV?</h2>
+            <h2 className="text-4xl font-black text-gray-900 uppercase">{t('blog.heading')}</h2>
           </div>
           <button
             type="button"
             onClick={() => navigateTo('/blog')}
             className="hidden md:block text-gray-900 font-extrabold text-xs uppercase tracking-widest border-b-2 border-primary pb-1 hover:text-primary transition-all active:scale-95"
           >
-            Zobacz wszystkie wpisy
+            {t('blog.seeAll')}
           </button>
         </div>
 
         {loading ? (
-          <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">Ładowanie wpisów…</p>
+          <p className="text-gray-500 text-sm font-bold uppercase tracking-widest">{t('blog.loading')}</p>
         ) : null}
         {error && posts.length === 0 ? (
-          <p className="text-red-600 text-sm mb-4">Nie udało się załadować bloga.</p>
+          <div className="text-red-600 text-sm mb-4 space-y-2">
+            <p>{t('blog.errorTitle')}</p>
+            <p className="text-xs text-red-700/80 font-semibold">
+              {error.message}
+            </p>
+            {String(error.message).toLowerCase().includes('cors') ||
+            String(error.message).toLowerCase().includes('failed to fetch') ? (
+              <p className="text-xs text-red-700/80">
+                {t('blog.corsHint')}
+              </p>
+            ) : null}
+          </div>
         ) : null}
         {!loading && posts.length === 0 ? (
-          <p className="text-gray-500 text-sm">Brak opublikowanych wpisów.</p>
+          <p className="text-gray-500 text-sm">{t('blog.empty')}</p>
         ) : null}
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -63,7 +76,7 @@ export const BlogSection: React.FC = () => {
                   <p className="text-gray-600 text-sm leading-relaxed line-clamp-2">{post.excerpt}</p>
                   <div className="pt-2">
                     <span className="text-primary font-extrabold text-xs uppercase tracking-wider flex items-center group-hover:translate-x-2 transition-transform">
-                      Czytaj więcej
+                      {t('blog.readMore')}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-4 w-4 ml-2"

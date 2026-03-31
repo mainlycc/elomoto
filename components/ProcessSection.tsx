@@ -1,31 +1,34 @@
 
 import React from 'react';
 import { navigateTo } from '../utils/navigation';
+import { useI18n } from '../i18n/I18nProvider';
 
 const steps = [
   {
-    number: '01',
-    title: 'ANALIZA',
-    description: 'Badamy zapotrzebowanie i możliwości techniczne Twojej lokalizacji, by dobrać optymalne rozwiązanie.'
+    numberKey: 'process.steps.s1.number',
+    titleKey: 'process.steps.s1.title',
+    descriptionKey: 'process.steps.s1.description'
   },
   {
-    number: '02',
-    title: 'PROJEKT',
-    description: 'Przygotowujemy kompletną dokumentację projektową i uzyskujemy niezbędne zgody administracyjne.'
+    numberKey: 'process.steps.s2.number',
+    titleKey: 'process.steps.s2.title',
+    descriptionKey: 'process.steps.s2.description'
   },
   {
-    number: '03',
-    title: 'MONTAŻ',
-    description: 'Nasi certyfikowani specjaliści instalują infrastrukturę, dbając o najwyższe standardy bezpieczeństwa.'
+    numberKey: 'process.steps.s3.number',
+    titleKey: 'process.steps.s3.title',
+    descriptionKey: 'process.steps.s3.description'
   },
   {
-    number: '04',
-    title: 'GO LIVE',
-    description: 'Uruchamiamy stację, wdrażamy system rozliczeniowy elomoto i zapewniamy pełne wsparcie 24/7.'
+    numberKey: 'process.steps.s4.number',
+    titleKey: 'process.steps.s4.title',
+    descriptionKey: 'process.steps.s4.description'
   }
 ];
 
 export const ProcessSection: React.FC = () => {
+  const { t } = useI18n();
+
   return (
     <section id="process" className="py-32 bg-[#0a1a14] relative overflow-hidden">
       {/* Background Decor */}
@@ -35,11 +38,11 @@ export const ProcessSection: React.FC = () => {
         <div className="text-center mb-32">
           <div className="inline-flex items-center space-x-3 bg-white/5 border border-white/10 px-4 py-2 rounded-full mb-6">
             <span className="flex h-2 w-2 rounded-full bg-[#8ab925]"></span>
-            <p className="text-[#8ab925] font-extrabold uppercase tracking-widest text-[10px]">Ecosystem Workflow</p>
+            <p className="text-[#8ab925] font-extrabold uppercase tracking-widest text-[10px]">{t('process.badge')}</p>
           </div>
           <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none">
-            Proces Wdrożenia <br />
-            <span className="text-[#8ab925]">Krok Po Kroku</span>
+            {t('process.headingLine1')} <br />
+            <span className="text-[#8ab925]">{t('process.headingLine2Accent')}</span>
           </h2>
         </div>
 
@@ -58,7 +61,7 @@ export const ProcessSection: React.FC = () => {
                   <div className="w-16 h-16 rounded-full bg-[#0a1a14] border-2 border-white/10 flex items-center justify-center transition-all duration-500 group-hover:border-[#8ab925] group-hover:shadow-[0_0_30px_rgba(138,185,37,0.4)] relative overflow-hidden group-hover:scale-110">
                     <div className="absolute inset-0 bg-gradient-to-br from-[#8ab925]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                     <span className="text-xl font-black text-white group-hover:text-[#8ab925] transition-colors relative z-10">
-                      {step.number}
+                      {t(step.numberKey)}
                     </span>
                   </div>
                   
@@ -74,11 +77,11 @@ export const ProcessSection: React.FC = () => {
                   <div className="w-12 h-[2px] bg-[#8ab925] mx-auto mb-6 opacity-40 group-hover:opacity-100 group-hover:w-20 transition-all duration-500"></div>
                   
                   <h3 className="text-lg font-black text-white uppercase tracking-widest mb-4 group-hover:text-[#8ab925] transition-colors">
-                    {step.title}
+                    {t(step.titleKey)}
                   </h3>
                   
                   <p className="text-gray-400 text-sm leading-relaxed font-medium group-hover:text-gray-300 transition-colors">
-                    {step.description}
+                    {t(step.descriptionKey)}
                   </p>
                   
                   {/* Background mesh glow */}
@@ -103,7 +106,7 @@ export const ProcessSection: React.FC = () => {
             onClick={() => navigateTo('/oferta/darmowa-ladowarka')}
             className="inline-flex items-center space-x-6 bg-white/5 border border-white/10 hover:border-[#8ab925]/40 px-10 py-5 rounded-2xl transition-all group backdrop-blur-sm transform hover:-translate-y-1 active:scale-95"
           >
-            <span className="text-white font-extrabold text-xs uppercase tracking-wider">Poznaj model biznesowy</span>
+            <span className="text-white font-extrabold text-xs uppercase tracking-wider">{t('process.cta')}</span>
             <div className="w-10 h-10 rounded-full bg-[#8ab925]/10 flex items-center justify-center group-hover:bg-[#8ab925] transition-all">
               <svg className="w-5 h-5 text-[#8ab925] group-hover:text-black transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M17 8l4 4m0 0l-4 4m4-4H3" />

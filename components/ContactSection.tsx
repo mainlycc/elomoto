@@ -1,13 +1,14 @@
 
 import React, { useMemo, useState } from 'react';
 import type { ContactFormPayload, ContactTopicId } from '../types';
+import { useI18n } from '../i18n/I18nProvider';
 
 const CONTACT_TOPICS: Array<{ id: ContactTopicId; label: string; icon: string }> = [
-  { id: 'subsidies', label: 'Dotacje', icon: '💰' },
-  { id: 'install', label: 'Zakup i montaż', icon: '⚡' },
-  { id: 'lease', label: 'Dzierżawa parkingu', icon: '🅿️' },
-  { id: 'operator', label: 'Usługa operatorska', icon: '📱' },
-  { id: 'audit', label: 'Ekspertyza punktu', icon: '📋' },
+  { id: 'subsidies', label: 'contact.topics.subsidies', icon: '💰' },
+  { id: 'install', label: 'contact.topics.install', icon: '⚡' },
+  { id: 'lease', label: 'contact.topics.lease', icon: '🅿️' },
+  { id: 'operator', label: 'contact.topics.operator', icon: '📱' },
+  { id: 'audit', label: 'contact.topics.audit', icon: '📋' },
 ];
 
 type FormStatus = 'idle' | 'success' | 'error';
@@ -15,6 +16,7 @@ type FormStatus = 'idle' | 'success' | 'error';
 const countDigits = (value: string): number => (value.match(/\d/g) ?? []).length;
 
 export const ContactSection: React.FC = () => {
+  const { t } = useI18n();
   const [selectedTopic, setSelectedTopic] = useState<ContactTopicId>('subsidies');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -45,29 +47,29 @@ export const ContactSection: React.FC = () => {
 
   const validatePayload = (payload: ContactFormPayload): string | null => {
     if (payload.name.trim().length < 2) {
-      return 'Podaj poprawne imię i nazwisko.';
+      return t('contact.validation.name');
     }
 
     const simpleEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!simpleEmailRegex.test(payload.email.trim())) {
-      return 'Podaj poprawny adres e-mail.';
+      return t('contact.validation.email');
     }
 
     if (typeof payload.phone === 'string') {
       const trimmedPhone = payload.phone.trim();
       if (trimmedPhone.length > 0) {
         if (trimmedPhone.length > 40 || countDigits(trimmedPhone) < 7) {
-          return 'Podaj poprawny numer telefonu.';
+          return t('contact.validation.phone');
         }
       }
     }
 
     if (payload.message.trim().length < 10) {
-      return 'Wiadomość powinna mieć minimum 10 znaków.';
+      return t('contact.validation.message');
     }
 
     if (!payload.consent) {
-      return 'Aby wysłać formularz, zaakceptuj politykę prywatności.';
+      return t('contact.validation.consent');
     }
 
     return null;
@@ -116,17 +118,17 @@ export const ContactSection: React.FC = () => {
       if (!response.ok || !result.ok) {
         if (response.status === 404) {
           throw new Error(
-            'Endpoint /api/contact nie jest dostępny w tym trybie uruchomienia. Użyj środowiska Vercel.'
+            t('contact.status.apiNotAvailable')
           );
         }
 
         throw new Error(
-          result.message || `Nie udało się wysłać formularza (HTTP ${response.status}).`
+          result.message || t('contact.status.httpError', { status: response.status })
         );
       }
 
       setStatus('success');
-      setStatusMessage('Dziękujemy! Twoja wiadomość została wysłana.');
+      setStatusMessage(t('contact.status.success'));
       setName('');
       setEmail('');
       setPhone('');
@@ -138,7 +140,7 @@ export const ContactSection: React.FC = () => {
       setStatusMessage(
         error instanceof Error
           ? error.message
-          : 'Wystąpił błąd podczas wysyłki. Spróbuj ponownie za chwilę.'
+          : t('contact.status.genericError')
       );
     } finally {
       setIsSubmitting(false);
@@ -153,17 +155,17 @@ export const ContactSection: React.FC = () => {
           {/* Lewa strona: Nagłówek i Tematy */}
           <div className="lg:w-5/12 space-y-12">
             <div>
-              <span className="text-[#8ab925] font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Zacznijmy współpracę</span>
+              <span className="text-[#8ab925] font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">{t('contact.kicker')}</span>
               <h2 className="text-5xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] mb-8">
-                NAPISZ <br /><span className="text-[#8ab925]">DO NAS</span>
+                {t('contact.headingLine1')} <br /><span className="text-[#8ab925]">{t('contact.headingLine2Accent')}</span>
               </h2>
               <p className="text-slate-500 font-medium leading-relaxed max-w-sm">
-                Wybierz interesujący Cię temat i wyślij zapytanie. Nasz zespół odpowie w ciągu 24h.
+                {t('contact.intro')}
               </p>
             </div>
 
             <div className="space-y-4">
-              <h4 className="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-4">W czym możemy pomóc?</h4>
+              <h4 className="text-[10px] font-black text-slate-300 uppercase tracking-widest mb-4">{t('contact.helpTitle')}</h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {CONTACT_TOPICS.map((topic) => (
                   <button
@@ -179,7 +181,7 @@ export const ContactSection: React.FC = () => {
                     <span className={`text-[11px] font-black uppercase tracking-tight transition-colors ${
                       selectedTopic === topic.id ? 'text-slate-900' : 'text-slate-500'
                     }`}>
-                      {topic.label}
+                      {t(topic.label)}
                     </span>
                   </button>
                 ))}
@@ -189,11 +191,11 @@ export const ContactSection: React.FC = () => {
             {/* Dane kontaktowe szybkie */}
             <div className="flex flex-wrap gap-8 pt-8 border-t border-slate-100">
               <div>
-                <span className="block text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] mb-2">E-mail</span>
+                <span className="block text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] mb-2">{t('contact.quick.email')}</span>
                 <a href="mailto:biuro@elomoto.eco" className="text-sm font-black hover:text-[#8ab925] transition-colors">biuro@elomoto.eco</a>
               </div>
               <div>
-                <span className="block text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] mb-2">Telefon</span>
+                <span className="block text-[9px] font-black text-slate-300 uppercase tracking-[0.2em] mb-2">{t('contact.quick.phone')}</span>
                 <a href="tel:+48222692022" className="text-sm font-black hover:text-[#8ab925] transition-colors">+48 222 692 022</a>
               </div>
             </div>
@@ -204,51 +206,51 @@ export const ContactSection: React.FC = () => {
             <div className="bg-slate-50 rounded-[40px] p-8 md:p-12 border border-slate-100 shadow-2xl shadow-slate-200/50">
               <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
                 <div className="space-y-1">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Twoje Imię</label>
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('contact.fields.nameLabel')}</label>
                   <input 
                     type="text" 
                     value={name}
                     onChange={(event) => setName(event.target.value)}
                     disabled={isSubmitting}
-                    placeholder="np. Jan Kowalski"
+                    placeholder={t('contact.fields.namePlaceholder')}
                     required
                     className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">E-mail</label>
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('contact.fields.emailLabel')}</label>
                   <input 
                     type="email" 
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                     disabled={isSubmitting}
-                    placeholder="twoj@email.pl"
+                    placeholder={t('contact.fields.emailPlaceholder')}
                     required
                     className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
                   />
                 </div>
                 <div className="space-y-1">
                   <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
-                    Telefon (opcjonalnie)
+                    {t('contact.fields.phoneLabel')}
                   </label>
                   <input
                     type="tel"
                     value={phone}
                     onChange={(event) => setPhone(event.target.value)}
                     disabled={isSubmitting}
-                    placeholder="np. 600 700 800"
+                    placeholder={t('contact.fields.phonePlaceholder')}
                     autoComplete="tel"
                     className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
                   />
                 </div>
                 <div className="md:col-span-2 space-y-1">
-                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">Treść wiadomości</label>
+                  <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">{t('contact.fields.messageLabel')}</label>
                   <textarea 
                     rows={4}
                     value={message}
                     onChange={(event) => setMessage(event.target.value)}
                     disabled={isSubmitting}
-                    placeholder="Opisz krótko swoje potrzeby..."
+                    placeholder={t('contact.fields.messagePlaceholder')}
                     required
                     className="w-full bg-white border border-slate-200 rounded-3xl py-4 px-6 text-sm font-bold focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300 resize-none"
                   ></textarea>
@@ -265,7 +267,15 @@ export const ContactSection: React.FC = () => {
                         className="mt-1 w-4 h-4 rounded border-slate-300 text-[#8ab925] focus:ring-[#8ab925]"
                       />
                       <span className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                        Wyrażam zgodę na przetwarzanie danych przez Elomoto Sp. z o.o. zgodnie z <a href="#" className="text-slate-900 underline font-black">Polityką Prywatności</a>.
+                        {t('contact.consent', {
+                          link: t('contact.privacyPolicy'),
+                        }).split(t('contact.privacyPolicy'))[0]}
+                        <a href="#" className="text-slate-900 underline font-black">
+                          {t('contact.privacyPolicy')}
+                        </a>
+                        {t('contact.consent', {
+                          link: t('contact.privacyPolicy'),
+                        }).split(t('contact.privacyPolicy'))[1] ?? ''}
                       </span>
                     </label>
                   </div>
@@ -275,7 +285,7 @@ export const ContactSection: React.FC = () => {
                     disabled={!canSubmit}
                     className="w-full sm:w-auto bg-[#8ab925] disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-black py-5 px-16 rounded-2xl text-xs uppercase tracking-[0.2em] shadow-lg shadow-[#8ab925]/20 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95"
                   >
-                    {isSubmitting ? 'Wysyłanie...' : 'Wyślij zapytanie'}
+                    {isSubmitting ? t('contact.submitting') : t('contact.submit')}
                   </button>
                   {status !== 'idle' ? (
                     <p
@@ -293,7 +303,7 @@ export const ContactSection: React.FC = () => {
               <div className="bg-white/50 rounded-3xl p-6 border border-slate-100">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                   <div>
-                    <h5 className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-3">Rejestracja spółki</h5>
+                    <h5 className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-3">{t('contact.company.registrationTitle')}</h5>
                     <div className="text-[10px] font-bold text-slate-500 space-y-1 leading-relaxed">
                       <p>ELOMOTO SP. Z O.O.</p>
                       <p>KRS: 0001012969 | NIP: 5223246605</p>
@@ -302,14 +312,14 @@ export const ContactSection: React.FC = () => {
                     </div>
                   </div>
                   <div className="md:text-right">
-                    <h5 className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-3">Siedziba</h5>
+                    <h5 className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-3">{t('contact.company.hqTitle')}</h5>
                     <p className="text-[10px] font-bold text-slate-500 leading-relaxed">
                       ul. Czereśniowa 98/117<br />
                       02-456 Warszawa
                     </p>
                     <div className="mt-4 inline-flex items-center space-x-2 bg-slate-900 text-[#8ab925] px-3 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest">
                       <span className="w-1.5 h-1.5 bg-[#8ab925] rounded-full animate-pulse"></span>
-                      <span>Ubezpieczenie OC 2 mln PLN</span>
+                      <span>{t('contact.company.insurance')}</span>
                     </div>
                   </div>
                 </div>

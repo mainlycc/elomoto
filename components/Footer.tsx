@@ -2,6 +2,7 @@
 import React from 'react';
 import { navigateTo } from '../utils/navigation';
 import logoWhite from '../Logo Png white.png';
+import { useI18n } from '../i18n/I18nProvider';
 
 const FooterLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => {
   const isInternal = href.startsWith('/');
@@ -29,13 +30,16 @@ const FooterLink: React.FC<{ href: string; children: React.ReactNode }> = ({ hre
 };
 
 export const Footer: React.FC = () => {
+  const { t } = useI18n();
+  const year = new Date().getFullYear();
+
   return (
     <footer className="bg-white pt-12 pb-8 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-10">
 
           {/* Kolumna 0 – Logo + opis + dane firmy */}
-          <div className="lg:col-span-1">
+          <div className="lg:col-span-1 w-[176px] max-w-[176px]">
             <button
               type="button"
               onClick={() => {
@@ -43,16 +47,16 @@ export const Footer: React.FC = () => {
                 window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
               }}
               className="bg-transparent border-0 p-0 cursor-pointer mb-4 block"
-              aria-label="Przejdź do strony głównej"
+              aria-label={t('nav.goHomeAria')}
             >
               <img
                 src={logoWhite}
                 alt="elomoto.eco"
-                className="h-24 w-auto object-contain"
+                className="h-16 w-[176px] object-contain"
               />
             </button>
             <p className="text-[11px] text-gray-400 leading-relaxed mb-5">
-              Power up your future. Infrastruktura ładowania pojazdów elektrycznych.
+              {t('footer.tagline')}
             </p>
             <div className="text-[10px] text-gray-400 leading-relaxed font-medium">
               <p className="font-bold text-gray-500 mb-1">ELOMOTO SP. Z O.O.</p>
@@ -74,17 +78,17 @@ export const Footer: React.FC = () => {
           {/* Kolumna 1 – Firma */}
           <div>
             <h4 className="text-gray-900 font-bold uppercase text-[10px] tracking-widest mb-4">
-              Firma
+              {t('footer.columns.company')}
             </h4>
             <ul className="space-y-3 text-xs font-bold">
               <li>
-                <FooterLink href="/o-nas">O nas</FooterLink>
+                <FooterLink href="/o-nas">{t('footer.links.about')}</FooterLink>
               </li>
               <li>
-                <FooterLink href="/kariera">Kariera</FooterLink>
+                <FooterLink href="/kariera">{t('footer.links.career')}</FooterLink>
               </li>
               <li>
-                <FooterLink href="/realizacje">Realizacje</FooterLink>
+                <FooterLink href="/realizacje">{t('footer.links.realizations')}</FooterLink>
               </li>
             </ul>
           </div>
@@ -92,23 +96,23 @@ export const Footer: React.FC = () => {
           {/* Kolumna 2 – Oferta */}
           <div>
             <h4 className="text-gray-900 font-bold uppercase text-[10px] tracking-widest mb-4">
-              Oferta
+              {t('footer.columns.offer')}
             </h4>
             <ul className="space-y-3 text-xs font-bold">
               <li>
-                <FooterLink href="/oferta/darmowa-ladowarka">Darmowa ładowarka</FooterLink>
+                <FooterLink href="/oferta/darmowa-ladowarka">{t('footer.links.freeCharger')}</FooterLink>
               </li>
               <li>
-                <FooterLink href="/oferta/montaz">Montaż stacji ładowania</FooterLink>
+                <FooterLink href="/oferta/montaz">{t('footer.links.installation')}</FooterLink>
               </li>
               <li>
-                <FooterLink href="/oferta/ekspertyzy">Ekspertyzy stacji ładowania</FooterLink>
+                <FooterLink href="/oferta/ekspertyzy">{t('footer.links.audits')}</FooterLink>
               </li>
               <li>
-                <FooterLink href="/oferta/operator">Usługa operatorska stacji ładowania</FooterLink>
+                <FooterLink href="/oferta/operator">{t('footer.links.operator')}</FooterLink>
               </li>
               <li>
-                <FooterLink href="/oferta/serwis">Serwis stacji ładowania AC</FooterLink>
+                <FooterLink href="/oferta/serwis">{t('footer.links.service')}</FooterLink>
               </li>
             </ul>
           </div>
@@ -116,18 +120,18 @@ export const Footer: React.FC = () => {
           {/* Kolumna 3 – Dla użytkowników */}
           <div>
             <h4 className="text-gray-900 font-bold uppercase text-[10px] tracking-widest mb-4">
-              Dla użytkowników
+              {t('footer.columns.users')}
             </h4>
             <ul className="space-y-3 text-xs font-bold">
               <li>
-                <FooterLink href="/mapa">Mapa stacji</FooterLink>
+                <FooterLink href="/mapa">{t('footer.links.map')}</FooterLink>
               </li>
               <li>
-                <FooterLink href="/#app-download">Pobierz aplikację</FooterLink>
+                <FooterLink href="/#app-download">{t('footer.links.appDownload')}</FooterLink>
               </li>
               <li>
                 <FooterLink href="/platnosc-bez-rejestracji">
-                  Płatność bez rejestracji
+                  {t('footer.links.noRegisterPayment')}
                 </FooterLink>
               </li>
             </ul>
@@ -136,21 +140,21 @@ export const Footer: React.FC = () => {
           {/* Kolumna 4 – Prawne */}
           <div>
             <h4 className="text-gray-900 font-bold uppercase text-[10px] tracking-widest mb-4">
-              Prawne
+              {t('footer.columns.legal')}
             </h4>
             <ul className="space-y-3 text-xs font-bold">
               <li>
-                <FooterLink href="/polityka-prywatnosci">Polityka prywatności</FooterLink>
+                <FooterLink href="/polityka-prywatnosci">{t('footer.links.privacy')}</FooterLink>
               </li>
               <li>
-                <FooterLink href="/regulamin">Regulamin</FooterLink>
+                <FooterLink href="/regulamin">{t('footer.links.terms')}</FooterLink>
               </li>
             </ul>
           </div>
         </div>
 
         <div className="pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold text-gray-300 uppercase tracking-widest">
-          <p>© {new Date().getFullYear()} ELOMOTO.ECO. WSZYSTKIE PRAWA ZASTRZEŻONE.</p>
+          <p>{t('footer.copyright', { year })}</p>
         </div>
       </div>
     </footer>

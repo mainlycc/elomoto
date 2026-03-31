@@ -1,7 +1,10 @@
 
 import React from 'react';
+import { useI18n } from '../i18n/I18nProvider';
 
 export const AppSection: React.FC = () => {
+  const { t } = useI18n();
+
   return (
     <section id="app-download" className="py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
       <div className="relative overflow-hidden bg-[#0a1a14] rounded-[40px] p-8 md:p-16 border border-white/5 shadow-2xl">
@@ -12,12 +15,12 @@ export const AppSection: React.FC = () => {
           {/* Left Content */}
           <div className="space-y-8">
             <h2 className="text-4xl md:text-6xl font-black text-white leading-[1.1] tracking-tight">
-              Lokalizuj, Ładuj, Płać. <br />
-              <span className="text-[#8ab925]">Wszystko w jednej aplikacji.</span>
+              {t('app.headingLine1')} <br />
+              <span className="text-[#8ab925]">{t('app.headingLine2Accent')}</span>
             </h2>
             
             <p className="text-gray-400 text-lg leading-relaxed max-w-md font-medium">
-              Aplikacja mobilna Elomoto sprawia, że ładowanie jest bezproblemowe. Znajdź dostępne stacje w czasie rzeczywistym, zarezerwuj miejsce i zapłać bezpiecznie.
+              {t('app.description')}
             </p>
             
             <div className="flex flex-wrap gap-4 pt-4">
@@ -32,7 +35,7 @@ export const AppSection: React.FC = () => {
                   <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 21.8-88.5 21.8-11.4 0-51.1-19-81.6-19-42.6 0-101 32.8-116.8 96-18.8 74.3 23.4 162.8 54 213 20.6 33.1 48 64 80 64s44-22 81.6-22c37 0 45.4 22 81.6 22 34 0 60.2-27.8 80.6-59.5 22.8-33.8 32-66.6 32.4-68.2-.8-.4-63.3-24.2-63.5-96.6zM281.3 75.3c15.7-19.1 26.2-45.6 23.3-72-23 1-51.1 15.4-67.6 34.7-14.8 17.1-27.8 44.2-24.2 69.8 25.6 2.1 52.8-13.4 68.5-32.5z"/>
                 </svg>
                 <div className="text-black text-left">
-                  <div className="text-[10px] font-extrabold leading-none uppercase opacity-60 tracking-wider">Pobierz w</div>
+                  <div className="text-[10px] font-extrabold leading-none uppercase opacity-60 tracking-wider">{t('app.downloadOn')}</div>
                   <div className="text-lg font-black leading-none">App Store</div>
                 </div>
               </a>
@@ -48,7 +51,7 @@ export const AppSection: React.FC = () => {
                   <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
                 </svg>
                 <div className="text-black text-left">
-                  <div className="text-[10px] font-extrabold leading-none uppercase opacity-60 tracking-wider">Pobierz z</div>
+                  <div className="text-[10px] font-extrabold leading-none uppercase opacity-60 tracking-wider">{t('app.getFrom')}</div>
                   <div className="text-lg font-black leading-none">Google Play</div>
                 </div>
               </a>
@@ -86,13 +89,13 @@ export const AppSection: React.FC = () => {
                 <div className="mt-auto relative z-10 bg-white rounded-3xl p-5 shadow-2xl mb-4">
                   <div className="flex items-center space-x-2 mb-2">
                     <div className="w-2 h-2 rounded-full bg-[#8ab925]"></div>
-                    <div className="text-[10px] font-bold text-[#8ab925] uppercase tracking-widest">DOSTĘPNA</div>
+                    <div className="text-[10px] font-bold text-[#8ab925] uppercase tracking-widest">{t('app.available')}</div>
                   </div>
-                  <h4 className="text-xl font-black text-gray-900 mb-1">Stacja #402</h4>
-                  <p className="text-xs text-gray-400 font-bold mb-6">22kW AC • CCS2</p>
+                  <h4 className="text-xl font-black text-gray-900 mb-1">{t('app.stationName')}</h4>
+                  <p className="text-xs text-gray-400 font-bold mb-6">{t('app.stationMeta')}</p>
                   
                   <button className="w-full bg-[#8ab925] text-[#0a1a14] font-extrabold py-4 rounded-2xl text-xs uppercase tracking-wider hover:bg-[#9ed02e] transition-all transform active:scale-95 shadow-lg shadow-[#8ab925]/20">
-                    Rozpocznij Ładowanie
+                    {t('app.startCharging')}
                   </button>
                 </div>
               </div>

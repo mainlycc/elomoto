@@ -24,7 +24,20 @@ export const BlogPage: React.FC = () => {
           <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-8">Ładowanie…</p>
         ) : null}
         {error && posts.length === 0 ? (
-          <p className="text-red-600 text-sm mb-8">Nie udało się załadować listy wpisów.</p>
+          <div className="text-red-600 text-sm mb-8 space-y-2">
+            <p>Nie udało się załadować listy wpisów.</p>
+            <p className="text-xs text-red-700/80 font-semibold">
+              {error.message}
+            </p>
+            {String(error.message).toLowerCase().includes('cors') ||
+            String(error.message).toLowerCase().includes('failed to fetch') ? (
+              <p className="text-xs text-red-700/80">
+                Sprawdź ustawienia CORS w Sanity (sanity.io/manage) i dodaj origin aplikacji, np.{' '}
+                <span className="font-bold">http://localhost:3000</span> oraz{' '}
+                <span className="font-bold">http://127.0.0.1:3000</span>.
+              </p>
+            ) : null}
+          </div>
         ) : null}
         {!loading && posts.length === 0 ? (
           <p className="text-gray-500 text-sm">Brak opublikowanych wpisów.</p>

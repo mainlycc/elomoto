@@ -1,60 +1,63 @@
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
+import { useI18n } from '../i18n/I18nProvider';
 
 interface FaqItem {
-  question: string;
-  answer: string;
+  questionKey: string;
+  answerKey: string;
 }
 
 const FAQ_DATA: FaqItem[] = [
   {
-    question: "Gdzie możecie zainstalować ładowarki?",
-    answer: "Praktycznie wszędzie — od prywatnych miejsc postojowych po ogólnodostępne lokalizacje."
+    questionKey: 'faq.items.i1.q',
+    answerKey: 'faq.items.i1.a'
   },
   {
-    question: "Jak wygląda proces uruchomienia stacji ładowania?",
-    answer: "Zajmujemy się wszystkim za Ciebie. Od analizy lokalizacji i projektu, przez formalności i uzyskanie niezbędnych zgód, aż po montaż, odbiory, uruchomienie i obsługę infrastruktury."
+    questionKey: 'faq.items.i2.q',
+    answerKey: 'faq.items.i2.a'
   },
   {
-    question: "Kiedy Elomoto może sfinansować inwestycję?",
-    answer: "Wszystko zależy od potencjału lokalizacji. Skontaktuj się z nami — przeanalizujemy projekt i wspólnie znajdziemy najlepszy model współpracy."
+    questionKey: 'faq.items.i3.q',
+    answerKey: 'faq.items.i3.a'
   },
   {
-    question: "Mam już ładowarkę — czy możecie ją przejąć w zarządzanie?",
-    answer: "Tak. Możemy kompleksowo zarządzać istniejącą infrastrukturą — zapewniając jej ciągłe działanie, serwis, monitoring oraz rozliczenia użytkowników."
+    questionKey: 'faq.items.i4.q',
+    answerKey: 'faq.items.i4.a'
   },
   {
-    question: "Ile trwa instalacja stacji ładowania?",
-    answer: "Czas realizacji zależy od lokalizacji i warunków technicznych. W optymalnym scenariuszu sam montaż może zająć nawet kilka godzin (2-3h), jednak cały proces inwestycyjny obejmuje również przygotowania, formalności oraz odbiory."
+    questionKey: 'faq.items.i5.q',
+    answerKey: 'faq.items.i5.a'
   },
   {
-    question: "Czy stacje są przystosowane do pracy na zewnątrz?",
-    answer: "Tak. Korzystamy wyłącznie z certyfikowanych urządzeń AC i DC, przystosowanych do pracy w wymagających warunkach atmosferycznych. Jesteśmy oficjalnym dystrybutorem sprawdzonych, europejskich producentów infrastruktury ładowania."
+    questionKey: 'faq.items.i6.q',
+    answerKey: 'faq.items.i6.a'
   },
   {
-    question: "Czy trzeba się rejestrować, żeby skorzystać z ładowarki?",
-    answer: "Nie. Możesz skorzystać z ładowania bez rejestracji — oferujemy wygodne płatności jednorazowe, bez konieczności zakładania konta."
+    questionKey: 'faq.items.i7.q',
+    answerKey: 'faq.items.i7.a'
   }
 ];
 
 export const FaqSection: React.FC = () => {
+  const { t } = useI18n();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const items = useMemo(() => FAQ_DATA, []);
 
   return (
     <section id="faq" className="py-24 bg-slate-50 overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <span className="text-[#8ab925] font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">Baza wiedzy</span>
+          <span className="text-[#8ab925] font-black uppercase tracking-[0.4em] text-[10px] mb-4 block">{t('faq.eyebrow')}</span>
           <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-slate-900">
-            PYTANIA I <span className="text-[#8ab925]">ODPOWIEDZI</span>
+            {t('faq.headingLine1')} <span className="text-[#8ab925]">{t('faq.headingLine2Accent')}</span>
           </h2>
           <p className="mt-4 text-slate-500 font-medium">
-            Wszystko, co warto wiedzieć o infrastrukturze ładowania z Elomoto.
+            {t('faq.intro')}
           </p>
         </div>
 
         <div className="space-y-4">
-          {FAQ_DATA.map((item, index) => (
+          {items.map((item, index) => (
             <div 
               key={index}
               className={`group rounded-[32px] border transition-all duration-300 ${
@@ -70,7 +73,7 @@ export const FaqSection: React.FC = () => {
                 <span className={`text-sm md:text-base font-black uppercase tracking-tight transition-colors ${
                   openIndex === index ? 'text-[#8ab925]' : 'text-slate-700'
                 }`}>
-                  {item.question}
+                  {t(item.questionKey)}
                 </span>
                 <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-500 ${
                   openIndex === index ? 'bg-[#8ab925] rotate-180' : 'bg-slate-100 rotate-0'
@@ -93,7 +96,7 @@ export const FaqSection: React.FC = () => {
               >
                 <div className="px-8 pb-8 text-slate-500 text-sm leading-relaxed font-medium">
                   <div className="pt-4 border-t border-slate-50">
-                    {item.answer}
+                    {t(item.answerKey)}
                   </div>
                 </div>
               </div>
@@ -103,7 +106,10 @@ export const FaqSection: React.FC = () => {
 
         <div className="mt-12 text-center">
           <p className="text-slate-400 text-xs font-bold uppercase tracking-widest">
-            Nie znalazłeś odpowiedzi? <a href="#contact" className="text-[#8ab925] hover:underline">Zadaj nam pytanie bezpośrednio.</a>
+            {t('faq.notFound')}{' '}
+            <a href="#contact" className="text-[#8ab925] hover:underline">
+              {t('faq.askDirect')}
+            </a>
           </p>
         </div>
       </div>

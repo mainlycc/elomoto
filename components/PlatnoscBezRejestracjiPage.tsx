@@ -31,7 +31,7 @@ export const PlatnoscBezRejestracjiPage: React.FC = () => {
           {[
             { step: '01', title: 'Skanuj kod QR', desc: 'Kierowca skanuje kod QR umieszczony na stacji ładowania.' },
             { step: '02', title: 'Strona obsługi', desc: 'Otwiera się mobilna strona obsługi ładowania.' },
-            { step: '03', title: 'Bez rejestracji', desc: 'Użytkownik wybiera ikonę „Płatność bez rejestracji".' },
+            { step: '03', title: 'Bez rejestracji', desc: 'Użytkownik wybiera ikonę „Płatność bez rejestracji”.' },
             { step: '04', title: 'Wyszukiwanie stacji', desc: 'System automatycznie wyszukuje ładowarkę na mapie.' },
             { step: '05', title: 'Wybór i płatność', desc: 'Kierowca wybiera punkt ładowania, metodę płatności i potwierdza transakcję.' },
             { step: '06', title: 'Start ładowania', desc: 'Proces ładowania uruchamia się automatycznie.' },

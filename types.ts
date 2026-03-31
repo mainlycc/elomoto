@@ -1,13 +1,16 @@
 import type { PortableTextBlock } from '@portabletext/types';
 
 export interface NavItem {
-  label: string;
+  label?: string;
+  labelKey?: string;
   href: string;
 }
 
 export interface ServiceItem {
-  title: string;
-  description: string;
+  title?: string;
+  titleKey?: string;
+  description?: string;
+  descriptionKey?: string;
   image: string;
   link: string;
 }

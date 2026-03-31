@@ -1,7 +1,10 @@
 import React from 'react';
 import { navigateTo } from '../utils/navigation';
+import { useI18n } from '../i18n/I18nProvider';
 
 export const ChargingStationsMapSection: React.FC = () => {
+  const { t } = useI18n();
+
   return (
     <section id="charging-map" className="py-32 bg-[#020617] relative overflow-hidden">
       {/* Tła glow podobne do innych sekcji */}
@@ -15,35 +18,33 @@ export const ChargingStationsMapSection: React.FC = () => {
             <div className="flex items-center space-x-4 mb-4">
               <div className="h-[2px] w-12 bg-[#8ab925]"></div>
               <p className="text-[#8ab925] font-black uppercase tracking-[0.3em] text-xs">
-                MAPA STACJI
+                {t('chargingMap.eyebrow')}
               </p>
             </div>
             <h2 className="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter leading-none">
-              Twoja infrastruktura
+              {t('chargingMap.headingLine1')}
               <br />
-              na wyciągnięcie ręki
+              {t('chargingMap.headingLine2')}
             </h2>
           </div>
           <div className="mt-6 md:mt-0 max-w-md md:text-right space-y-3">
             <p className="text-gray-400 text-sm font-medium">
-              Poniżej widzisz wybrane lokalizacje, w których infrastruktura ładowania realnie wspiera
-              codzienny ruch – od biurowców po obiekty hotelowe i parkingi miejskie.
+              {t('chargingMap.intro')}
             </p>
             <div className="inline-flex md:justify-end w-full">
               <div className="inline-flex flex-col items-start md:items-end gap-2 bg-white/5 border border-[#8ab925]/30 rounded-2xl px-4 py-3 shadow-[0_0_25px_rgba(138,185,37,0.2)]">
                 <p className="text-xs font-extrabold uppercase tracking-[0.22em] text-[#8ab925]">
-                  PŁATNOŚĆ BEZ REJESTRACJI
+                  {t('chargingMap.cardEyebrow')}
                 </p>
                 <p className="text-gray-200 text-xs md:text-sm max-w-xs">
-                  Na naszych stacjach możesz zapłacić kartą lub BLIK-iem&nbsp;bez zakładania konta.
-                  Skanujesz kod, wybierasz moc ładowania i od razu startujesz z sesją.
+                  {t('chargingMap.cardBody')}
                 </p>
                 <button
                   type="button"
                   onClick={() => navigateTo('https://zaplac.elomoto.eco/')}
                   className="mt-1 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#8ab925] text-black text-[11px] font-extrabold uppercase tracking-[0.2em] shadow-[0_0_25px_rgba(138,185,37,0.5)] hover:bg-white hover:shadow-[0_0_30px_rgba(138,185,37,0.7)] transition-all active:scale-95"
                 >
-                  Zapłać bez rejestracji
+                  {t('chargingMap.cardCta')}
                   <span className="text-xs">↗</span>
                 </button>
               </div>
@@ -65,12 +66,12 @@ export const ChargingStationsMapSection: React.FC = () => {
                   <span className="w-2 h-2 rounded-full bg-green-500" />
                 </div>
                 <span className="text-[11px] font-semibold text-gray-300 uppercase tracking-[0.2em]">
-                  Mapa stacji ładowania
+                  {t('chargingMap.mapHeader')}
                 </span>
               </div>
               <div className="flex items-center gap-2 text-[10px] text-gray-400 uppercase tracking-[0.15em]">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#8ab925]" />
-                Widok sieci stacji
+                {t('chargingMap.mapViewLabel')}
               </div>
             </div>
 
@@ -81,7 +82,7 @@ export const ChargingStationsMapSection: React.FC = () => {
                 className="w-full h-full border-0"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Mapa stacji ładowania"
+                title={t('chargingMap.mapTitle')}
               />
             </div>
           </div>

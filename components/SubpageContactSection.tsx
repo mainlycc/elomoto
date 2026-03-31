@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import type { ContactFormPayload } from '../types';
+import { useI18n } from '../i18n/I18nProvider';
 
 type FormStatus = 'idle' | 'success' | 'error';
 
@@ -20,6 +21,7 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
   description,
   messagePlaceholder,
 }) => {
+  const { t } = useI18n();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
@@ -49,29 +51,29 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
 
   const validatePayload = (payload: ContactFormPayload): string | null => {
     if (payload.name.trim().length < 2) {
-      return 'Podaj poprawne imię i nazwisko.';
+      return t('subpageContact.validation.name');
     }
 
     const simpleEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!simpleEmailRegex.test(payload.email.trim())) {
-      return 'Podaj poprawny adres e-mail.';
+      return t('subpageContact.validation.email');
     }
 
     if (typeof payload.phone === 'string') {
       const trimmedPhone = payload.phone.trim();
       if (trimmedPhone.length > 0) {
         if (trimmedPhone.length > 40 || countDigits(trimmedPhone) < 7) {
-          return 'Podaj poprawny numer telefonu.';
+          return t('subpageContact.validation.phone');
         }
       }
     }
 
     if (payload.message.trim().length < 10) {
-      return 'Wiadomość powinna mieć minimum 10 znaków.';
+      return t('subpageContact.validation.message');
     }
 
     if (!payload.consent) {
-      return 'Aby wysłać formularz, zaakceptuj politykę prywatności.';
+      return t('subpageContact.validation.consent');
     }
 
     return null;
@@ -120,17 +122,17 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
       if (!response.ok || !result.ok) {
         if (response.status === 404) {
           throw new Error(
-            'Endpoint /api/contact nie jest dostępny w tym trybie uruchomienia. Użyj środowiska Vercel.'
+            t('subpageContact.status.apiNotAvailable')
           );
         }
 
         throw new Error(
-          result.message || `Nie udało się wysłać formularza (HTTP ${response.status}).`
+          result.message || t('subpageContact.status.httpError', { status: response.status })
         );
       }
 
       setStatus('success');
-      setStatusMessage('Dziękujemy! Twoja wiadomość została wysłana.');
+      setStatusMessage(t('subpageContact.status.success'));
       setName('');
       setEmail('');
       setPhone('');
@@ -141,7 +143,7 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
       setStatusMessage(
         error instanceof Error
           ? error.message
-          : 'Wystąpił błąd podczas wysyłki. Spróbuj ponownie za chwilę.'
+          : t('subpageContact.status.genericError')
       );
     } finally {
       setIsSubmitting(false);
@@ -170,49 +172,49 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-1">
             <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
-              Twoje Imię
+              {t('subpageContact.fields.nameLabel')}
             </label>
             <input
               type="text"
               value={name}
               onChange={(event) => setName(event.target.value)}
               disabled={isSubmitting}
-              placeholder="np. Jan Kowalski"
+              placeholder={t('subpageContact.fields.namePlaceholder')}
               required
               className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold text-slate-900 focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
             />
           </div>
           <div className="space-y-1">
             <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
-              E-mail
+              {t('subpageContact.fields.emailLabel')}
             </label>
             <input
               type="email"
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               disabled={isSubmitting}
-              placeholder="twoj@email.pl"
+              placeholder={t('subpageContact.fields.emailPlaceholder')}
               required
               className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold text-slate-900 focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
             />
           </div>
           <div className="md:col-span-2 space-y-1">
             <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
-              Telefon (opcjonalnie)
+              {t('subpageContact.fields.phoneLabel')}
             </label>
             <input
               type="tel"
               value={phone}
               onChange={(event) => setPhone(event.target.value)}
               disabled={isSubmitting}
-              placeholder="np. 600 700 800"
+              placeholder={t('subpageContact.fields.phonePlaceholder')}
               autoComplete="tel"
               className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold text-slate-900 focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
             />
           </div>
           <div className="md:col-span-2 space-y-1">
             <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
-              Treść wiadomości
+              {t('subpageContact.fields.messageLabel')}
             </label>
             <textarea
               rows={4}
@@ -236,9 +238,9 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
                   className="mt-1 w-4 h-4 rounded border-slate-300 text-[#8ab925] focus:ring-[#8ab925]"
                 />
                 <span className="text-[10px] text-slate-400 font-medium leading-relaxed">
-                  Wyrażam zgodę na przetwarzanie danych przez Elomoto Sp. z o.o. zgodnie z{' '}
+                  {t('subpageContact.consentPrefix')}{' '}
                   <a href="/polityka-prywatnosci" className="text-slate-900 underline font-black">
-                    Polityką Prywatności
+                    {t('subpageContact.privacyPolicy')}
                   </a>
                   .
                 </span>
@@ -250,7 +252,7 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
               disabled={!canSubmit}
               className="w-full sm:w-auto bg-[#8ab925] disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-black py-5 px-16 rounded-2xl text-xs uppercase tracking-[0.2em] shadow-lg shadow-[#8ab925]/20 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95"
             >
-              {isSubmitting ? 'Wysyłanie...' : 'Wyślij zapytanie'}
+              {isSubmitting ? t('subpageContact.submitting') : t('subpageContact.submit')}
             </button>
             {status !== 'idle' ? (
               <p
@@ -266,7 +268,7 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
 
         <aside className="bg-slate-50 rounded-3xl p-6 border border-slate-100 lg:max-w-[260px]">
           <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-3">
-            lub skontaktuj się
+            {t('subpageContact.asideLabel')}
           </p>
           <a
             href="tel:+48222692022"

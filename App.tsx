@@ -32,6 +32,8 @@ import { BlogPage } from './components/BlogPage';
 import { BlogPostPage } from './components/BlogPostPage';
 import { MapaStacjiPage } from './components/MapaStacjiPage';
 import { HomeContactSection } from './components/HomeContactSection';
+import { ContactCtaPopup } from './components/ContactCtaPopup';
+import { TypographyFix } from './components/TypographyFix';
 
 type PageShellProps = {
   children: React.ReactNode;
@@ -49,6 +51,7 @@ const PageShell: React.FC<PageShellProps> = ({
   return (
     <div className={wrapperClassName}>
       <Navbar />
+      <ContactCtaPopup />
 
       {/* Floating Charging Widget - Follows the user */}
       <div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden xl:block pointer-events-none scale-75 origin-right">
@@ -58,7 +61,7 @@ const PageShell: React.FC<PageShellProps> = ({
       </div>
 
       <main className={mainClassName} {...mainProps}>
-        {children}
+        <TypographyFix>{children}</TypographyFix>
       </main>
       <Footer />
     </div>

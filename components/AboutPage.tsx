@@ -16,7 +16,7 @@ export const AboutPage: React.FC = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
             <div className="absolute bottom-6 left-6 right-6 glass p-5 rounded-2xl border border-white/20">
               <p className="text-[#8ab925] text-xs font-extrabold uppercase tracking-widest">Elomoto</p>
-              <p className="text-white text-lg font-black uppercase tracking-tight">Budujemy siec ladowania na lata</p>
+              <p className="text-white text-lg font-black uppercase tracking-tight">Budujemy sieć ładowania na lata</p>
             </div>
           </div>
 
@@ -29,7 +29,7 @@ export const AboutPage: React.FC = () => {
               O NAS
             </h1>
             <p className="text-gray-300 leading-relaxed text-lg">
-              Jesteśmy Polskim operatorem ogólnopolskiej sieci ładowania pojazdów elektrycznych, tworzonym z myślą o przyszłości miast i codziennej wygodzie ich mieszkańców.
+              Jesteśmy polskim operatorem ogólnopolskiej sieci ładowania pojazdów elektrycznych, tworzonym z myślą o przyszłości miast i codziennej wygodzie ich mieszkańców.
             </p>
             <p className="text-gray-400 leading-relaxed">
               Koncentrujemy się na przestrzeniach, które definiują rytm nowoczesnego życia - osiedlach wielorodzinnych oraz kompleksach biurowych. To właśnie tam rozwijamy infrastrukturę, która realnie wspiera transformację w kierunku elektromobilności.
@@ -46,9 +46,9 @@ export const AboutPage: React.FC = () => {
         <div className="space-y-6">
           <div className="flex items-center justify-between gap-4 flex-wrap">
             <div>
-              <p className="text-[#8ab925] font-extrabold uppercase tracking-widest text-xs mb-2">Nasz zespol</p>
+              <p className="text-[#8ab925] font-extrabold uppercase tracking-widest text-xs mb-2">Nasz zespół</p>
               <h2 className="text-3xl md:text-4xl font-black text-white uppercase tracking-tight">
-                Poznaj osoby, ktore tworza Elomoto
+                Poznaj osoby, które tworzą Elomoto
               </h2>
             </div>
           </div>
@@ -67,13 +67,13 @@ export const AboutPage: React.FC = () => {
 
           {!loading && error && (
             <div className="rounded-2xl border border-red-500/30 bg-red-500/10 p-6 text-red-100">
-              Nie udalo sie pobrac zespolu z CMS. Sprobuj ponownie za chwile.
+              Nie udało się pobrać zespołu z CMS. Spróbuj ponownie za chwilę.
             </div>
           )}
 
           {!loading && !error && members.length === 0 && (
             <div className="rounded-2xl border border-white/10 bg-white/5 p-6 text-gray-200">
-              Brak osob w sekcji zespolu. Dodaj czlonkow w CMS, aby wyswietlic ich na stronie.
+              Brak osób w sekcji zespołu. Dodaj członków w CMS, aby wyświetlić ich na stronie.
             </div>
           )}
 

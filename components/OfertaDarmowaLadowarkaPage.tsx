@@ -5,49 +5,7 @@ export const OfertaDarmowaLadowarkaPage: React.FC = () => {
 
   return (
     <section className="max-w-5xl mx-auto px-4 pb-24">
-      {/* Nagłówek */}
-      <header className="mb-16">
-        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">Oferta</p>
-        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
-          Darmowa <span className="text-[#8ab925]">ładowarka</span>
-        </h1>
-        <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
-          Stacja ładowania finansowana przez elomoto.eco
-        </p>
-      </header>
-
-      {/* Opis główny */}
-      <div className="mb-16 space-y-4 text-sm text-gray-300 leading-relaxed max-w-3xl">
-        <p>
-          Darmowa ładowarka to model współpracy, w którym elomoto.eco inwestuje własny kapitał w budowę infrastruktury ładowania, a partner udostępnia lokalizację pod montaż stacji.
-        </p>
-        <p>
-          Finansujemy zakup, instalację oraz uruchomienie urządzeń, tworząc gotowy punkt ładowania bez konieczności angażowania środków po stronie właściciela nieruchomości.
-        </p>
-        <p>
-          To jeden z najszybszych sposobów na wdrożenie elektromobilności w danej lokalizacji — szczególnie tam, gdzie zapotrzebowanie dopiero się buduje.
-        </p>
-      </div>
-
-      {/* Darmowa ładowarka na osiedlu */}
-      <div className="glass border border-white/10 rounded-3xl p-6 md:p-8 mb-16">
-        <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Darmowa ładowarka na <span className="text-[#8ab925]">osiedlu mieszkaniowym</span>
-        </h2>
-        <div className="text-sm text-gray-300 leading-relaxed space-y-3">
-          <p>
-            Największe znaczenie infrastruktura ma tam, gdzie auta stoją najdłużej — dlatego model inwestycyjny elomoto.eco szczególnie wdrażany jest na terenach mieszkaniowych.
-          </p>
-          <p>
-            Darmowa ładowarka na osiedlu mieszkaniowym umożliwia mieszkańcom codzienne, wygodne ładowanie pojazdów bez konieczności budowy prywatnej infrastruktury.
-          </p>
-          <p>
-            Rozwiązanie sprawdza się na parkingach zewnętrznych.
-          </p>
-        </div>
-      </div>
-
-      {/* Dla kogo */}
+      {/* Dla kogo (na górze) */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
           Dla kogo jest ten model?
@@ -70,6 +28,30 @@ export const OfertaDarmowaLadowarkaPage: React.FC = () => {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* Nagłówek */}
+      <header className="mb-16">
+        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">Oferta</p>
+        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
+          Darmowa <span className="text-[#8ab925]">ładowarka</span>
+        </h1>
+        <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
+          Stacja ładowania finansowana przez elomoto.eco
+        </p>
+      </header>
+
+      {/* Opis główny */}
+      <div className="mb-16 space-y-4 text-sm text-gray-300 leading-relaxed max-w-3xl">
+        <p>
+          Darmowa ładowarka to model współpracy, w którym elomoto.eco inwestuje własny kapitał w budowę infrastruktury ładowania, a partner udostępnia lokalizację pod montaż stacji.
+        </p>
+        <p>
+          Finansujemy zakup, instalację oraz uruchomienie urządzeń, tworząc gotowy punkt ładowania bez konieczności angażowania środków po stronie właściciela nieruchomości.
+        </p>
+        <p>
+          To jeden z najszybszych sposobów na wdrożenie elektromobilności w danej lokalizacji — szczególnie tam, gdzie zapotrzebowanie dopiero się buduje.
+        </p>
       </div>
 
       {/* Co inwestuje elomoto.eco */}
