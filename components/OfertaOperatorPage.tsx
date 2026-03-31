@@ -1,45 +1,56 @@
 import React from 'react';
 import { SubpageContactSection } from './SubpageContactSection';
+import { useI18n } from '../i18n/I18nProvider';
 
 export const OfertaOperatorPage: React.FC = () => {
+  const { t } = useI18n();
 
   return (
     <section className="max-w-5xl mx-auto px-4 pb-24">
       {/* Nagłówek */}
       <header className="mb-16">
-        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">Oferta</p>
-        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
-          Usługa <span className="text-[#8ab925]">operatorska</span> stacji ładowania
-        </h1>
-        <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
-          Kompleksowe zarządzanie infrastrukturą EV
-        </p>
-      </header>
+        <div className="min-w-0">
+          <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">
+            {t('offerPages.common.eyebrow')}
+          </p>
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
+            {t('offerPages.operator.hero.titlePrefix')}{' '}
+            <span className="text-[#8ab925]">{t('offerPages.operator.hero.titleAccent')}</span>{' '}
+            {t('offerPages.operator.hero.titleSuffix')}
+          </h1>
+          <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
+            {t('offerPages.operator.hero.subtitle')}
+          </p>
 
-      {/* Opis główny */}
-      <div className="mb-16 space-y-4 text-sm text-gray-300 leading-relaxed max-w-3xl">
-        <p>
-          Świadczymy pełną usługę operatorską stacji ładowania pojazdów elektrycznych, obejmującą zarządzanie infrastrukturą, rozliczenia użytkowników, obsługę płatności oraz wsparcie techniczne.
-        </p>
-        <p>
-          Pracujemy w oparciu o własny system operatorski elomoto.eco oraz dedykowaną aplikację do obsługi ładowania, dzięki czemu operator infrastruktury otrzymuje gotowe, skalowalne środowisko do zarządzania siecią stacji.
-        </p>
-      </div>
+          <div className="mt-6 space-y-4 text-sm text-gray-300 leading-relaxed max-w-3xl">
+            <p>
+              {t('offerPages.operator.hero.p1')}
+            </p>
+            <p>
+              {t('offerPages.operator.hero.p2')}
+            </p>
+            <p>
+              {t('offerPages.operator.hero.p3')}
+            </p>
+          </div>
+        </div>
+      </header>
 
       {/* Co oznacza pełna obsługa operatorska */}
       <div className="glass border border-white/10 rounded-3xl p-6 md:p-8 mb-16">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Co oznacza pełna <span className="text-[#8ab925]">obsługa operatorska</span>?
+          {t('offerPages.operator.fullService.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.operator.fullService.titleAccent')}</span>?
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Jako operator stacji ładowania odpowiadamy za bieżące funkcjonowanie infrastruktury — zarówno od strony technicznej, jak i użytkowej. Zapewniamy:
+          {t('offerPages.operator.fullService.intro')}
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
           {[
-            'Widoczność stacji w systemie i aplikacji, także u innych operatorów',
-            'Prawidłowe naliczanie opłat za ładowanie',
-            'Obsługę płatności jednorazowych i kont użytkowników',
-            'Wsparcie kierowców korzystających z infrastruktury',
+            t('offerPages.operator.fullService.items.i1'),
+            t('offerPages.operator.fullService.items.i2'),
+            t('offerPages.operator.fullService.items.i3'),
+            t('offerPages.operator.fullService.items.i4'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="text-[#8ab925] font-black">✓</span>
@@ -48,27 +59,29 @@ export const OfertaOperatorPage: React.FC = () => {
           ))}
         </div>
         <p className="text-sm text-gray-400 mt-5 italic">
-          Właściciel lokalizacji określa jedynie ogólne zasady funkcjonowania (np. dostępność, politykę cenową, grupy uprzywilejowane), a obsługę operacyjną przejmuje elomoto.eco.
+          {t('offerPages.operator.fullService.note')}
         </p>
       </div>
 
       {/* System operatorski i aplikacja */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          System operatorski i aplikacja <span className="text-[#8ab925]">elomoto.eco</span>
+          {t('offerPages.operator.system.titlePrefix')}{' '}
+          {t('offerPages.operator.system.titleMid')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.operator.system.titleAccent')}</span>
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Nasza usługa opiera się na autorskim oprogramowaniu do zarządzania stacjami ładowania, które umożliwia:
+          {t('offerPages.operator.system.intro')}
         </p>
         <div className="grid sm:grid-cols-2 gap-3 mb-4">
           {[
-            'Zdalne zarządzanie infrastrukturą',
-            'Konfigurację taryf i dostępów',
-            'Monitoring sesji ładowania w czasie rzeczywistym',
-            'Obsługę płatności online i RFID',
-            'Płatności bez rejestracji (QR)',
-            'Raportowanie wykorzystania stacji',
-            'Integrację z systemami flotowymi',
+            t('offerPages.operator.system.items.i1'),
+            t('offerPages.operator.system.items.i2'),
+            t('offerPages.operator.system.items.i3'),
+            t('offerPages.operator.system.items.i4'),
+            t('offerPages.operator.system.items.i5'),
+            t('offerPages.operator.system.items.i6'),
+            t('offerPages.operator.system.items.i7'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="text-[#8ab925] font-black">✓</span>
@@ -77,27 +90,28 @@ export const OfertaOperatorPage: React.FC = () => {
           ))}
         </div>
         <p className="text-sm text-gray-400 italic">
-          Aplikacja użytkownika pozwala kierowcom lokalizować stacje, rozpoczynać ładowanie i kontrolować koszty.
+          {t('offerPages.operator.system.note')}
         </p>
       </div>
 
       {/* Zakres usługi operatorskiej */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Zakres usługi <span className="text-[#8ab925]">operatorskiej</span>
+          {t('offerPages.operator.scope.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.operator.scope.titleAccent')}</span>
         </h2>
-        <p className="text-sm text-gray-300 leading-relaxed mb-6">Kompleksowa obsługa obejmuje:</p>
+        <p className="text-sm text-gray-300 leading-relaxed mb-6">{t('offerPages.operator.scope.intro')}</p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
           {[
-            'Konfigurację cenników ładowania',
-            'Zarządzanie dostępami do stacji',
-            'Obsługę płatności i rozliczeń sesji',
-            'Fakturowanie użytkowników',
-            'Wsparcie użytkowników (helpdesk)',
-            'Monitoring pracy urządzeń 24/7',
-            'Powiadomienia o nieprawidłowościach',
-            'Okresowe raporty wykorzystania infrastruktury',
-            'Rekomendacje rozwoju sieci ładowania',
+            t('offerPages.operator.scope.items.i1'),
+            t('offerPages.operator.scope.items.i2'),
+            t('offerPages.operator.scope.items.i3'),
+            t('offerPages.operator.scope.items.i4'),
+            t('offerPages.operator.scope.items.i5'),
+            t('offerPages.operator.scope.items.i6'),
+            t('offerPages.operator.scope.items.i7'),
+            t('offerPages.operator.scope.items.i8'),
+            t('offerPages.operator.scope.items.i9'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="w-2 h-2 rounded-full bg-[#8ab925] flex-shrink-0"></span>
@@ -110,35 +124,43 @@ export const OfertaOperatorPage: React.FC = () => {
       {/* Modele rozliczeń */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-6 uppercase tracking-tight">
-          Modele <span className="text-[#8ab925]">rozliczeń</span> ładowania
+          {t('offerPages.operator.billingModels.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.operator.billingModels.titleAccent')}</span>{' '}
+          {t('offerPages.operator.billingModels.titleSuffix')}
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          System operatorski umożliwia elastyczne konfigurowanie zasad korzystania ze stacji.
+          {t('offerPages.operator.billingModels.intro')}
         </p>
         <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-200">
           <div className="glass border border-white/10 rounded-3xl p-6">
-            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">Dla mieszkańców / pracowników</h3>
+            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">
+              {t('offerPages.operator.billingModels.cards.c1.title')}
+            </h3>
             <ul className="space-y-2">
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> preferencyjne stawki</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> rozliczenia miesięczne</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> indywidualne konta użytkowników</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> identyfikacja RFID lub aplikacją</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c1.list.i1')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c1.list.i2')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c1.list.i3')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c1.list.i4')}</li>
             </ul>
           </div>
           <div className="glass border border-white/10 rounded-3xl p-6">
-            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">Dla gości i klientów</h3>
+            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">
+              {t('offerPages.operator.billingModels.cards.c2.title')}
+            </h3>
             <ul className="space-y-2">
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> płatności jednorazowe (ad hoc)</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> uruchamianie sesji przez aplikację lub kod QR</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> szybkie płatności bez rejestracji</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c2.list.i1')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c2.list.i2')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c2.list.i3')}</li>
             </ul>
           </div>
           <div className="glass border border-white/10 rounded-3xl p-6">
-            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">Modele mieszane</h3>
+            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">
+              {t('offerPages.operator.billingModels.cards.c3.title')}
+            </h3>
             <ul className="space-y-2">
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> darmowe ładowanie dla mieszkańców</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> tańsze taryfy dla pracowników</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> komercyjne stawki dla użytkowników zewnętrznych</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c3.list.i1')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c3.list.i2')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c3.list.i3')}</li>
             </ul>
           </div>
         </div>
@@ -147,19 +169,20 @@ export const OfertaOperatorPage: React.FC = () => {
       {/* Operator bez własnego zaplecza */}
       <div className="glass border border-[#8ab925]/20 rounded-3xl p-6 md:p-8 mb-20">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Operator stacji ładowania <span className="text-[#8ab925]">bez własnego zaplecza</span>
+          {t('offerPages.operator.noBackoffice.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.operator.noBackoffice.titleAccent')}</span>
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed">
-          Usługa operatorska elomoto.eco pozwala udostępniać infrastrukturę ładowania bez konieczności budowania własnego zespołu technicznego, IT czy działu rozliczeń. Przejmujemy obowiązki związane z codziennym działaniem stacji, umożliwiając właścicielowi infrastruktury skupienie się na swojej podstawowej działalności.
+          {t('offerPages.operator.noBackoffice.body')}
         </p>
       </div>
 
       <SubpageContactSection
-        kicker="Porozmawiajmy"
-        title="System operatorski"
-        highlightedTitle="dla Twojej sieci"
-        description="Jeżeli planujesz uruchomić lub rozwinąć sieć ładowania, system elomoto.eco umożliwia pełne operowanie infrastrukturą od pojedynczych stacji po rozproszone sieci ładowarek."
-        messagePlaceholder="Opisz swoją infrastrukturę, liczbę stacji i potrzeby operacyjne..."
+        kicker={t('offerPages.operator.contact.kicker')}
+        title={t('offerPages.operator.contact.title')}
+        highlightedTitle={t('offerPages.operator.contact.highlightedTitle')}
+        description={t('offerPages.operator.contact.description')}
+        messagePlaceholder={t('offerPages.operator.contact.messagePlaceholder')}
       />
     </section>
   );

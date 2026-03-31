@@ -1,52 +1,55 @@
 import React from 'react';
 import { SubpageContactSection } from './SubpageContactSection';
+import { useI18n } from '../i18n/I18nProvider';
 
 export const OfertaEkspertyzyPage: React.FC = () => {
+  const { t } = useI18n();
   return (
     <section className="max-w-5xl mx-auto px-4 pb-24">
       {/* Nagłówek */}
       <header className="mb-16">
-        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">Oferta</p>
+        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">
+          {t('offerPages.common.eyebrow')}
+        </p>
         <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
-          Ekspertyzy stacji <span className="text-[#8ab925]">ładowania</span>
+          {t('offerPages.audits.hero.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.audits.hero.titleAccent')}</span>
         </h1>
         <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
-          Sprawdź możliwości montażu infrastruktury ładowania
+          {t('offerPages.audits.hero.subtitle')}
         </p>
+
       </header>
 
       {/* Opis główny */}
       <div className="mb-16 space-y-4 text-sm text-gray-300 leading-relaxed max-w-3xl">
         <p>
-          Wykonujemy ekspertyzy stacji ładowania oraz audyty techniczne infrastruktury elektrycznej, 
-          które pozwalają określić, czy i w jaki sposób można bezpiecznie zamontować ładowarki w 
-          danej lokalizacji.
+          {t('offerPages.audits.intro.p1')}
         </p>
         <p>
-          Analizujemy warunki techniczne budynku, a wyniki przekładamy na czytelne rekomendacje 
-          inwestycyjne — zarówno dla zarządców nieruchomości, wspólnot mieszkaniowych, firm 
-          planujących rozwój infrastruktury ładowania oraz dla chcących ładowarkę na własny użytek.
+          {t('offerPages.audits.intro.p2')}
         </p>
       </div>
 
       {/* Co obejmuje audyt stacji ładowania */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-6 uppercase tracking-tight">
-          Co obejmuje audyt <span className="text-[#8ab925]">stacji ładowania?</span>
+          {t('offerPages.audits.scope.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.audits.scope.titleAccent')}</span>
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Ekspertyza techniczna infrastruktury ładowania obejmuje szczegółową analizę:
+          {t('offerPages.audits.scope.intro')}
         </p>
         <div className="grid sm:grid-cols-2 gap-3 mb-8">
           {[
-            'Istniejącej instalacji elektrycznej',
-            'Mocy przyłączeniowej obiektu',
-            'Aktualnych i szczytowych obciążeń energetycznych',
-            'Rozdzielni i pionów zasilających',
-            'Możliwości prowadzenia tras kablowych',
-            'Ograniczeń konstrukcyjnych budynku',
-            'Przepisów przeciwpożarowych',
-            'Wymagań operatora sieci dystrybucyjnej',
+            t('offerPages.audits.scope.items.i1'),
+            t('offerPages.audits.scope.items.i2'),
+            t('offerPages.audits.scope.items.i3'),
+            t('offerPages.audits.scope.items.i4'),
+            t('offerPages.audits.scope.items.i5'),
+            t('offerPages.audits.scope.items.i6'),
+            t('offerPages.audits.scope.items.i7'),
+            t('offerPages.audits.scope.items.i8'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="text-[#8ab925] font-black">✓</span>
@@ -56,15 +59,15 @@ export const OfertaEkspertyzyPage: React.FC = () => {
         </div>
         <div className="glass border border-white/10 rounded-3xl p-6 md:p-8">
           <p className="text-sm text-gray-300 leading-relaxed mb-4 font-semibold">
-            Na tej podstawie określamy:
+            {t('offerPages.audits.scope.outcomesIntro')}
           </p>
           <div className="grid sm:grid-cols-2 gap-3">
             {[
-              'Maksymalną liczbę punktów ładowania',
-              'Możliwe moce ładowarek',
-              'Konieczność rozbudowy przyłącza',
-              'Zasadność wdrożenia zarządzania mocą (DLM)',
-              'Optymalny model etapowania inwestycji',
+              t('offerPages.audits.scope.outcomes.o1'),
+              t('offerPages.audits.scope.outcomes.o2'),
+              t('offerPages.audits.scope.outcomes.o3'),
+              t('offerPages.audits.scope.outcomes.o4'),
+              t('offerPages.audits.scope.outcomes.o5'),
             ].map((item) => (
               <div key={item} className="flex items-center gap-3">
                 <span className="text-[#8ab925] font-black">•</span>
@@ -78,19 +81,20 @@ export const OfertaEkspertyzyPage: React.FC = () => {
       {/* Ekspertyza ładowarek – co otrzymujesz */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-6 uppercase tracking-tight">
-          Ekspertyza ładowarek – <span className="text-[#8ab925]">co otrzymujesz?</span>
+          {t('offerPages.audits.deliverables.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.audits.deliverables.titleAccent')}</span>
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Wynik audytu przekazujemy w uporządkowanej, praktycznej formie:
+          {t('offerPages.audits.deliverables.intro')}
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
           {[
-            'Podsumowanie decyzyjne dla zarządu / wspólnoty / inwestora',
-            'Część techniczna dla elektryka, projektanta lub wykonawcy',
-            'Schemat możliwej infrastruktury',
-            'Rekomendacje technologiczne',
-            'Warianty dalszych kroków',
-            'Orientacyjne scenariusze kosztowe',
+            t('offerPages.audits.deliverables.items.i1'),
+            t('offerPages.audits.deliverables.items.i2'),
+            t('offerPages.audits.deliverables.items.i3'),
+            t('offerPages.audits.deliverables.items.i4'),
+            t('offerPages.audits.deliverables.items.i5'),
+            t('offerPages.audits.deliverables.items.i6'),
           ].map((item) => (
             <div key={item} className="flex items-start gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="text-[#8ab925] font-black mt-0.5">•</span>
@@ -99,42 +103,45 @@ export const OfertaEkspertyzyPage: React.FC = () => {
           ))}
         </div>
         <p className="text-sm text-gray-400 mt-6 italic">
-          Dokument może stanowić podstawę do podjęcia decyzji inwestycyjnej lub rozpoczęcia 
-          projektu wykonawczego.
+          {t('offerPages.audits.deliverables.note')}
         </p>
       </div>
 
       {/* Kiedy warto wykonać ekspertyzę */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-6 uppercase tracking-tight">
-          Kiedy warto wykonać <span className="text-[#8ab925]">ekspertyzę stacji ładowania?</span>
+          {t('offerPages.audits.when.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.audits.when.titleAccent')}</span>
         </h2>
         <div className="grid md:grid-cols-3 gap-6">
           <div className="glass border border-white/10 rounded-3xl p-6">
-            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">Początek rozmów o ładowarkach</h3>
+            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">
+              {t('offerPages.audits.when.cards.c1.title')}
+            </h3>
             <p className="text-sm text-gray-300 leading-relaxed">
-              Gdy mieszkańcy, najemcy lub pracownicy zgłaszają potrzebę montażu ładowarek, ale nie 
-              ma wiedzy o realnych możliwościach technicznych budynku lub garażu.
+              {t('offerPages.audits.when.cards.c1.body')}
             </p>
           </div>
           <div className="glass border border-white/10 rounded-3xl p-6">
-            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">Wymogi formalne i dokumentacyjne</h3>
+            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">
+              {t('offerPages.audits.when.cards.c2.title')}
+            </h3>
             <p className="text-sm text-gray-300 leading-relaxed mb-3">
-              Gdy potrzebny jest dokument do rozmów z:
+              {t('offerPages.audits.when.cards.c2.intro')}
             </p>
             <ul className="space-y-2 text-sm text-gray-200">
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> dostawcą energii</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> operatorem sieci dystrybucyjnej</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> instytucją finansującą inwestycję</li>
-              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> ubezpieczycielem lub rzeczoznawcą ppoż.</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.audits.when.cards.c2.list.i1')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.audits.when.cards.c2.list.i2')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.audits.when.cards.c2.list.i3')}</li>
+              <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.audits.when.cards.c2.list.i4')}</li>
             </ul>
           </div>
           <div className="glass border border-white/10 rounded-3xl p-6">
-            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">Planowanie rozwoju infrastruktury</h3>
+            <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">
+              {t('offerPages.audits.when.cards.c3.title')}
+            </h3>
             <p className="text-sm text-gray-300 leading-relaxed">
-              Gdy celem jest budowa docelowej infrastruktury ładowania, ale realizowanej etapowo — bez 
-              ryzyka kosztownych modernizacji w przyszłości. Ekspertyza pozwala zaplanować skalowanie 
-              sieci ładowarek wraz ze wzrostem liczby pojazdów elektrycznych.
+              {t('offerPages.audits.when.cards.c3.body')}
             </p>
           </div>
         </div>
@@ -143,19 +150,20 @@ export const OfertaEkspertyzyPage: React.FC = () => {
       {/* Ekspertyzy dla osiedli, firm i parkingów */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-6 uppercase tracking-tight">
-          Ekspertyzy dla osiedli, <span className="text-[#8ab925]">firm i parkingów</span>
+          {t('offerPages.audits.who.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.audits.who.titleAccent')}</span>
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Realizujemy audyty infrastruktury ładowania m.in. dla:
+          {t('offerPages.audits.who.intro')}
         </p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
           {[
-            'Osiedli mieszkaniowych',
-            'Wspólnot i spółdzielni',
-            'Garaży podziemnych',
-            'Biurowców i parków biznesowych',
-            'Hoteli i obiektów komercyjnych',
-            'Parkingów flotowych i logistycznych',
+            t('offerPages.audits.who.items.i1'),
+            t('offerPages.audits.who.items.i2'),
+            t('offerPages.audits.who.items.i3'),
+            t('offerPages.audits.who.items.i4'),
+            t('offerPages.audits.who.items.i5'),
+            t('offerPages.audits.who.items.i6'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="text-[#8ab925] font-black">✓</span>
@@ -166,11 +174,11 @@ export const OfertaEkspertyzyPage: React.FC = () => {
       </div>
 
       <SubpageContactSection
-        kicker="Złóż zapytanie o ekspertyzę"
-        title="Potrzebujesz ekspertyzy"
-        highlightedTitle="stacji ładowania?"
-        description="Opisz krótko typ budynku, liczbę lokali lub użytkowników oraz to, ilu kierowców potencjalnie będzie korzystać z ładowania."
-        messagePlaceholder="Opisz typ budynku, liczbę lokali lub użytkowników oraz skalę potrzeb..."
+        kicker={t('offerPages.audits.contact.kicker')}
+        title={t('offerPages.audits.contact.title')}
+        highlightedTitle={t('offerPages.audits.contact.highlightedTitle')}
+        description={t('offerPages.audits.contact.description')}
+        messagePlaceholder={t('offerPages.audits.contact.messagePlaceholder')}
       />
     </section>
   );

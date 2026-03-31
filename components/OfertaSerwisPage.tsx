@@ -1,42 +1,47 @@
 import React from 'react';
 import { SubpageContactSection } from './SubpageContactSection';
+import { useI18n } from '../i18n/I18nProvider';
 
 export const OfertaSerwisPage: React.FC = () => {
+  const { t } = useI18n();
   return (
     <section className="max-w-5xl mx-auto px-4 pb-24">
       {/* Nagłówek */}
       <header className="mb-16">
-        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">Oferta</p>
+        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">
+          {t('offerPages.common.eyebrow')}
+        </p>
         <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
-          Serwis stacji <span className="text-[#8ab925]">ładowania AC</span>
+          {t('offerPages.service.hero.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.service.hero.titleAccent')}</span>
         </h1>
         <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
-          Specjalistyczny serwis i przeglądy infrastruktury AC
+          {t('offerPages.service.hero.subtitle')}
         </p>
       </header>
 
       {/* Opis główny */}
       <div className="mb-16 space-y-4 text-sm text-gray-300 leading-relaxed max-w-3xl">
         <p>
-          Zapewniamy profesjonalny serwis stacji ładowania oraz utrzymanie infrastruktury ładowania pojazdów elektrycznych w oparciu o doświadczenie techniczne i eksploatacyjne.
+          {t('offerPages.service.intro.p1')}
         </p>
         <p>
-          Specjalizujemy się wyłącznie w ładowarkach AC (prądu przemiennego). Nie prowadzimy serwisu stacji szybkiego ładowania DC — koncentrujemy się na infrastrukturze najczęściej stosowanej w lokalizacjach prywatnych i półpublicznych.
+          {t('offerPages.service.intro.p2')}
         </p>
       </div>
 
       {/* Gdzie serwisujemy */}
       <div className="mb-16">
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Serwisujemy stacje AC instalowane m.in. w:
+          {t('offerPages.service.where.intro')}
         </p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
           {[
-            'Garażach podziemnych',
-            'Na osiedlach mieszkaniowych',
-            'Parkingach wspólnot i spółdzielni',
-            'Obiektach firmowych',
-            'Hotelach i lokalizacjach usługowych',
+            t('offerPages.service.where.items.i1'),
+            t('offerPages.service.where.items.i2'),
+            t('offerPages.service.where.items.i3'),
+            t('offerPages.service.where.items.i4'),
+            t('offerPages.service.where.items.i5'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="w-2 h-2 rounded-full bg-[#8ab925] flex-shrink-0"></span>
@@ -49,19 +54,20 @@ export const OfertaSerwisPage: React.FC = () => {
       {/* Dlaczego serwis jest ważny */}
       <div className="glass border border-white/10 rounded-3xl p-6 md:p-8 mb-16">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Dlaczego serwis stacji ładowania jest <span className="text-[#8ab925]">tak ważny</span>?
+          {t('offerPages.service.why.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.service.why.titleAccent')}</span>?
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Infrastruktura ładowania pracuje pod stałym obciążeniem elektrycznym, dlatego wymaga regularnych przeglądów technicznych oraz bieżącej kontroli stanu podzespołów. Profesjonalny serwis ładowarek AC zapewnia:
+          {t('offerPages.service.why.intro')}
         </p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
           {[
-            'Bezpieczeństwo użytkowników',
-            'Zgodność z normami elektrycznymi',
-            'Ciągłość działania stacji',
-            'Wydłużenie żywotności urządzeń',
-            'Ograniczenie ryzyka awarii',
-            'Utrzymanie pozytywnego wizerunku infrastruktury',
+            t('offerPages.service.why.items.i1'),
+            t('offerPages.service.why.items.i2'),
+            t('offerPages.service.why.items.i3'),
+            t('offerPages.service.why.items.i4'),
+            t('offerPages.service.why.items.i5'),
+            t('offerPages.service.why.items.i6'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="text-[#8ab925] font-black">✓</span>
@@ -74,22 +80,23 @@ export const OfertaSerwisPage: React.FC = () => {
       {/* Zakres serwisu */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Zakres serwisu <span className="text-[#8ab925]">ładowarek AC</span>
+          {t('offerPages.service.scope.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.service.scope.titleAccent')}</span>
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Usługa obejmuje fizyczne utrzymanie techniczne stacji ładowania:
+          {t('offerPages.service.scope.intro')}
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
           {[
-            'Diagnostykę usterek na miejscu',
-            'Reakcję na zgłoszenia administratorów i użytkowników',
-            'Przeglądy techniczne stacji',
-            'Testy bezpieczeństwa elektrycznego',
-            'Kontrolę zabezpieczeń',
-            'Sprawdzenie okablowania i połączeń',
-            'Weryfikację elementów montażowych',
-            'Naprawy urządzeń',
-            'Wymiany zużytych lub uszkodzonych podzespołów',
+            t('offerPages.service.scope.items.i1'),
+            t('offerPages.service.scope.items.i2'),
+            t('offerPages.service.scope.items.i3'),
+            t('offerPages.service.scope.items.i4'),
+            t('offerPages.service.scope.items.i5'),
+            t('offerPages.service.scope.items.i6'),
+            t('offerPages.service.scope.items.i7'),
+            t('offerPages.service.scope.items.i8'),
+            t('offerPages.service.scope.items.i9'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="text-[#8ab925] font-black">✓</span>
@@ -102,17 +109,18 @@ export const OfertaSerwisPage: React.FC = () => {
       {/* Przeglądy stacji */}
       <div className="glass border border-white/10 rounded-3xl p-6 md:p-8 mb-16">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Przeglądy stacji <span className="text-[#8ab925]">ładowania AC</span>
+          {t('offerPages.service.inspections.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.service.inspections.titleAccent')}</span>
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Wykonujemy okresowe przeglądy infrastruktury zgodnie z:
+          {t('offerPages.service.inspections.intro')}
         </p>
         <div className="grid sm:grid-cols-2 gap-3 mb-5">
           {[
-            'Zaleceniami producentów',
-            'Normami instalacji elektrycznych',
-            'Wymogami ubezpieczycieli',
-            'Procedurami bezpieczeństwa obiektów',
+            t('offerPages.service.inspections.items.i1'),
+            t('offerPages.service.inspections.items.i2'),
+            t('offerPages.service.inspections.items.i3'),
+            t('offerPages.service.inspections.items.i4'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="w-2 h-2 rounded-full bg-[#8ab925] flex-shrink-0"></span>
@@ -121,17 +129,18 @@ export const OfertaSerwisPage: React.FC = () => {
           ))}
         </div>
         <p className="text-sm text-gray-400 italic">
-          Regularne przeglądy są szczególnie istotne w garażach podziemnych oraz lokalizacjach o intensywnym wykorzystaniu stacji.
+          {t('offerPages.service.inspections.note')}
         </p>
       </div>
 
       {/* Marki ładowarek AC */}
       <div className="glass border border-[#8ab925]/20 rounded-3xl p-6 md:p-8 mb-20">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Marki ładowarek AC, które <span className="text-[#8ab925]">serwisujemy</span>
+          {t('offerPages.service.brands.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.service.brands.titleAccent')}</span>
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Specjalizujemy się w serwisie wybranych producentów infrastruktury AC.
+          {t('offerPages.service.brands.intro')}
         </p>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
           {[
@@ -159,11 +168,11 @@ export const OfertaSerwisPage: React.FC = () => {
       </div>
 
       <SubpageContactSection
-        kicker="Serwis i utrzymanie"
-        title="Potrzebujesz serwisu"
-        highlightedTitle="stacji ładowania?"
-        description="Napisz do nas, a przedstawimy zakres obsługi serwisowej, warunki współpracy i możliwości utrzymania Twojej infrastruktury ładowania AC."
-        messagePlaceholder="Opisz typ stacji, liczbę urządzeń, lokalizację i potrzeby serwisowe..."
+        kicker={t('offerPages.service.contact.kicker')}
+        title={t('offerPages.service.contact.title')}
+        highlightedTitle={t('offerPages.service.contact.highlightedTitle')}
+        description={t('offerPages.service.contact.description')}
+        messagePlaceholder={t('offerPages.service.contact.messagePlaceholder')}
       />
     </section>
   );

@@ -1,26 +1,28 @@
 import React from 'react';
 import { SubpageContactSection } from './SubpageContactSection';
+import { useI18n } from '../i18n/I18nProvider';
 
 export const OfertaDarmowaLadowarkaPage: React.FC = () => {
+  const { t } = useI18n();
 
   return (
     <section className="max-w-5xl mx-auto px-4 pb-24">
       {/* Dla kogo (na górze) */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Dla kogo jest ten model?
+          {t('offerPages.freeCharger.forWhom.title')}
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          Model darmowej ładowarki powstał z myślą o lokalizacjach, które chcą uruchomić usługę ładowania bez ponoszenia kosztów inwestycyjnych. Najczęściej korzystają z niego:
+          {t('offerPages.freeCharger.forWhom.intro')}
         </p>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
           {[
-            'Wspólnoty i spółdzielnie mieszkaniowe',
-            'Zarządcy nieruchomości',
-            'Deweloperzy',
-            'Firmy zarządzające nieruchomościami',
-            'Biurowce i parki biznesowe',
-            'Obiekty hotelowe i usługowe',
+            t('offerPages.freeCharger.forWhom.items.i1'),
+            t('offerPages.freeCharger.forWhom.items.i2'),
+            t('offerPages.freeCharger.forWhom.items.i3'),
+            t('offerPages.freeCharger.forWhom.items.i4'),
+            t('offerPages.freeCharger.forWhom.items.i5'),
+            t('offerPages.freeCharger.forWhom.items.i6'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="w-2 h-2 rounded-full bg-[#8ab925] flex-shrink-0"></span>
@@ -32,46 +34,49 @@ export const OfertaDarmowaLadowarkaPage: React.FC = () => {
 
       {/* Nagłówek */}
       <header className="mb-16">
-        <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">Oferta</p>
-        <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
-          Darmowa <span className="text-[#8ab925]">ładowarka</span>
-        </h1>
-        <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
-          Stacja ładowania finansowana przez elomoto.eco
-        </p>
-      </header>
+        <div className="min-w-0">
+          <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">{t('offerPages.common.eyebrow')}</p>
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
+            {t('offerPages.freeCharger.hero.titlePrefix')}{' '}
+            <span className="text-[#8ab925]">{t('offerPages.freeCharger.hero.titleAccent')}</span>
+          </h1>
+          <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
+            {t('offerPages.freeCharger.hero.subtitle')}
+          </p>
 
-      {/* Opis główny */}
-      <div className="mb-16 space-y-4 text-sm text-gray-300 leading-relaxed max-w-3xl">
-        <p>
-          Darmowa ładowarka to model współpracy, w którym elomoto.eco inwestuje własny kapitał w budowę infrastruktury ładowania, a partner udostępnia lokalizację pod montaż stacji.
-        </p>
-        <p>
-          Finansujemy zakup, instalację oraz uruchomienie urządzeń, tworząc gotowy punkt ładowania bez konieczności angażowania środków po stronie właściciela nieruchomości.
-        </p>
-        <p>
-          To jeden z najszybszych sposobów na wdrożenie elektromobilności w danej lokalizacji — szczególnie tam, gdzie zapotrzebowanie dopiero się buduje.
-        </p>
-      </div>
+          <div className="mt-6 space-y-4 text-sm text-gray-300 leading-relaxed max-w-3xl">
+            <p>
+              {t('offerPages.freeCharger.hero.p1')}
+            </p>
+            <p>
+              {t('offerPages.freeCharger.hero.p2')}
+            </p>
+            <p>
+              {t('offerPages.freeCharger.hero.p3')}
+            </p>
+          </div>
+        </div>
+      </header>
 
       {/* Co inwestuje elomoto.eco */}
       <div className="mb-16">
         <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          Co inwestuje <span className="text-[#8ab925]">elomoto.eco</span>?
+          {t('offerPages.freeCharger.invests.titlePrefix')}{' '}
+          <span className="text-[#8ab925]">{t('offerPages.freeCharger.invests.titleAccent')}</span>?
         </h2>
         <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          W ramach modelu inwestycyjnego bierzemy na siebie pełny zakres uruchomienia infrastruktury:
+          {t('offerPages.freeCharger.invests.intro')}
         </p>
         <div className="grid sm:grid-cols-2 gap-3">
           {[
-            'Finansowanie zakupu stacji ładowania',
-            'Dobór technologii i mocy urządzeń',
-            'Organizację i realizację montażu',
-            'Odbiory techniczne i uruchomienie',
-            'Konfigurację systemu operatorskiego',
-            'Wdrożenie płatności i rozliczeń',
-            'Monitoring i nadzór nad działaniem stacji',
-            'Wsparcie serwisowe i techniczne',
+            t('offerPages.freeCharger.invests.items.i1'),
+            t('offerPages.freeCharger.invests.items.i2'),
+            t('offerPages.freeCharger.invests.items.i3'),
+            t('offerPages.freeCharger.invests.items.i4'),
+            t('offerPages.freeCharger.invests.items.i5'),
+            t('offerPages.freeCharger.invests.items.i6'),
+            t('offerPages.freeCharger.invests.items.i7'),
+            t('offerPages.freeCharger.invests.items.i8'),
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="text-[#8ab925] font-black">✓</span>
@@ -80,21 +85,21 @@ export const OfertaDarmowaLadowarkaPage: React.FC = () => {
           ))}
         </div>
         <p className="text-sm text-gray-400 mt-4 italic">
-          Partner udostępnia lokalizację — my budujemy i operujemy infrastrukturą.
+          {t('offerPages.freeCharger.invests.note')}
         </p>
       </div>
 
       {/* Proces inwestycji */}
       <div className="mb-20">
         <h2 className="text-xl font-black text-white mb-8 uppercase tracking-tight">
-          Jak wygląda proces inwestycji?
+          {t('offerPages.freeCharger.process.title')}
         </h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {[
-            { step: '01', title: 'Zgłoszenie lokalizacji', desc: 'Przekazywane są podstawowe informacje o obiekcie, parkingu i infrastrukturze elektrycznej.' },
-            { step: '02', title: 'Analiza techniczno-biznesowa', desc: 'Weryfikujemy możliwości przyłączeniowe, potencjał użytkowania oraz zasadność inwestycji.' },
-            { step: '03', title: 'Ustalenie modelu współpracy', desc: 'Określamy zasady operacyjne, dostępność stacji i sposób funkcjonowania infrastruktury.' },
-            { step: '04', title: 'Montaż i uruchomienie', desc: 'Realizujemy instalację, konfigurację systemu i oddajemy stację do użytkowania.' },
+            { step: '01', title: t('offerPages.freeCharger.process.steps.s1.title'), desc: t('offerPages.freeCharger.process.steps.s1.desc') },
+            { step: '02', title: t('offerPages.freeCharger.process.steps.s2.title'), desc: t('offerPages.freeCharger.process.steps.s2.desc') },
+            { step: '03', title: t('offerPages.freeCharger.process.steps.s3.title'), desc: t('offerPages.freeCharger.process.steps.s3.desc') },
+            { step: '04', title: t('offerPages.freeCharger.process.steps.s4.title'), desc: t('offerPages.freeCharger.process.steps.s4.desc') },
           ].map((item) => (
             <div key={item.step} className="glass border border-white/10 rounded-3xl p-6 space-y-3">
               <span className="text-3xl font-black text-[#8ab925]">{item.step}</span>
@@ -106,11 +111,11 @@ export const OfertaDarmowaLadowarkaPage: React.FC = () => {
       </div>
 
       <SubpageContactSection
-        kicker="Sprawdź swoją lokalizację"
-        title="Darmowa ładowarka"
-        highlightedTitle="w Twojej lokalizacji"
-        description="Jeżeli zarządzasz osiedlem lub parkingiem i chcesz uruchomić ładowarkę finansowaną przez operatora, przeanalizujemy potencjał inwestycyjny lokalizacji."
-        messagePlaceholder="Opisz krótko swoją lokalizację, typ parkingu i liczbę miejsc..."
+        kicker={t('offerPages.freeCharger.contact.kicker')}
+        title={t('offerPages.freeCharger.contact.title')}
+        highlightedTitle={t('offerPages.freeCharger.contact.highlightedTitle')}
+        description={t('offerPages.freeCharger.contact.description')}
+        messagePlaceholder={t('offerPages.freeCharger.contact.messagePlaceholder')}
       />
     </section>
   );
