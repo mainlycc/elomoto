@@ -47,7 +47,6 @@ export const teamMembersQuery = `*[_type == "teamMember"] | order(order asc) {
   _id,
   fullName,
   position,
-  bio,
   order,
   photo
 }`;

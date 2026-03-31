@@ -6,6 +6,7 @@ type ContactTopicId = (typeof CONTACT_TOPIC_IDS)[number];
 interface ContactFormPayload {
   name: string;
   email: string;
+  phone?: string;
   message: string;
   topic: ContactTopicId;
   consent: boolean;
@@ -21,6 +22,8 @@ const TOPIC_LABELS: Record<ContactTopicId, string> = {
 
 const isValidEmail = (value: string): boolean =>
   /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+const countDigits = (value: string): number => (value.match(/\d/g) ?? []).length;
 
 const parseRequestBody = (body: unknown): unknown => {
   if (typeof body !== 'string') {
@@ -42,6 +45,7 @@ const normalizePayload = (body: unknown): ContactFormPayload | null => {
   const candidate = body as Partial<ContactFormPayload>;
   const name = typeof candidate.name === 'string' ? candidate.name.trim() : '';
   const email = typeof candidate.email === 'string' ? candidate.email.trim() : '';
+  const phone = typeof candidate.phone === 'string' ? candidate.phone.trim() : '';
   const message = typeof candidate.message === 'string' ? candidate.message.trim() : '';
   const topic = typeof candidate.topic === 'string' ? candidate.topic : '';
   const consent = candidate.consent === true;
@@ -52,6 +56,12 @@ const normalizePayload = (body: unknown): ContactFormPayload | null => {
 
   if (!isValidEmail(email) || email.length > 200) {
     return null;
+  }
+
+  if (phone) {
+    if (phone.length > 40 || countDigits(phone) < 7) {
+      return null;
+    }
   }
 
   if (!message || message.length < 10 || message.length > 5000) {
@@ -69,6 +79,7 @@ const normalizePayload = (body: unknown): ContactFormPayload | null => {
   return {
     name,
     email,
+    phone: phone || undefined,
     message,
     topic: topic as ContactTopicId,
     consent,
@@ -122,13 +133,16 @@ export default async function handler(req: any, res: any) {
         `Temat: ${topicLabel}`,
         `Imie i nazwisko: ${payload.name}`,
         `Email: ${payload.email}`,
+        payload.phone ? `Telefon: ${payload.phone}` : null,
         `Data wyslania (UTC): ${submittedAt}`,
         '',
         'Twoja wiadomosc:',
         payload.message,
         '',
         'Skontaktujemy sie z Toba najszybciej, jak to mozliwe.',
-      ].join('\n'),
+      ]
+        .filter((line): line is string => typeof line === 'string' && line.length > 0)
+        .join('\n'),
     });
 
     if (sendResult.error) {

@@ -18,13 +18,6 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'bio',
-      title: 'Krótki opis',
-      type: 'text',
-      rows: 4,
-      validation: (Rule) => Rule.required().min(20).max(320),
-    }),
-    defineField({
       name: 'photo',
       title: 'Zdjęcie (pionowe)',
       type: 'image',

@@ -77,7 +77,6 @@ type SanityTeamMemberRow = {
   _id: string;
   fullName?: string;
   position?: string;
-  bio?: string;
   order?: number;
   photo?: {
     alt?: string;
@@ -85,7 +84,7 @@ type SanityTeamMemberRow = {
 };
 
 export function mapSanityTeamMember(row: SanityTeamMemberRow): TeamMember | null {
-  if (!row.fullName || !row.position || !row.bio) return null;
+  if (!row.fullName || !row.position) return null;
   const photo = row.photo
     ? urlForImage(row.photo as never)
         ?.width(720)
@@ -100,7 +99,6 @@ export function mapSanityTeamMember(row: SanityTeamMemberRow): TeamMember | null
     order: typeof row.order === 'number' ? row.order : 0,
     fullName: row.fullName,
     position: row.position,
-    bio: row.bio,
     photo: photo || 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&q=80&w=900',
     photoAlt: row.photo?.alt || `${row.fullName} - ${row.position}`,
   };

@@ -37,7 +37,7 @@ export interface TeamMember {
   order: number;
   fullName: string;
   position: string;
-  bio: string;
+  bio?: string;
   photo: string;
   photoAlt: string;
 }

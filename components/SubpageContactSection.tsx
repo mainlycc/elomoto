@@ -3,6 +3,8 @@ import type { ContactFormPayload } from '../types';
 
 type FormStatus = 'idle' | 'success' | 'error';
 
+const countDigits = (value: string): number => (value.match(/\d/g) ?? []).length;
+
 interface SubpageContactSectionProps {
   kicker: string;
   title: string;
@@ -20,6 +22,7 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
 }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -31,13 +34,18 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
       return false;
     }
 
+    const trimmedPhone = phone.trim();
+    const isPhoneValid =
+      trimmedPhone.length === 0 || (countDigits(trimmedPhone) >= 7 && trimmedPhone.length <= 40);
+
     return (
       name.trim().length >= 2 &&
       email.trim().length > 0 &&
+      isPhoneValid &&
       message.trim().length >= 10 &&
       consent
     );
-  }, [consent, email, isSubmitting, message, name]);
+  }, [consent, email, isSubmitting, message, name, phone]);
 
   const validatePayload = (payload: ContactFormPayload): string | null => {
     if (payload.name.trim().length < 2) {
@@ -47,6 +55,15 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
     const simpleEmailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!simpleEmailRegex.test(payload.email.trim())) {
       return 'Podaj poprawny adres e-mail.';
+    }
+
+    if (typeof payload.phone === 'string') {
+      const trimmedPhone = payload.phone.trim();
+      if (trimmedPhone.length > 0) {
+        if (trimmedPhone.length > 40 || countDigits(trimmedPhone) < 7) {
+          return 'Podaj poprawny numer telefonu.';
+        }
+      }
     }
 
     if (payload.message.trim().length < 10) {
@@ -68,6 +85,7 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
     const payload: ContactFormPayload = {
       name: name.trim(),
       email: email.trim(),
+      phone: phone.trim().length > 0 ? phone.trim() : undefined,
       message: message.trim(),
       topic: 'install',
       consent,
@@ -115,6 +133,7 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
       setStatusMessage('Dziękujemy! Twoja wiadomość została wysłana.');
       setName('');
       setEmail('');
+      setPhone('');
       setMessage('');
       setConsent(false);
     } catch (error) {
@@ -174,6 +193,20 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
               disabled={isSubmitting}
               placeholder="twoj@email.pl"
               required
+              className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold text-slate-900 focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
+            />
+          </div>
+          <div className="md:col-span-2 space-y-1">
+            <label className="text-[9px] font-black text-slate-400 uppercase tracking-widest ml-1">
+              Telefon (opcjonalnie)
+            </label>
+            <input
+              type="tel"
+              value={phone}
+              onChange={(event) => setPhone(event.target.value)}
+              disabled={isSubmitting}
+              placeholder="np. 600 700 800"
+              autoComplete="tel"
               className="w-full bg-white border border-slate-200 rounded-2xl py-4 px-6 text-sm font-bold text-slate-900 focus:border-[#8ab925] focus:ring-4 focus:ring-[#8ab925]/5 outline-none transition-all placeholder:text-slate-300"
             />
           </div>
