@@ -33,6 +33,8 @@ export const BlogPage: React.FC = () => {
             String(error.message).toLowerCase().includes('failed to fetch') ? (
               <p className="text-xs text-red-700/80">
                 Sprawdź ustawienia CORS w Sanity (sanity.io/manage) i dodaj origin aplikacji, np.{' '}
+                <span className="font-bold">https://elomoto.eco</span>,{' '}
+                <span className="font-bold">https://www.elomoto.eco</span>,{' '}
                 <span className="font-bold">http://localhost:3000</span> oraz{' '}
                 <span className="font-bold">http://127.0.0.1:3000</span>.
               </p>

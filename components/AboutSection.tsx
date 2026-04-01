@@ -1,12 +1,11 @@
 
 import React from 'react';
 import { navigateTo } from '../utils/navigation';
-import polonusWarszawaImg from '../Polonus Warszawa.jpeg';
+import aboutImg from '../onas.JPG';
 import { useI18n } from '../i18n/I18nProvider';
 
 export const AboutSection: React.FC = () => {
   const { t } = useI18n();
-  const aboutImg = polonusWarszawaImg;
 
   return (
     <section id="about" className="py-24 bg-[#0a1a14] overflow-hidden">
@@ -20,7 +19,7 @@ export const AboutSection: React.FC = () => {
                 alt={t('aboutSection.imageAlt')}
                 className="w-full object-cover h-[600px] hover:scale-105 transition-transform duration-1000 opacity-80"
               />
-              <div className="absolute bottom-8 left-8 right-8 glass p-6 rounded-3xl border border-white/20">
+              <div className="absolute top-8 left-8 right-8 glass p-6 rounded-3xl border border-white/20">
                  <div className="text-white font-black text-xl mb-1 uppercase tracking-tighter">{t('aboutSection.cardTitle')}</div>
                  <div className="text-[#8ab925] font-extrabold text-xs uppercase tracking-widest">{t('aboutSection.cardSubtitle')}</div>
               </div>

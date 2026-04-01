@@ -831,7 +831,7 @@ export const translations: Translations = {
       errorTitle: 'Nie udało się załadować bloga.',
       empty: 'Brak opublikowanych wpisów.',
       corsHint:
-        'Sprawdź ustawienia CORS w Sanity (sanity.io/manage) i dodaj origin aplikacji, np. http://localhost:3000 oraz http://127.0.0.1:3000.',
+        'Sprawdź ustawienia CORS w Sanity (sanity.io/manage) i dodaj origin aplikacji, np. https://elomoto.eco, https://www.elomoto.eco, http://localhost:3000 oraz http://127.0.0.1:3000.',
       readMore: 'Czytaj więcej',
     },
   },

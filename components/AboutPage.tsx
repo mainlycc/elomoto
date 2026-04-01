@@ -1,11 +1,10 @@
 import React from 'react';
 import { useTeamMembers } from '../hooks/useTeamMembers';
 import { navigateTo } from '../utils/navigation';
-import polonusWarszawaImg from '../Polonus Warszawa.jpeg';
+import aboutImg from '../onas.JPG';
 
 export const AboutPage: React.FC = () => {
   const { members, loading, error } = useTeamMembers();
-  const aboutImg = polonusWarszawaImg;
 
   return (
     <section className="pb-24 bg-[#020617]">
