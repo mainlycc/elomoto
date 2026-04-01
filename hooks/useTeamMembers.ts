@@ -101,7 +101,22 @@ export function useTeamMembers() {
         const mapped = rows
           .map((row) => mapSanityTeamMember(row))
           .filter((member): member is TeamMember => member !== null);
-        setMembers(mapped.length > 0 ? mapped : fallbackMembers);
+        if (mapped.length === 0) {
+          setMembers(fallbackMembers);
+          setError(null);
+          return;
+        }
+
+        // Jeśli CMS ma niepełną listę (np. usunięte osoby), dopełnij brakujące wpisy fallbackiem.
+        // CMS nadpisuje fallback dla tych samych osób.
+        const keyOf = (m: TeamMember) => m.fullName.trim().toLowerCase();
+        const mergedByName = new Map<string, TeamMember>();
+
+        for (const member of fallbackMembers) mergedByName.set(keyOf(member), member);
+        for (const member of mapped) mergedByName.set(keyOf(member), member);
+
+        const merged = Array.from(mergedByName.values()).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+        setMembers(merged);
         setError(null);
       })
       .catch((e: unknown) => {

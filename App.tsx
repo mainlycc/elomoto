@@ -49,22 +49,24 @@ const PageShell: React.FC<PageShellProps> = ({
   mainProps,
 }) => {
   return (
-    <div className={wrapperClassName}>
-      <Navbar />
-      <ContactCtaPopup />
+    <TypographyFix>
+      <div className={wrapperClassName}>
+        <Navbar />
+        <ContactCtaPopup />
 
-      {/* Floating Charging Widget - Follows the user */}
-      <div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden xl:block pointer-events-none scale-75 origin-right">
-        <div className="pointer-events-auto">
-          <ChargingWidget />
+        {/* Floating Charging Widget - Follows the user */}
+        <div className="fixed right-8 top-1/2 -translate-y-1/2 z-[100] hidden xl:block pointer-events-none scale-75 origin-right">
+          <div className="pointer-events-auto">
+            <ChargingWidget />
+          </div>
         </div>
-      </div>
 
-      <main className={mainClassName} {...mainProps}>
-        <TypographyFix>{children}</TypographyFix>
-      </main>
-      <Footer />
-    </div>
+        <main className={mainClassName} {...mainProps}>
+          {children}
+        </main>
+        <Footer />
+      </div>
+    </TypographyFix>
   );
 };
 

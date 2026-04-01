@@ -153,8 +153,24 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="pt-6 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center text-[9px] font-bold text-gray-300 uppercase tracking-widest">
-          <p>{t('footer.copyright', { year })}</p>
+        <div className="pt-6 border-t border-gray-100 flex flex-col items-center justify-center gap-3 text-center">
+          <p className="text-[9px] font-bold text-gray-300 uppercase tracking-widest">
+            {t('footer.copyright', { year })}
+          </p>
+
+          <div className="inline-flex items-center rounded-full border border-gray-200 bg-gray-50 px-4 py-2">
+            <span className="text-[10px] md:text-xs font-extrabold text-gray-600 uppercase tracking-[0.2em]">
+              Made by{' '}
+            </span>
+            <a
+              href="https://www.mainly.pl/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-1 text-[10px] md:text-xs font-extrabold uppercase tracking-[0.2em] text-gray-900 hover:text-[#8ab925] transition-colors"
+            >
+              Mainly
+            </a>
+          </div>
         </div>
       </div>
     </footer>
