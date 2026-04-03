@@ -590,7 +590,7 @@ export const translations: Translations = {
       description:
         'Tworzymy ekosystem, który łączy nowoczesną architekturę z inteligentną mobilnością. Odkryj najwyższy standard ładowania pojazdów elektrycznych.',
       ctaPrimary: 'Darmowa stacja ładowania',
-      ctaSecondary: 'Kup stację ładowania',
+      ctaSecondary: 'Montaż stacji ładowania',
     },
     aboutSection: {
       imageAlt: 'EV Station Passion',
@@ -695,12 +695,7 @@ export const translations: Translations = {
       },
     },
     contactPopup: {
-      dialogAria: 'Skontaktuj się z nami',
-      eyebrow: 'Szybki kontakt',
-      titleLine1: 'Porozmawiajmy o Twojej',
-      titleAccent: 'dzierżawie miejsca parkingowego',
-      body1: 'Zostaw wiadomość — odezwiemy się w ciągu 24 h z odpowiedzią i propozycją kolejnych kroków.',
-      body2: 'Najlepiej podaj lokalizację, liczbę miejsc i dostępną moc.',
+      title: 'Dzierżawa miejsca parkingowego pod stację ładowania',
       close: 'Zamknij',
       cta: 'Skontaktuj się z nami',
       later: 'Nie teraz',
@@ -1376,7 +1371,7 @@ export const translations: Translations = {
       description:
         'We build an ecosystem that connects modern architecture with smart mobility. Discover a premium standard for EV charging.',
       ctaPrimary: 'Free charging station',
-      ctaSecondary: 'Buy a charging station',
+      ctaSecondary: 'Charging station installation',
     },
     aboutSection: {
       imageAlt: 'EV charging infrastructure',
@@ -1480,12 +1475,7 @@ export const translations: Translations = {
       },
     },
     contactPopup: {
-      dialogAria: 'Contact us',
-      eyebrow: 'Quick contact',
-      titleLine1: 'Let’s talk about your',
-      titleAccent: 'parking space lease',
-      body1: 'Leave a message — we’ll get back within 24h with an answer and next steps.',
-      body2: 'Ideally include location, number of spots, and available power.',
+      title: 'Parking space lease for a charging station',
       close: 'Close',
       cta: 'Contact us',
       later: 'Not now',

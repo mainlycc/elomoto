@@ -94,21 +94,13 @@ export const ContactCtaPopup: React.FC<ContactCtaPopupProps> = ({ delayMs = 10_0
     <div className="fixed left-4 sm:left-6 top-1/2 -translate-y-1/2 z-[200] w-[min(92vw,420px)] pointer-events-none">
       <div
         role="dialog"
-        aria-label={t('contactPopup.dialogAria')}
+        aria-label={t('contactPopup.title')}
         className="pointer-events-auto bg-white rounded-[28px] border border-black/10 shadow-2xl shadow-black/15 p-5 sm:p-6 transition-all duration-300 animate-[slideInLeft_260ms_cubic-bezier(0.2,0.9,0.2,1)]"
       >
         <div className="flex items-start justify-between gap-4">
           <div className="min-w-0">
-            <p className="text-[#8ab925] font-extrabold uppercase tracking-[0.35em] text-[10px] mb-2">
-              {t('contactPopup.eyebrow')}
-            </p>
-            <p className="text-[#0b1220] font-black uppercase tracking-tight leading-[1.05] text-xl sm:text-2xl">
-              {t('contactPopup.titleLine1')}
-              <br />
-              <span className="text-[#8ab925]">{t('contactPopup.titleAccent')}</span>
-            </p>
-            <p className="text-black/70 text-xs sm:text-sm leading-relaxed mt-3">
-              {t('contactPopup.body1')} {t('contactPopup.body2')}
+            <p className="text-[#0b1220] font-black uppercase tracking-tight leading-snug text-lg sm:text-xl">
+              {t('contactPopup.title')}
             </p>
           </div>
 

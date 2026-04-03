@@ -72,20 +72,24 @@ const PageShell: React.FC<PageShellProps> = ({
 
 const App: React.FC = () => {
   const [path, setPath] = useState(window.location.pathname);
+  /** Inkrementowane przy każdym popstate — gdy pathname zostaje „/”, a zmienia się tylko hash (np. popup → /#contact), React inaczej by nie odpalił efektu przewijania. */
+  const [locationTick, setLocationTick] = useState(0);
 
   useEffect(() => {
-    const handleLocationChange = () => setPath(window.location.pathname);
+    const handleLocationChange = () => {
+      setPath(window.location.pathname);
+      setLocationTick((n) => n + 1);
+    };
     window.addEventListener('popstate', handleLocationChange);
     return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
   const normalizedPath = (path || '/').replace(/\/+$/, '') || '/';
 
-  // Zawsze przewijaj widok na górę przy zmianie podstrony (ścieżki)
+  // Przewijanie: zmiana ścieżki albo samego hasha na stronie głównej (SPA)
   useEffect(() => {
     const hash = window.location.hash;
     if (normalizedPath === '/' && hash) {
-      // Jeśli jesteśmy na stronie głównej z hashem, przewiń do sekcji po załadowaniu
       setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
@@ -93,10 +97,9 @@ const App: React.FC = () => {
         }
       }, 100);
     } else {
-      // W przeciwnym razie przewiń na górę
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
-  }, [normalizedPath]);
+  }, [normalizedPath, locationTick]);
 
   if (normalizedPath === '/ustaw') {
     return (

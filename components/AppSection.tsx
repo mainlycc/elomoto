@@ -31,9 +31,16 @@ export const AppSection: React.FC = () => {
                 rel="noopener noreferrer"
                 className="bg-white rounded-2xl py-4 px-8 flex items-center space-x-4 hover:scale-105 transition-transform duration-300 shadow-xl active:scale-95"
               >
-                <svg className="w-8 h-8 text-black" viewBox="0 0 384 512" fill="currentColor">
-                  <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 21.8-88.5 21.8-11.4 0-51.1-19-81.6-19-42.6 0-101 32.8-116.8 96-18.8 74.3 23.4 162.8 54 213 20.6 33.1 48 64 80 64s44-22 81.6-22c37 0 45.4 22 81.6 22 34 0 60.2-27.8 80.6-59.5 22.8-33.8 32-66.6 32.4-68.2-.8-.4-63.3-24.2-63.5-96.6zM281.3 75.3c15.7-19.1 26.2-45.6 23.3-72-23 1-51.1 15.4-67.6 34.7-14.8 17.1-27.8 44.2-24.2 69.8 25.6 2.1 52.8-13.4 68.5-32.5z"/>
-                </svg>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-sm">
+                  <svg
+                    className="h-full w-full origin-center scale-[1.22] text-black"
+                    viewBox="0 0 384 512"
+                    fill="currentColor"
+                    aria-hidden
+                  >
+                    <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 21.8-88.5 21.8-11.4 0-51.1-19-81.6-19-42.6 0-101 32.8-116.8 96-18.8 74.3 23.4 162.8 54 213 20.6 33.1 48 64 80 64s44-22 81.6-22c37 0 45.4 22 81.6 22 34 0 60.2-27.8 80.6-59.5 22.8-33.8 32-66.6 32.4-68.2-.8-.4-63.3-24.2-63.5-96.6zM281.3 75.3c15.7-19.1 26.2-45.6 23.3-72-23 1-51.1 15.4-67.6 34.7-14.8 17.1-27.8 44.2-24.2 69.8 25.6 2.1 52.8-13.4 68.5-32.5z"/>
+                  </svg>
+                </span>
                 <div className="text-black text-left">
                   <div className="text-[10px] font-extrabold leading-none uppercase opacity-60 tracking-wider">{t('app.downloadOn')}</div>
                   <div className="text-lg font-black leading-none">App Store</div>
@@ -47,9 +54,11 @@ export const AppSection: React.FC = () => {
                 rel="noopener noreferrer"
                 className="bg-white rounded-2xl py-4 px-8 flex items-center space-x-4 hover:scale-105 transition-transform duration-300 shadow-xl active:scale-95"
               >
-                <svg className="w-8 h-8 text-black" viewBox="0 0 512 512" fill="currentColor">
-                  <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
-                </svg>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-sm">
+                  <svg className="h-full w-full text-black" viewBox="0 0 512 512" fill="currentColor" aria-hidden>
+                    <path d="M325.3 234.3L104.6 13l280.8 161.2-60.1 60.1zM47 0C34 6.8 25.3 19.2 25.3 35.3v441.3c0 16.1 8.7 28.5 21.7 35.3l256.6-256L47 0zm425.2 225.6l-58.9-34.1-65.7 64.5 65.7 64.5 60.1-34.1c18-14.3 18-46.5-1.2-60.8zM104.6 499l280.8-161.2-60.1-60.1L104.6 499z"/>
+                  </svg>
+                </span>
                 <div className="text-black text-left">
                   <div className="text-[10px] font-extrabold leading-none uppercase opacity-60 tracking-wider">{t('app.getFrom')}</div>
                   <div className="text-lg font-black leading-none">Google Play</div>
