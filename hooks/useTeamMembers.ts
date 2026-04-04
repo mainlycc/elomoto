@@ -13,6 +13,7 @@ import damianPietruchaPhoto from '../7.Damian Pietrucha.png';
 
 type Row = Parameters<typeof mapSanityTeamMember>[0];
 
+/** Używane tylko gdy brak konfiguracji Sanity albo pusty dataset — nie scalamy z CMS. */
 const fallbackMembers: TeamMember[] = [
   {
     id: 'fallback-michal-suska',
@@ -100,23 +101,16 @@ export function useTeamMembers() {
         if (cancelled) return;
         const mapped = rows
           .map((row) => mapSanityTeamMember(row))
-          .filter((member): member is TeamMember => member !== null);
+          .filter((member): member is TeamMember => member !== null)
+          .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+
         if (mapped.length === 0) {
           setMembers(fallbackMembers);
           setError(null);
           return;
         }
 
-        // Jeśli CMS ma niepełną listę (np. usunięte osoby), dopełnij brakujące wpisy fallbackiem.
-        // CMS nadpisuje fallback dla tych samych osób.
-        const keyOf = (m: TeamMember) => m.fullName.trim().toLowerCase();
-        const mergedByName = new Map<string, TeamMember>();
-
-        for (const member of fallbackMembers) mergedByName.set(keyOf(member), member);
-        for (const member of mapped) mergedByName.set(keyOf(member), member);
-
-        const merged = Array.from(mergedByName.values()).sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
-        setMembers(merged);
+        setMembers(mapped);
         setError(null);
       })
       .catch((e: unknown) => {

@@ -8,9 +8,12 @@
     "start": "sanity dev",
     "build": "sanity build",
     "deploy": "sanity deploy",
-    "import-seed": "sanity dataset import ./seed-production.ndjson production"
+    "import-seed": "sanity dataset import ./seed-production.ndjson production",
+    "replace-realizations": "node ./scripts/replaceRealizations.mjs",
+    "replace-team": "node ./scripts/replaceTeamMembers.mjs"
   },
   "dependencies": {
+    "@sanity/client": "^6.24.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "sanity": "^3.68.0",

@@ -2,6 +2,7 @@ import { PortableText } from '@portabletext/react';
 import React from 'react';
 import { useRealizationBySlug } from '../hooks/useRealizationBySlug';
 import { useRealizations } from '../hooks/useRealizations';
+import type { RealizationHighlight } from '../types';
 import { navigateTo } from '../utils/navigation';
 import { SubpageContactSection } from './SubpageContactSection';
 import { realizationPortableTextComponents } from './portableTextComponents';
@@ -12,6 +13,20 @@ interface Props {
 
 const defaultIntro =
   'Przykładowa realizacja infrastruktury ładowania w obiekcie komercyjnym. Opis poniżej ma charakter poglądowy – możesz go później zastąpić szczegółowym case study.';
+
+const defaultDetailLead =
+  'Wybrane wdrożenia infrastruktury ładowania w biurowcach, hotelach, centrach handlowych i na osiedlach mieszkaniowych. Różne lokalizacje, jeden standard – wygodne, bezpieczne i nowoczesne ładowanie pojazdów elektrycznych.';
+
+const defaultScopeTitle = 'Zakres projektu';
+const defaultEffectsTitle = 'Efekty dla inwestora';
+const defaultEffectsLead =
+  'Dzięki wdrożeniu infrastruktury ładowania obiekt zyskał nową wartość dla użytkowników, a także możliwość raportowania danych związanych z wykorzystaniem stacji i zużyciem energii elektrycznej.';
+
+const defaultEffectsHighlights: RealizationHighlight[] = [
+  { label: 'komfort', text: 'Ładowanie dostępne tam, gdzie użytkownicy spędzają najwięcej czasu.' },
+  { label: 'wizerunek', text: 'Wzmocnienie proekologicznego wizerunku inwestycji.' },
+  { label: 'dane', text: 'Lepsze zrozumienie realnego zapotrzebowania na ładowanie dzięki raportom.' },
+];
 
 export const RealizacjaDetailPage: React.FC<Props> = ({ slug }) => {
   const { realization, loading, error } = useRealizationBySlug(slug);
@@ -68,9 +83,7 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ slug }) => {
           Realizacje <span className="text-[#8ab925]">elomoto.eco</span>
         </h1>
         <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
-          Wybrane wdrożenia infrastruktury ładowania w biurowcach, hotelach, centrach handlowych i na osiedlach
-          mieszkaniowych. Różne lokalizacje, jeden standard – wygodne, bezpieczne i nowoczesne ładowanie pojazdów
-          elektrycznych.
+          {realization.detailLead?.trim() || defaultDetailLead}
         </p>
       </header>
 
@@ -98,39 +111,47 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ slug }) => {
             />
           </div>
           <div className="space-y-4 text-sm text-gray-200 leading-relaxed">
-            <h3 className="text-lg font-semibold text-white">Zakres projektu</h3>
-            <p>
-              W ramach projektu wykonano analizę zapotrzebowania na ładowanie, przygotowano koncepcję techniczną oraz
-              zrealizowano kompletny montaż punktów ładowania wraz z uruchomieniem systemu rozliczeń.
-            </p>
-            <ul className="space-y-2">
-              <li>• instalacja kilku punktów ładowania AC / DC,</li>
-              <li>• dopasowanie infrastruktury do istniejącej rozdzielni,</li>
-              <li>• konfiguracja dostępu dla mieszkańców / klientów / pracowników,</li>
-              <li>• integracja z usługą operatorską elomoto.eco.</li>
-            </ul>
+            <h3 className="text-lg font-semibold text-white">
+              {realization.scopeTitle?.trim() || defaultScopeTitle}
+            </h3>
+            {realization.scopeContent && realization.scopeContent.length > 0 ? (
+              <PortableText value={realization.scopeContent} components={realizationPortableTextComponents} />
+            ) : (
+              <>
+                <p>
+                  W ramach projektu wykonano analizę zapotrzebowania na ładowanie, przygotowano koncepcję techniczną oraz
+                  zrealizowano kompletny montaż punktów ładowania wraz z uruchomieniem systemu rozliczeń.
+                </p>
+                <ul className="space-y-2">
+                  <li>• instalacja kilku punktów ładowania AC / DC,</li>
+                  <li>• dopasowanie infrastruktury do istniejącej rozdzielni,</li>
+                  <li>• konfiguracja dostępu dla mieszkańców / klientów / pracowników,</li>
+                  <li>• integracja z usługą operatorską elomoto.eco.</li>
+                </ul>
+              </>
+            )}
           </div>
         </div>
 
         <div className="glass border border-white/10 rounded-3xl p-6 md:p-8 mb-10">
-          <h3 className="text-lg font-semibold text-white mb-3">Efekty dla inwestora</h3>
+          <h3 className="text-lg font-semibold text-white mb-3">
+            {realization.effectsTitle?.trim() || defaultEffectsTitle}
+          </h3>
           <p className="text-sm text-gray-200 mb-4">
-            Dzięki wdrożeniu infrastruktury ładowania obiekt zyskał nową wartość dla użytkowników, a także możliwość
-            raportowania danych związanych z wykorzystaniem stacji i zużyciem energii elektrycznej.
+            {realization.effectsLead?.trim() || defaultEffectsLead}
           </p>
           <ul className="grid md:grid-cols-3 gap-4 text-sm text-gray-200">
-            <li className="bg-white/5 rounded-2xl p-4 border border-white/10">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">komfort</p>
-              <p>Ładowanie dostępne tam, gdzie użytkownicy spędzają najwięcej czasu.</p>
-            </li>
-            <li className="bg-white/5 rounded-2xl p-4 border border-white/10">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">wizerunek</p>
-              <p>Wzmocnienie proekologicznego wizerunku inwestycji.</p>
-            </li>
-            <li className="bg-white/5 rounded-2xl p-4 border border-white/10">
-              <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">dane</p>
-              <p>Lepsze zrozumienie realnego zapotrzebowania na ładowanie dzięki raportom.</p>
-            </li>
+            {(realization.effectsHighlights?.length ? realization.effectsHighlights : defaultEffectsHighlights).map(
+              (item, idx) => (
+                <li
+                  key={`${item.label}-${idx}`}
+                  className="bg-white/5 rounded-2xl p-4 border border-white/10"
+                >
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400 mb-1">{item.label}</p>
+                  <p>{item.text}</p>
+                </li>
+              ),
+            )}
           </ul>
         </div>
 

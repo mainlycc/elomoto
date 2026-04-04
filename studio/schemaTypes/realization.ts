@@ -53,9 +53,71 @@ export default defineType({
     }),
     defineField({
       name: 'body',
-      title: 'Pełny opis (case study)',
+      title: 'Wstęp / case study (nad zdjęciem)',
       type: 'array',
       of: [{ type: 'block' }],
+      description: 'Tekst główny pod krótkim wstępem (intro) — akapity, nagłówki, listy.',
+    }),
+    defineField({
+      name: 'detailLead',
+      title: 'Lead pod nagłówkiem „Realizacje elomoto.eco”',
+      type: 'text',
+      rows: 4,
+      description:
+        'Opcjonalny akapit pod dużym tytułem strony szczegółu. Pusty = domyślny tekst z szablonu.',
+    }),
+    defineField({
+      name: 'scopeTitle',
+      title: 'Tytuł kolumny obok zdjęcia',
+      type: 'string',
+      initialValue: 'Zakres projektu',
+    }),
+    defineField({
+      name: 'scopeContent',
+      title: 'Treść: zakres projektu (obok zdjęcia)',
+      type: 'array',
+      of: [{ type: 'block' }],
+      description: 'Akapit i lista punktów obok głównego zdjęcia.',
+    }),
+    defineField({
+      name: 'effectsTitle',
+      title: 'Tytuł sekcji efektów',
+      type: 'string',
+      initialValue: 'Efekty dla inwestora',
+    }),
+    defineField({
+      name: 'effectsLead',
+      title: 'Wstęp do sekcji efektów',
+      type: 'text',
+      rows: 4,
+    }),
+    defineField({
+      name: 'effectsHighlights',
+      title: 'Karty efektów (np. komfort, wizerunek, dane)',
+      type: 'array',
+      of: [
+        defineField({
+          type: 'object',
+          name: 'effectHighlight',
+          fields: [
+            defineField({
+              name: 'label',
+              title: 'Etykieta',
+              type: 'string',
+              description: 'Krótka etykieta nad opisem (np. „komfort”).',
+            }),
+            defineField({
+              name: 'text',
+              title: 'Opis',
+              type: 'text',
+              rows: 3,
+            }),
+          ],
+          preview: {
+            select: { title: 'label', subtitle: 'text' },
+          },
+        }),
+      ],
     }),
   ],
   preview: {

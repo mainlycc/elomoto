@@ -1,5 +1,5 @@
 import type { PortableTextBlock } from '@portabletext/types';
-import type { BlogPost, Realization, TeamMember } from '../types';
+import type { BlogPost, Realization, RealizationHighlight, TeamMember } from '../types';
 import { urlForImage } from './sanityImage';
 
 export function formatBlogDate(iso: string | undefined): string {
@@ -42,6 +42,8 @@ export function mapSanityBlogPost(row: SanityBlogRow): BlogPost | null {
   };
 }
 
+type SanityEffectHighlight = { label?: string; text?: string };
+
 type SanityRealizationRow = {
   _id: string;
   title?: string;
@@ -51,7 +53,24 @@ type SanityRealizationRow = {
   legacyImageUrl?: string;
   intro?: string;
   body?: PortableTextBlock[];
+  detailLead?: string;
+  scopeTitle?: string;
+  scopeContent?: PortableTextBlock[];
+  effectsTitle?: string;
+  effectsLead?: string;
+  effectsHighlights?: SanityEffectHighlight[];
 };
+
+function mapEffectHighlights(rows: SanityEffectHighlight[] | undefined): RealizationHighlight[] | undefined {
+  if (!rows?.length) return undefined;
+  const out = rows
+    .map((h) => ({
+      label: typeof h?.label === 'string' ? h.label : '',
+      text: typeof h?.text === 'string' ? h.text : '',
+    }))
+    .filter((h) => h.label.trim() || h.text.trim());
+  return out.length ? out : undefined;
+}
 
 export function mapSanityRealization(row: SanityRealizationRow): Realization | null {
   if (!row.slug || !row.title) return null;
@@ -70,6 +89,12 @@ export function mapSanityRealization(row: SanityRealizationRow): Realization | n
     image,
     intro: row.intro,
     body: row.body,
+    detailLead: row.detailLead,
+    scopeTitle: row.scopeTitle,
+    scopeContent: row.scopeContent,
+    effectsTitle: row.effectsTitle,
+    effectsLead: row.effectsLead,
+    effectsHighlights: mapEffectHighlights(row.effectsHighlights),
   };
 }
 
@@ -78,6 +103,7 @@ type SanityTeamMemberRow = {
   fullName?: string;
   position?: string;
   order?: number;
+  legacyPhotoUrl?: string;
   photo?: {
     alt?: string;
   };
@@ -85,14 +111,15 @@ type SanityTeamMemberRow = {
 
 export function mapSanityTeamMember(row: SanityTeamMemberRow): TeamMember | null {
   if (!row.fullName || !row.position) return null;
-  const photo = row.photo
+  const fromAsset = row.photo
     ? urlForImage(row.photo as never)
         ?.width(720)
         .height(960)
         .fit('crop')
         .quality(85)
         .url()
-    : '';
+    : undefined;
+  const photo = fromAsset || row.legacyPhotoUrl || '';
 
   return {
     id: row._id,

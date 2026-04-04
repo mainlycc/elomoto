@@ -25,6 +25,11 @@ export interface BlogPost {
   image: string;
 }
 
+export interface RealizationHighlight {
+  label: string;
+  text: string;
+}
+
 export interface Realization {
   id: string;
   order: number;
@@ -33,6 +38,13 @@ export interface Realization {
   slug: string;
   intro?: string;
   body?: PortableTextBlock[];
+  /** Lead pod nagłówkiem strony szczegółu (nad blokiem z tytułem realizacji). */
+  detailLead?: string;
+  scopeTitle?: string;
+  scopeContent?: PortableTextBlock[];
+  effectsTitle?: string;
+  effectsLead?: string;
+  effectsHighlights?: RealizationHighlight[];
 }
 
 export interface TeamMember {

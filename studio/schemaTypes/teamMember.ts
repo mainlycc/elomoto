@@ -18,6 +18,12 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'legacyPhotoUrl',
+      title: 'URL zdjęcia (gdy brak uploadu)',
+      type: 'url',
+      description: 'Opcja awaryjna — pełny adres obrazu. Jeśli wgrasz plik poniżej, ma pierwszeństwo.',
+    }),
+    defineField({
       name: 'photo',
       title: 'Zdjęcie (pionowe)',
       type: 'image',
@@ -29,7 +35,14 @@ export default defineType({
           title: 'Tekst alternatywny',
         }),
       ],
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((value, context) => {
+          const legacy = (context.parent as { legacyPhotoUrl?: string } | undefined)?.legacyPhotoUrl;
+          if (!value && !legacy) {
+            return 'Wgraj zdjęcie albo podaj URL zdjęcia';
+          }
+          return true;
+        }),
     }),
     defineField({
       name: 'order',

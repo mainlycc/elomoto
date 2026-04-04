@@ -28,8 +28,7 @@ export const realizationsQuery = `*[_type == "realization"] | order(order asc) {
   order,
   mainImage,
   legacyImageUrl,
-  intro,
-  body
+  intro
 }`;
 
 export const realizationBySlugQuery = `*[_type == "realization" && slug.current == $slug][0]{
@@ -40,7 +39,13 @@ export const realizationBySlugQuery = `*[_type == "realization" && slug.current 
   mainImage,
   legacyImageUrl,
   intro,
-  body
+  body,
+  detailLead,
+  scopeTitle,
+  scopeContent,
+  effectsTitle,
+  effectsLead,
+  effectsHighlights
 }`;
 
 export const teamMembersQuery = `*[_type == "teamMember"] | order(order asc) {
@@ -48,5 +53,6 @@ export const teamMembersQuery = `*[_type == "teamMember"] | order(order asc) {
   fullName,
   position,
   order,
-  photo
+  photo,
+  legacyPhotoUrl
 }`;

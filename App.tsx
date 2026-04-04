@@ -90,15 +90,15 @@ const App: React.FC = () => {
   useEffect(() => {
     const hash = window.location.hash;
     if (normalizedPath === '/' && hash) {
-      setTimeout(() => {
+      const timeoutId = window.setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       }, 100);
-    } else {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      return () => clearTimeout(timeoutId);
     }
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   }, [normalizedPath, locationTick]);
 
   if (normalizedPath === '/ustaw') {
