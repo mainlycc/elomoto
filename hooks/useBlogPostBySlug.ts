@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useI18n } from '../i18n/I18nProvider';
 import { sanityClient, sanityConfigured } from '../lib/sanityClient';
 import { mapSanityBlogPost } from '../lib/sanityMappers';
 import { blogPostBySlugQuery } from '../lib/sanityQueries';
@@ -10,6 +11,7 @@ type Row = Parameters<typeof mapSanityBlogPost>[0] & { body?: PortableTextBlock[
 export type BlogPostDetail = BlogPost & { body: PortableTextBlock[] };
 
 export function useBlogPostBySlug(slug: string | undefined) {
+  const { locale } = useI18n();
   const [post, setPost] = useState<BlogPostDetail | null>(null);
   const [loading, setLoading] = useState(Boolean(sanityConfigured && slug));
   const [error, setError] = useState<Error | null>(null);
@@ -31,7 +33,7 @@ export function useBlogPostBySlug(slug: string | undefined) {
     setLoading(true);
 
     sanityClient
-      .fetch<Row | null>(blogPostBySlugQuery, { slug })
+      .fetch<Row | null>(blogPostBySlugQuery, { slug, locale })
       .then((row) => {
         if (cancelled) return;
         if (!row) {
@@ -39,7 +41,7 @@ export function useBlogPostBySlug(slug: string | undefined) {
           setError(null);
           return;
         }
-        const base = mapSanityBlogPost(row);
+        const base = mapSanityBlogPost(row, locale);
         if (!base) {
           setPost(null);
           return;
@@ -62,7 +64,7 @@ export function useBlogPostBySlug(slug: string | undefined) {
     return () => {
       cancelled = true;
     };
-  }, [slug]);
+  }, [slug, locale]);
 
   return { post, loading, error };
 }

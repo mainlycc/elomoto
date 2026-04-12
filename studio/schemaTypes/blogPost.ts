@@ -19,6 +19,21 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'locale',
+      title: 'Język / Language',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Polski (PL)', value: 'pl' },
+          { title: 'English (EN)', value: 'en' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'pl',
+      description:
+        'Wersja językowa wpisu. Dla angielskiej strony utwórz osobny dokument (treść i slug po angielsku) i ustaw EN. Puste pole = traktowane jak PL.',
+    }),
+    defineField({
       name: 'publishedAt',
       title: 'Data publikacji',
       type: 'datetime',
@@ -62,9 +77,11 @@ export default defineType({
     }),
   ],
   preview: {
-    select: { title: 'title', media: 'mainImage' },
-    prepare({ title, media }) {
-      return { title: title || 'Bez tytułu', media };
+    select: { title: 'title', media: 'mainImage', locale: 'locale', subtitle: 'slug.current' },
+    prepare({ title, media, locale, subtitle }) {
+      const lang = locale === 'en' ? 'EN' : 'PL';
+      const slugPart = subtitle ? ` /${subtitle}` : '';
+      return { title: title || 'Bez tytułu', subtitle: `${lang}${slugPart}`, media };
     },
   },
   orderings: [

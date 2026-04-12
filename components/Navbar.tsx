@@ -50,7 +50,9 @@ export const Navbar: React.FC = () => {
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${scrolled ? 'py-3' : 'py-8'}`}>
       <div className={`max-w-7xl mx-auto px-4 sm:px-6 lg:px-8`}>
         <div
-          className={`glass rounded-[32px] transition-all duration-500 pr-4 sm:pr-6 lg:pr-8 ${scrolled ? 'shadow-2xl border-white/10' : 'border-transparent'}`}
+          className={`glass rounded-[32px] transition-all duration-500 pr-4 sm:pr-6 lg:pr-8 pl-2 sm:pl-3 lg:pl-4 -ml-2 sm:-ml-3 lg:-ml-4 ${
+            scrolled ? 'shadow-2xl border-white/10' : 'border-transparent'
+          }`}
         >
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
@@ -66,7 +68,7 @@ export const Navbar: React.FC = () => {
               <img
                 src={logoWhite}
                 alt="elomoto.eco"
-                className="h-16 w-[176px] object-contain brightness-[1.15]"
+                className="h-16 w-[176px] object-contain brightness-[1.15] -ml-1"
               />
             </button>
 

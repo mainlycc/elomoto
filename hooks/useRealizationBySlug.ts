@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useI18n } from '../i18n/I18nProvider';
 import { sanityClient, sanityConfigured } from '../lib/sanityClient';
 import { mapSanityRealization } from '../lib/sanityMappers';
 import { realizationBySlugQuery } from '../lib/sanityQueries';
@@ -7,6 +8,7 @@ import type { Realization } from '../types';
 type Row = Parameters<typeof mapSanityRealization>[0];
 
 export function useRealizationBySlug(slug: string | undefined) {
+  const { locale } = useI18n();
   const [realization, setRealization] = useState<Realization | null>(null);
   const [loading, setLoading] = useState(Boolean(sanityConfigured && slug));
   const [error, setError] = useState<Error | null>(null);
@@ -28,7 +30,7 @@ export function useRealizationBySlug(slug: string | undefined) {
     setLoading(true);
 
     sanityClient
-      .fetch<Row | null>(realizationBySlugQuery, { slug })
+      .fetch<Row | null>(realizationBySlugQuery, { slug, locale })
       .then((row) => {
         if (cancelled) return;
         if (!row) {
@@ -52,7 +54,7 @@ export function useRealizationBySlug(slug: string | undefined) {
     return () => {
       cancelled = true;
     };
-  }, [slug]);
+  }, [slug, locale]);
 
   return { realization, loading, error };
 }

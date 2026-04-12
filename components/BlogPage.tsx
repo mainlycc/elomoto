@@ -1,48 +1,41 @@
 import React from 'react';
 import { useBlogPosts } from '../hooks/useBlogPosts';
+import { useI18n } from '../i18n/I18nProvider';
 import { getImage } from '../utils/db';
 import { navigateTo } from '../utils/navigation';
 
 export const BlogPage: React.FC = () => {
+  const { t } = useI18n();
   const { posts, loading, error } = useBlogPosts();
 
   return (
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
-          <p className="text-primary font-extrabold uppercase tracking-widest text-xs mb-3">Blog & wiadomości</p>
-          <h1 className="text-4xl md:text-5xl font-black text-gray-900 uppercase leading-tight mb-4">
-            Wszystkie artykuły o elektromobilności
-          </h1>
-          <p className="text-gray-600 text-sm md:text-base max-w-2xl">
-            Zebraliśmy w jednym miejscu nasze artykuły, aktualności i poradniki związane z ładowaniem
-            samochodów elektrycznych oraz rozwojem infrastruktury EV.
-          </p>
+          <p className="text-primary font-extrabold uppercase tracking-widest text-xs mb-3">{t('blogPage.eyebrow')}</p>
+          <h1 className="text-4xl md:text-5xl font-black text-gray-900 uppercase leading-tight mb-4">{t('blogPage.title')}</h1>
+          <p className="text-gray-600 text-sm md:text-base max-w-2xl">{t('blogPage.intro')}</p>
         </div>
 
         {loading ? (
-          <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-8">Ładowanie…</p>
+          <p className="text-gray-500 text-sm font-bold uppercase tracking-widest mb-8">{t('blog.loading')}</p>
         ) : null}
         {error && posts.length === 0 ? (
           <div className="text-red-600 text-sm mb-8 space-y-2">
-            <p>Nie udało się załadować listy wpisów.</p>
+            <p>{t('blogPage.listError')}</p>
             <p className="text-xs text-red-700/80 font-semibold">
               {error.message}
             </p>
             {String(error.message).toLowerCase().includes('cors') ||
             String(error.message).toLowerCase().includes('failed to fetch') ? (
               <p className="text-xs text-red-700/80">
-                Sprawdź ustawienia CORS w Sanity (sanity.io/manage) i dodaj origin aplikacji, np.{' '}
-                <span className="font-bold">https://elomoto.eco</span>,{' '}
-                <span className="font-bold">https://www.elomoto.eco</span>,{' '}
-                <span className="font-bold">http://localhost:3000</span> oraz{' '}
-                <span className="font-bold">http://127.0.0.1:3000</span>.
+                {t('blog.corsHint')}
               </p>
             ) : null}
           </div>
         ) : null}
         {!loading && posts.length === 0 ? (
-          <p className="text-gray-500 text-sm">Brak opublikowanych wpisów.</p>
+          <p className="text-gray-500 text-sm">{t('blog.empty')}</p>
         ) : null}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -73,7 +66,7 @@ export const BlogPage: React.FC = () => {
                   <p className="text-gray-600 text-sm leading-relaxed">{post.excerpt}</p>
                   <div className="pt-2">
                     <span className="text-primary font-extrabold text-xs uppercase tracking-wider flex items-center group-hover:translate-x-2 transition-transform">
-                      Czytaj więcej
+                      {t('blog.readMore')}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         className="h-4 w-4 ml-2"

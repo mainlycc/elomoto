@@ -1,13 +1,15 @@
 import type { PortableTextBlock } from '@portabletext/types';
+import type { Locale } from '../i18n/i18n';
 import type { BlogPost, Realization, RealizationHighlight, TeamMember } from '../types';
 import { urlForImage } from './sanityImage';
 
-export function formatBlogDate(iso: string | undefined): string {
+export function formatBlogDate(iso: string | undefined, locale: Locale = 'pl'): string {
   if (!iso) return '';
   const d = new Date(iso);
   if (Number.isNaN(d.getTime())) return '';
+  const loc = locale === 'en' ? 'en-US' : 'pl-PL';
   return d
-    .toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' })
+    .toLocaleDateString(loc, { day: 'numeric', month: 'long', year: 'numeric' })
     .toUpperCase();
 }
 
@@ -22,7 +24,7 @@ type SanityBlogRow = {
   legacyImageUrl?: string;
 };
 
-export function mapSanityBlogPost(row: SanityBlogRow): BlogPost | null {
+export function mapSanityBlogPost(row: SanityBlogRow, locale: Locale = 'pl'): BlogPost | null {
   if (!row.slug || !row.title) return null;
   const fromAsset = row.mainImage
     ? urlForImage(row.mainImage as never)
@@ -34,7 +36,7 @@ export function mapSanityBlogPost(row: SanityBlogRow): BlogPost | null {
   return {
     id: row._id,
     slug: row.slug,
-    date: formatBlogDate(row.publishedAt),
+    date: formatBlogDate(row.publishedAt, locale),
     category: row.category || '',
     title: row.title,
     excerpt: row.excerpt || '',

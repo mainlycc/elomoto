@@ -19,6 +19,21 @@ export default defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'locale',
+      title: 'Język / Language',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Polski (PL)', value: 'pl' },
+          { title: 'English (EN)', value: 'en' },
+        ],
+        layout: 'radio',
+      },
+      initialValue: 'pl',
+      description:
+        'Wersja językowa wpisu. Dla angielskiej strony utwórz osobny dokument (np. ten sam case po angielsku, inny slug) i ustaw EN. Jeśli pole jest puste, strona traktuje wpis jak polski (PL).',
+    }),
+    defineField({
       name: 'order',
       title: 'Kolejność na liście',
       type: 'number',
@@ -121,9 +136,11 @@ export default defineType({
     }),
   ],
   preview: {
-    select: { title: 'title', subtitle: 'slug.current', media: 'mainImage' },
-    prepare({ title, subtitle, media }) {
-      return { title: title || 'Bez tytułu', subtitle: subtitle ? `/${subtitle}` : '', media };
+    select: { title: 'title', subtitle: 'slug.current', media: 'mainImage', locale: 'locale' },
+    prepare({ title, subtitle, media, locale }) {
+      const lang = locale === 'en' ? 'EN' : 'PL';
+      const slugPart = subtitle ? `/${subtitle}` : '';
+      return { title: title || 'Bez tytułu', subtitle: `${lang}${slugPart}`, media };
     },
   },
   orderings: [

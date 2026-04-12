@@ -14,7 +14,7 @@ export const ChargingStationsMapSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Nagłówek sekcji */}
         <div className="flex flex-col md:flex-row md:items-start justify-between mb-16">
-          <div className="max-w-xl">
+          <div className="max-w-xl -ml-1">
             <div className="flex items-center space-x-4 mb-4">
               <div className="h-[2px] w-12 bg-[#8ab925]"></div>
               <p className="text-[#8ab925] font-black uppercase tracking-[0.3em] text-xs">

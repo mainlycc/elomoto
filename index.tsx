@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Analytics } from '@vercel/analytics/react';
 import App from './App';
+import { CookieConsentBanner, ConsentAwareAnalytics } from './components/CookieConsentBanner';
+import { CookieConsentProvider } from './components/CookieConsentProvider';
 import { I18nProvider } from './i18n/I18nProvider';
 
 const rootElement = document.getElementById('root');
@@ -13,8 +14,11 @@ const root = ReactDOM.createRoot(rootElement);
 root.render(
   <React.StrictMode>
     <I18nProvider>
-      <App />
-      <Analytics />
+      <CookieConsentProvider>
+        <App />
+        <CookieConsentBanner />
+        <ConsentAwareAnalytics />
+      </CookieConsentProvider>
     </I18nProvider>
   </React.StrictMode>
 );

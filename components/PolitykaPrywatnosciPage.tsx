@@ -60,7 +60,7 @@ export const PolitykaPrywatnosciPage: React.FC = () => {
             </ul>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-3 scroll-mt-28" id="pliki-cookies">
             <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">6. Pliki cookies</h2>
             <p className="text-gray-300 text-sm leading-relaxed">
               Serwis może wykorzystywać pliki cookies w celach technicznych oraz – opcjonalnie – analitycznych. Opisz

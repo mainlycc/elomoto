@@ -1,4 +1,4 @@
-export const blogPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) {
+export const blogPostsQuery = `*[_type == "blogPost" && coalesce(locale, "pl") == $locale] | order(publishedAt desc) {
   _id,
   title,
   "slug": slug.current,
@@ -9,7 +9,7 @@ export const blogPostsQuery = `*[_type == "blogPost"] | order(publishedAt desc) 
   legacyImageUrl
 }`;
 
-export const blogPostBySlugQuery = `*[_type == "blogPost" && slug.current == $slug][0]{
+export const blogPostBySlugQuery = `*[_type == "blogPost" && slug.current == $slug && coalesce(locale, "pl") == $locale][0]{
   _id,
   title,
   "slug": slug.current,
@@ -21,7 +21,7 @@ export const blogPostBySlugQuery = `*[_type == "blogPost" && slug.current == $sl
   body
 }`;
 
-export const realizationsQuery = `*[_type == "realization"] | order(order asc) {
+export const realizationsQuery = `*[_type == "realization" && coalesce(locale, "pl") == $locale] | order(order asc) {
   _id,
   title,
   "slug": slug.current,
@@ -31,7 +31,7 @@ export const realizationsQuery = `*[_type == "realization"] | order(order asc) {
   intro
 }`;
 
-export const realizationBySlugQuery = `*[_type == "realization" && slug.current == $slug][0]{
+export const realizationBySlugQuery = `*[_type == "realization" && slug.current == $slug && coalesce(locale, "pl") == $locale][0]{
   _id,
   title,
   "slug": slug.current,

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useI18n } from '../i18n/I18nProvider';
 import { sanityClient, sanityConfigured } from '../lib/sanityClient';
 import { mapSanityBlogPost } from '../lib/sanityMappers';
 import { blogPostsQuery } from '../lib/sanityQueries';
@@ -7,6 +8,7 @@ import type { BlogPost } from '../types';
 type Row = Parameters<typeof mapSanityBlogPost>[0];
 
 export function useBlogPosts() {
+  const { locale } = useI18n();
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [loading, setLoading] = useState(sanityConfigured);
   const [error, setError] = useState<Error | null>(null);
@@ -22,11 +24,11 @@ export function useBlogPosts() {
     setLoading(true);
 
     sanityClient
-      .fetch<Row[]>(blogPostsQuery)
+      .fetch<Row[]>(blogPostsQuery, { locale })
       .then((rows) => {
         if (cancelled) return;
         const mapped = rows
-          .map((row) => mapSanityBlogPost(row))
+          .map((row) => mapSanityBlogPost(row, locale))
           .filter((p): p is BlogPost => p !== null);
         setPosts(mapped);
         setError(null);
@@ -43,7 +45,7 @@ export function useBlogPosts() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [locale]);
 
   return { posts, loading, error };
 }

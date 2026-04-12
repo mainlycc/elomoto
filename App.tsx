@@ -86,16 +86,18 @@ const App: React.FC = () => {
 
   const normalizedPath = (path || '/').replace(/\/+$/, '') || '/';
 
-  // Przewijanie: zmiana ścieżki albo samego hasha na stronie głównej (SPA)
+  // Przewijanie: kotwica (#…) na dowolnej podstronie albo góra strony
   useEffect(() => {
     const hash = window.location.hash;
-    if (normalizedPath === '/' && hash) {
+    if (hash) {
       const timeoutId = window.setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
         }
-      }, 100);
+      }, 120);
       return () => clearTimeout(timeoutId);
     }
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });

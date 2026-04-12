@@ -10,6 +10,7 @@
     "deploy": "sanity deploy",
     "import-seed": "sanity dataset import ./seed-production.ndjson production",
     "replace-realizations": "node ./scripts/replaceRealizations.mjs",
+    "seed-english": "node ./scripts/seedEnglishLocale.mjs",
     "replace-team": "node ./scripts/replaceTeamMembers.mjs"
   },
   "dependencies": {

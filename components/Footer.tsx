@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { openCookieSettingsUi } from '../lib/cookieConsent';
 import { navigateTo } from '../utils/navigation';
 import logoWhite from '../Logo Png white.png';
 import { useI18n } from '../i18n/I18nProvider';
@@ -52,26 +53,28 @@ export const Footer: React.FC = () => {
               <img
                 src={logoWhite}
                 alt="elomoto.eco"
-                className="h-16 w-[176px] object-contain"
+                className="h-16 w-[176px] object-contain -ml-1"
               />
             </button>
-            <p className="text-[11px] text-gray-400 leading-relaxed mb-5">
-              {t('footer.tagline')}
-            </p>
-            <div className="text-[10px] text-gray-400 leading-relaxed font-medium">
-              <p className="font-bold text-gray-500 mb-1">ELOMOTO SP. Z O.O.</p>
-              <p>NIP: 5223246605</p>
-              <p>ul. Czereśniowa 98/117</p>
-              <p>02-456 Warszawa</p>
-              <p className="mt-2">
-                tel. <a href="tel:+48222692022" className="hover:text-[#8ab925]">+48 222 692 022</a>
+            <div className="pl-3">
+              <p className="text-[11px] text-gray-400 leading-relaxed mb-5">
+                {t('footer.tagline')}
               </p>
-              <p>
-                e-mail{' '}
-                <a href="mailto:biuro@elomoto.eco" className="hover:text-[#8ab925]">
-                  biuro@elomoto.eco
-                </a>
-              </p>
+              <div className="text-[10px] text-gray-400 leading-relaxed font-medium">
+                <p className="font-bold text-gray-500 mb-1">ELOMOTO SP. Z O.O.</p>
+                <p>NIP: 5223246605</p>
+                <p>ul. Czereśniowa 98/117</p>
+                <p>02-456 Warszawa</p>
+                <p className="mt-2">
+                  tel. <a href="tel:+48222692022" className="hover:text-[#8ab925]">+48 222 692 022</a>
+                </p>
+                <p>
+                  e-mail{' '}
+                  <a href="mailto:biuro@elomoto.eco" className="hover:text-[#8ab925]">
+                    biuro@elomoto.eco
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
 
@@ -148,6 +151,15 @@ export const Footer: React.FC = () => {
               </li>
               <li>
                 <FooterLink href="/regulamin">{t('footer.links.terms')}</FooterLink>
+              </li>
+              <li>
+                <button
+                  type="button"
+                  onClick={() => openCookieSettingsUi()}
+                  className="text-gray-500 hover:text-[#8ab925] text-xs font-bold transition-colors text-left"
+                >
+                  {t('footer.links.cookies')}
+                </button>
               </li>
             </ul>
           </div>

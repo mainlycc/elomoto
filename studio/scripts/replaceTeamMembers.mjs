@@ -6,6 +6,7 @@
  */
 
 import { createClient } from '@sanity/client';
+import { sanitizeSanityToken } from './sanitizeSanityToken.mjs';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -85,7 +86,7 @@ async function uploadPhoto(client, filename) {
 }
 
 async function main() {
-  const token = process.env.SANITY_API_WRITE_TOKEN;
+  const token = sanitizeSanityToken(process.env.SANITY_API_WRITE_TOKEN);
   if (!token) {
     console.error('Brak zmiennej środowiskowej SANITY_API_WRITE_TOKEN.');
     process.exit(1);
