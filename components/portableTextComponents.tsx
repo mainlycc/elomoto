@@ -3,12 +3,12 @@ import type { PortableTextComponents } from '@portabletext/react';
 export const blogPortableTextComponents: PortableTextComponents = {
   block: {
     h2: ({ children }) => (
-      <h2 className="text-2xl font-black text-gray-900 mt-10 mb-4 uppercase tracking-tight">
+      <h2 className="text-2xl font-black text-gray-900 mt-10 mb-4 uppercase tracking-tight text-left">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-xl font-bold text-gray-900 mt-8 mb-3">{children}</h3>
+      <h3 className="text-xl font-bold text-gray-900 mt-8 mb-3 text-left">{children}</h3>
     ),
     normal: ({ children }) => (
       <p className="text-gray-700 text-sm md:text-base leading-relaxed mb-4">{children}</p>

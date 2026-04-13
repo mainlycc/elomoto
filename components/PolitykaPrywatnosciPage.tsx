@@ -1,79 +1,66 @@
-
 import React from 'react';
+import { useI18n } from '../i18n/I18nProvider';
+
+const pp = (t: (k: string, p?: Record<string, string | number>) => string, key: string) =>
+  t(`legalPages.privacy.${key}`);
 
 export const PolitykaPrywatnosciPage: React.FC = () => {
+  const { t } = useI18n();
+
   return (
     <div className="min-h-screen bg-[#0a1a14] text-white p-8 md:p-20 font-['Plus_Jakarta_Sans']">
       <div className="max-w-4xl mx-auto">
         <div className="flex justify-between items-start mb-12 gap-6">
           <div>
             <h1 className="text-4xl font-black mb-2 uppercase tracking-tighter">
-              Polityka <span className="text-[#8ab925]">Prywatności</span>
+              {pp(t, 'h1Line1')} <span className="text-[#8ab925]">{pp(t, 'h1Accent')}</span>
             </h1>
-            <p className="text-gray-300">
-              To jest szablon polityki prywatności dla strony informacyjnej. Uzupełnij go zgodnie z faktycznym sposobem
-              przetwarzania danych oraz używanymi narzędziami (np. analityka, newsletter).
-            </p>
+            <p className="text-gray-300">{pp(t, 'lead')}</p>
           </div>
         </div>
 
         <section className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-2xl space-y-8">
           <div className="space-y-3">
-            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">1. Administrator danych</h2>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Administratorem danych jest właściciel serwisu elomoto.eco (dalej: „Administrator”). Dane kontaktowe
-              Administratora uzupełnij w tej sekcji.
-            </p>
+            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">{pp(t, 's1Title')}</h2>
+            <p className="text-gray-300 text-sm leading-relaxed">{pp(t, 's1Body')}</p>
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">2. Zakres i cele przetwarzania</h2>
+            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">{pp(t, 's2Title')}</h2>
             <ul className="list-disc pl-5 text-gray-300 text-sm space-y-2">
-              <li>Obsługa zapytań z formularza kontaktowego (jeśli dostępny).</li>
-              <li>Utrzymanie i bezpieczeństwo Serwisu (logi techniczne, wykrywanie nadużyć).</li>
-              <li>Pomiar statystyk (jeśli używasz narzędzi analitycznych – opisz je i podstawę prawną).</li>
+              <li>{pp(t, 's2_li1')}</li>
+              <li>{pp(t, 's2_li2')}</li>
+              <li>{pp(t, 's2_li3')}</li>
             </ul>
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">3. Odbiorcy danych</h2>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Dane mogą być przekazywane podmiotom przetwarzającym na zlecenie Administratora (np. hosting, dostawcy
-              narzędzi IT) wyłącznie w zakresie niezbędnym do świadczenia usług.
-            </p>
+            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">{pp(t, 's3Title')}</h2>
+            <p className="text-gray-300 text-sm leading-relaxed">{pp(t, 's3Body')}</p>
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">4. Okres przechowywania</h2>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Dane przechowywane są przez czas niezbędny do realizacji celu, a następnie przez okres wymagany przepisami
-              prawa lub do czasu przedawnienia ewentualnych roszczeń.
-            </p>
+            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">{pp(t, 's4Title')}</h2>
+            <p className="text-gray-300 text-sm leading-relaxed">{pp(t, 's4Body')}</p>
           </div>
 
           <div className="space-y-3">
-            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">5. Prawa użytkownika</h2>
+            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">{pp(t, 's5Title')}</h2>
             <ul className="list-disc pl-5 text-gray-300 text-sm space-y-2">
-              <li>Prawo dostępu do danych, sprostowania, usunięcia, ograniczenia przetwarzania.</li>
-              <li>Prawo sprzeciwu oraz przenoszenia danych (jeśli ma zastosowanie).</li>
-              <li>Prawo wniesienia skargi do organu nadzorczego.</li>
+              <li>{pp(t, 's5_li1')}</li>
+              <li>{pp(t, 's5_li2')}</li>
+              <li>{pp(t, 's5_li3')}</li>
             </ul>
           </div>
 
           <div className="space-y-3 scroll-mt-28" id="pliki-cookies">
-            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">6. Pliki cookies</h2>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              Serwis może wykorzystywać pliki cookies w celach technicznych oraz – opcjonalnie – analitycznych. Opisz
-              używane kategorie cookies oraz sposób zarządzania zgodą, jeśli wdrażasz baner cookies.
-            </p>
+            <h2 className="text-sm font-bold text-gray-300 uppercase tracking-widest">{pp(t, 's6Title')}</h2>
+            <p className="text-gray-300 text-sm leading-relaxed">{pp(t, 's6Body')}</p>
           </div>
 
-          <p className="text-[10px] text-gray-300 uppercase tracking-widest pt-2 border-t border-white/10">
-            Ostatnia aktualizacja: uzupełnij datę
-          </p>
+          <p className="text-[10px] text-gray-300 uppercase tracking-widest pt-2 border-t border-white/10">{pp(t, 'lastUpdated')}</p>
         </section>
       </div>
     </div>
   );
 };
-

@@ -1,3 +1,5 @@
+import { legalPagesEn, legalPagesPl } from './legalPagesTranslations';
+
 export type Locale = 'pl' | 'en';
 
 export type TranslationLeaf = string;
@@ -851,6 +853,91 @@ export const translations: Translations = {
       mapHeader: 'Mapa stacji ładowania',
       mapViewLabel: 'Widok sieci stacji',
     },
+    payWithoutRegistrationPage: {
+      eyebrow: 'Płatność bez rejestracji',
+      hero: {
+        titleBefore: 'Ładowanie bez',
+        titleAccent: 'zakładania konta',
+        p1:
+          'Nie każdy kierowca chce instalować aplikację i tworzyć konto, aby naładować samochód elektryczny. Dlatego elomoto.eco umożliwia szybkie uruchomienie ładowania oraz płatność jednorazową — całkowicie bez rejestracji.',
+        p2:
+          'To rozwiązanie zwiększa dostępność stacji, poprawia rotację użytkowników i ułatwia obsługę kierowców okazjonalnych.',
+      },
+      howItWorks: {
+        titleBefore: 'Jak działa płatność',
+        titleAccent: 'bez rejestracji',
+        titleAfter: '?',
+        steps: {
+          s1: {
+            title: 'Skanuj kod QR',
+            desc: 'Kierowca skanuje kod QR umieszczony na stacji ładowania.',
+          },
+          s2: {
+            title: 'Strona obsługi',
+            desc: 'Otwiera się mobilna strona obsługi ładowania.',
+          },
+          s3: {
+            title: 'Bez rejestracji',
+            desc: 'Użytkownik wybiera ikonę „Płatność bez rejestracji”.',
+          },
+          s4: {
+            title: 'Wyszukiwanie stacji',
+            desc: 'System automatycznie wyszukuje ładowarkę na mapie.',
+          },
+          s5: {
+            title: 'Wybór i płatność',
+            desc: 'Kierowca wybiera punkt ładowania, metodę płatności i potwierdza transakcję.',
+          },
+          s6: {
+            title: 'Start ładowania',
+            desc: 'Proces ładowania uruchamia się automatycznie.',
+          },
+        },
+        geoNote:
+          'Jeśli w przeglądarce włączona jest geolokalizacja, platforma wskaże najbliższą stację — zazwyczaj tę, przy której znajduje się użytkownik.',
+      },
+      smartSearch: {
+        titleBefore: 'Inteligentne',
+        titleAccent: 'wyszukiwanie',
+        titleAfter: 'ładowarki',
+        intro:
+          'System wykorzystuje lokalizację urządzenia, aby maksymalnie uprościć proces startu sesji:',
+        bullets: {
+          b1: 'Automatyczne wskazanie najbliższej stacji',
+          b2: 'Eliminacja błędów wyboru punktu',
+          b3: 'Szybsze rozpoczęcie ładowania',
+          b4: 'Wygoda dla użytkowników jednorazowych i zagranicznych',
+        },
+      },
+      whereItFits: {
+        titleBefore: 'Gdzie sprawdza się',
+        titleAccent: 'płatność jednorazowa',
+        titleAfter: '?',
+        intro: 'Rozwiązanie szczególnie dobrze działa w lokalizacjach o dużej rotacji kierowców:',
+        items: {
+          i1: 'Parkingi prywatne / ogólnodostępne, szczególnie na osiedlach mieszkaniowych',
+          i2: 'Hotele, apartamenty, obiekty noclegowe',
+          i3: 'Restauracje i obiekty usługowe',
+          i4: 'Galerie handlowe',
+          i5: 'Biurowce z dostępem dla gości',
+          i6: 'Stacje przy trasach przelotowych',
+        },
+      },
+      adHoc: {
+        titleBefore: 'Płatności ad-hoc jako element',
+        titleAccent: 'systemu operatorskiego',
+        body:
+          'Płatność bez rejestracji jest integralną częścią systemu operatorskiego elomoto.eco. Dzięki temu operator może obsługiwać zarówno stałych użytkowników, jak i kierowców jednorazowych w jednym, spójnym środowisku.',
+      },
+      contact: {
+        kicker: 'System operatorski',
+        title: 'Potrzebujesz systemu',
+        highlightedTitle: 'operatorskiego?',
+        description:
+          'Jeżeli planujesz uruchomienie lub rozwój sieci ładowania, przedstawimy dostępne rozwiązania oraz modele wdrożenia dopasowane do skali infrastruktury i typu lokalizacji.',
+        messagePlaceholder: 'Opisz swoją infrastrukturę, liczbę stacji i potrzeby w zakresie płatności...',
+      },
+    },
     realizations: {
       eyebrow: 'Nasze realizacje',
       heading: 'Infrastruktura EV',
@@ -943,6 +1030,7 @@ export const translations: Translations = {
       categoryFallback: 'Blog',
       bodyEmpty: 'Pełna treść artykułu pojawi się tutaj po uzupełnieniu pola „Treść artykułu” w CMS.',
     },
+    legalPages: legalPagesPl,
   },
   en: {
     common: {
@@ -1741,6 +1829,90 @@ export const translations: Translations = {
       mapHeader: 'Charging stations map',
       mapViewLabel: 'Network view',
     },
+    payWithoutRegistrationPage: {
+      eyebrow: 'Pay without registration',
+      hero: {
+        titleBefore: 'Charging without',
+        titleAccent: 'creating an account',
+        p1:
+          'Not every driver wants to install an app and create an account to charge an electric vehicle. That’s why elomoto.eco lets you start charging quickly and pay once — with no registration at all.',
+        p2:
+          'This improves station accessibility and turnover, and makes life easier for occasional drivers.',
+      },
+      howItWorks: {
+        titleBefore: 'How does',
+        titleAccent: 'pay without registration',
+        titleAfter: ' work?',
+        steps: {
+          s1: {
+            title: 'Scan the QR code',
+            desc: 'The driver scans the QR code displayed on the charging station.',
+          },
+          s2: {
+            title: 'Service page',
+            desc: 'A mobile charging service page opens.',
+          },
+          s3: {
+            title: 'No registration',
+            desc: 'The user selects the “Pay without registration” option.',
+          },
+          s4: {
+            title: 'Station search',
+            desc: 'The system automatically finds the charger on the map.',
+          },
+          s5: {
+            title: 'Selection and payment',
+            desc: 'The driver selects the charging point, payment method, and confirms the transaction.',
+          },
+          s6: {
+            title: 'Start charging',
+            desc: 'Charging starts automatically.',
+          },
+        },
+        geoNote:
+          'If geolocation is enabled in the browser, the platform suggests the nearest station — usually the one where the user is standing.',
+      },
+      smartSearch: {
+        titleBefore: 'Smart',
+        titleAccent: 'charger search',
+        titleAfter: '',
+        intro: 'The system uses the device location to make starting a session as simple as possible:',
+        bullets: {
+          b1: 'Automatic suggestion of the nearest station',
+          b2: 'Fewer mistakes when picking the wrong point',
+          b3: 'Faster charging start',
+          b4: 'Convenience for one-off and international users',
+        },
+      },
+      whereItFits: {
+        titleBefore: 'Where does',
+        titleAccent: 'one-off payment',
+        titleAfter: ' work best?',
+        intro: 'The solution works especially well where driver turnover is high:',
+        items: {
+          i1: 'Private / public parking, especially at residential developments',
+          i2: 'Hotels, apartments, and accommodation properties',
+          i3: 'Restaurants and service venues',
+          i4: 'Shopping malls',
+          i5: 'Office buildings with guest access',
+          i6: 'Stations along transit routes',
+        },
+      },
+      adHoc: {
+        titleBefore: 'Ad-hoc payments as part of the',
+        titleAccent: 'operator system',
+        body:
+          'Pay without registration is built into the elomoto.eco operator system. That way the operator can serve both regular users and one-off drivers in one consistent environment.',
+      },
+      contact: {
+        kicker: 'Operator system',
+        title: 'Need an',
+        highlightedTitle: 'operator system?',
+        description:
+          'If you’re planning to launch or grow a charging network, we’ll walk you through available solutions and deployment models matched to your infrastructure scale and site type.',
+        messagePlaceholder: 'Describe your infrastructure, number of stations, and payment-related needs...',
+      },
+    },
     realizations: {
       eyebrow: 'Our projects',
       heading: 'EV infrastructure',
@@ -1833,6 +2005,7 @@ export const translations: Translations = {
       categoryFallback: 'Blog',
       bodyEmpty: 'Full article content will appear here once the “Article body” field is filled in the CMS.',
     },
+    legalPages: legalPagesEn,
   },
 };
 

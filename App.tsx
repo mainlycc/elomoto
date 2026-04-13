@@ -199,7 +199,7 @@ const App: React.FC = () => {
     return (
       <PageShell
         wrapperClassName="min-h-screen relative bg-[#020617]"
-        mainClassName="pt-32 md:pt-36 bg-white"
+        mainClassName="pt-24 md:pt-28 bg-white"
       >
         <BlogPostPage slug={blogSlug} />
       </PageShell>
@@ -208,7 +208,10 @@ const App: React.FC = () => {
 
   if (normalizedPath === '/blog') {
     return (
-      <PageShell wrapperClassName="min-h-screen relative bg-[#020617]">
+      <PageShell
+        wrapperClassName="min-h-screen relative bg-[#020617]"
+        mainClassName="pt-24 md:pt-28"
+      >
         <BlogPage />
       </PageShell>
     );

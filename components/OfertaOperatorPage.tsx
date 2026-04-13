@@ -1,4 +1,5 @@
 import React from 'react';
+import { NAV_ALIGNED_PAGE_SHELL, OFFER_LEDE_INNER, OFFER_TEXT_COLUMN } from '../utils/navAlignedLayout';
 import { SubpageContactSection } from './SubpageContactSection';
 import { useI18n } from '../i18n/I18nProvider';
 
@@ -6,9 +7,9 @@ export const OfertaOperatorPage: React.FC = () => {
   const { t } = useI18n();
 
   return (
-    <section className="max-w-5xl mx-auto px-4 pb-24">
+    <section className={NAV_ALIGNED_PAGE_SHELL}>
       {/* Nagłówek */}
-      <header className="mb-16">
+      <header className={`mb-16 ${OFFER_TEXT_COLUMN} text-left`}>
         <div className="min-w-0">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">
             {t('offerPages.common.eyebrow')}
@@ -18,11 +19,11 @@ export const OfertaOperatorPage: React.FC = () => {
             <span className="text-[#8ab925]">{t('offerPages.operator.hero.titleAccent')}</span>{' '}
             {t('offerPages.operator.hero.titleSuffix')}
           </h1>
-          <p className="text-lg text-gray-300 max-w-3xl leading-relaxed font-medium">
+          <p className={`text-lg text-gray-300 leading-relaxed font-medium ${OFFER_LEDE_INNER}`}>
             {t('offerPages.operator.hero.subtitle')}
           </p>
 
-          <div className="mt-6 space-y-4 text-sm text-gray-300 leading-relaxed max-w-3xl">
+          <div className={`mt-6 space-y-4 text-base text-gray-300 leading-relaxed ${OFFER_LEDE_INNER}`}>
             <p>
               {t('offerPages.operator.hero.p1')}
             </p>
@@ -37,42 +38,48 @@ export const OfertaOperatorPage: React.FC = () => {
       </header>
 
       {/* Co oznacza pełna obsługa operatorska */}
-      <div className="glass border border-white/10 rounded-3xl p-6 md:p-8 mb-16">
-        <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          {t('offerPages.operator.fullService.titlePrefix')}{' '}
-          <span className="text-[#8ab925]">{t('offerPages.operator.fullService.titleAccent')}</span>?
-        </h2>
-        <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          {t('offerPages.operator.fullService.intro')}
-        </p>
-        <div className="grid sm:grid-cols-2 gap-3">
-          {[
-            t('offerPages.operator.fullService.items.i1'),
-            t('offerPages.operator.fullService.items.i2'),
-            t('offerPages.operator.fullService.items.i3'),
-            t('offerPages.operator.fullService.items.i4'),
-          ].map((item) => (
-            <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
-              <span className="text-[#8ab925] font-black">✓</span>
-              <span className="text-sm text-gray-200 font-medium">{item}</span>
-            </div>
-          ))}
+      <div className="mb-16">
+        <div className={`mb-6 space-y-4 ${OFFER_TEXT_COLUMN}`}>
+          <h2 className="text-xl font-black text-white uppercase tracking-tight">
+            {t('offerPages.operator.fullService.titlePrefix')}{' '}
+            <span className="text-[#8ab925]">{t('offerPages.operator.fullService.titleAccent')}</span>?
+          </h2>
+          <p className={`text-base text-gray-300 leading-relaxed ${OFFER_LEDE_INNER}`}>
+            {t('offerPages.operator.fullService.intro')}
+          </p>
         </div>
-        <p className="text-sm text-gray-400 mt-5 italic">
-          {t('offerPages.operator.fullService.note')}
-        </p>
+        <div className="glass border border-white/10 rounded-3xl p-6 md:p-8 text-left">
+          <div className="grid sm:grid-cols-2 gap-3">
+            {[
+              t('offerPages.operator.fullService.items.i1'),
+              t('offerPages.operator.fullService.items.i2'),
+              t('offerPages.operator.fullService.items.i3'),
+              t('offerPages.operator.fullService.items.i4'),
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
+                <span className="text-[#8ab925] font-black">✓</span>
+                <span className="text-base text-gray-200 font-medium">{item}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-base text-gray-400 mt-5 italic">
+            {t('offerPages.operator.fullService.note')}
+          </p>
+        </div>
       </div>
 
       {/* System operatorski i aplikacja */}
       <div className="mb-16">
-        <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          {t('offerPages.operator.system.titlePrefix')}{' '}
-          {t('offerPages.operator.system.titleMid')}{' '}
-          <span className="text-[#8ab925]">{t('offerPages.operator.system.titleAccent')}</span>
-        </h2>
-        <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          {t('offerPages.operator.system.intro')}
-        </p>
+        <div className={`mb-6 space-y-4 ${OFFER_TEXT_COLUMN}`}>
+          <h2 className="text-xl font-black text-white uppercase tracking-tight">
+            {t('offerPages.operator.system.titlePrefix')}{' '}
+            {t('offerPages.operator.system.titleMid')}{' '}
+            <span className="text-[#8ab925]">{t('offerPages.operator.system.titleAccent')}</span>
+          </h2>
+          <p className={`text-base text-gray-300 leading-relaxed ${OFFER_LEDE_INNER}`}>
+            {t('offerPages.operator.system.intro')}
+          </p>
+        </div>
         <div className="grid sm:grid-cols-2 gap-3 mb-4">
           {[
             t('offerPages.operator.system.items.i1'),
@@ -85,22 +92,26 @@ export const OfertaOperatorPage: React.FC = () => {
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="text-[#8ab925] font-black">✓</span>
-              <span className="text-sm text-gray-200 font-medium">{item}</span>
+              <span className="text-base text-gray-200 font-medium">{item}</span>
             </div>
           ))}
         </div>
-        <p className="text-sm text-gray-400 italic">
-          {t('offerPages.operator.system.note')}
-        </p>
+        <div className={OFFER_TEXT_COLUMN}>
+          <p className={`text-base text-gray-400 italic ${OFFER_LEDE_INNER}`}>
+            {t('offerPages.operator.system.note')}
+          </p>
+        </div>
       </div>
 
       {/* Zakres usługi operatorskiej */}
       <div className="mb-16">
-        <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
-          {t('offerPages.operator.scope.titlePrefix')}{' '}
-          <span className="text-[#8ab925]">{t('offerPages.operator.scope.titleAccent')}</span>
-        </h2>
-        <p className="text-sm text-gray-300 leading-relaxed mb-6">{t('offerPages.operator.scope.intro')}</p>
+        <div className={`mb-6 space-y-4 ${OFFER_TEXT_COLUMN}`}>
+          <h2 className="text-xl font-black text-white uppercase tracking-tight">
+            {t('offerPages.operator.scope.titlePrefix')}{' '}
+            <span className="text-[#8ab925]">{t('offerPages.operator.scope.titleAccent')}</span>
+          </h2>
+          <p className={`text-base text-gray-300 leading-relaxed ${OFFER_LEDE_INNER}`}>{t('offerPages.operator.scope.intro')}</p>
+        </div>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
           {[
             t('offerPages.operator.scope.items.i1'),
@@ -115,7 +126,7 @@ export const OfertaOperatorPage: React.FC = () => {
           ].map((item) => (
             <div key={item} className="flex items-center gap-3 bg-white/5 border border-white/10 rounded-2xl px-4 py-3">
               <span className="w-2 h-2 rounded-full bg-[#8ab925] flex-shrink-0"></span>
-              <span className="text-sm text-gray-200 font-medium">{item}</span>
+              <span className="text-base text-gray-200 font-medium">{item}</span>
             </div>
           ))}
         </div>
@@ -123,16 +134,18 @@ export const OfertaOperatorPage: React.FC = () => {
 
       {/* Modele rozliczeń */}
       <div className="mb-16">
-        <h2 className="text-xl font-black text-white mb-6 uppercase tracking-tight">
-          {t('offerPages.operator.billingModels.titlePrefix')}{' '}
-          <span className="text-[#8ab925]">{t('offerPages.operator.billingModels.titleAccent')}</span>{' '}
-          {t('offerPages.operator.billingModels.titleSuffix')}
-        </h2>
-        <p className="text-sm text-gray-300 leading-relaxed mb-6">
-          {t('offerPages.operator.billingModels.intro')}
-        </p>
-        <div className="grid md:grid-cols-3 gap-6 text-sm text-gray-200">
-          <div className="glass border border-white/10 rounded-3xl p-6">
+        <div className={`mb-6 space-y-4 ${OFFER_TEXT_COLUMN}`}>
+          <h2 className="text-xl font-black text-white uppercase tracking-tight">
+            {t('offerPages.operator.billingModels.titlePrefix')}{' '}
+            <span className="text-[#8ab925]">{t('offerPages.operator.billingModels.titleAccent')}</span>{' '}
+            {t('offerPages.operator.billingModels.titleSuffix')}
+          </h2>
+          <p className={`text-base text-gray-300 leading-relaxed ${OFFER_LEDE_INNER}`}>
+            {t('offerPages.operator.billingModels.intro')}
+          </p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6 text-base text-gray-200 leading-relaxed">
+          <div className="glass border border-white/10 rounded-3xl p-6 text-left">
             <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">
               {t('offerPages.operator.billingModels.cards.c1.title')}
             </h3>
@@ -143,7 +156,7 @@ export const OfertaOperatorPage: React.FC = () => {
               <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c1.list.i4')}</li>
             </ul>
           </div>
-          <div className="glass border border-white/10 rounded-3xl p-6">
+          <div className="glass border border-white/10 rounded-3xl p-6 text-left">
             <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">
               {t('offerPages.operator.billingModels.cards.c2.title')}
             </h3>
@@ -153,7 +166,7 @@ export const OfertaOperatorPage: React.FC = () => {
               <li className="flex items-start gap-2"><span className="text-[#8ab925] mt-0.5">•</span> {t('offerPages.operator.billingModels.cards.c2.list.i3')}</li>
             </ul>
           </div>
-          <div className="glass border border-white/10 rounded-3xl p-6">
+          <div className="glass border border-white/10 rounded-3xl p-6 text-left">
             <h3 className="font-black text-white mb-3 uppercase text-xs tracking-wider">
               {t('offerPages.operator.billingModels.cards.c3.title')}
             </h3>
@@ -167,12 +180,12 @@ export const OfertaOperatorPage: React.FC = () => {
       </div>
 
       {/* Operator bez własnego zaplecza */}
-      <div className="glass border border-[#8ab925]/20 rounded-3xl p-6 md:p-8 mb-20">
-        <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight">
+      <div className="glass border border-[#8ab925]/20 rounded-3xl p-6 md:p-8 mb-20 text-left">
+        <h2 className="text-xl font-black text-white mb-4 uppercase tracking-tight text-left">
           {t('offerPages.operator.noBackoffice.titlePrefix')}{' '}
           <span className="text-[#8ab925]">{t('offerPages.operator.noBackoffice.titleAccent')}</span>
         </h2>
-        <p className="text-sm text-gray-300 leading-relaxed">
+        <p className={`text-base text-gray-300 leading-relaxed ${OFFER_LEDE_INNER}`}>
           {t('offerPages.operator.noBackoffice.body')}
         </p>
       </div>

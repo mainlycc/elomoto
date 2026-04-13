@@ -9,8 +9,8 @@ export const RealizacjePage: React.FC = () => {
   const { realizations, loading, error } = useRealizations();
 
   return (
-    <section className="max-w-6xl mx-auto px-4 pb-24">
-      <header className="mb-12">
+    <section className="max-w-7xl mx-auto pl-3 pr-4 sm:pl-5 sm:pr-6 lg:pl-7 lg:pr-8 pb-24">
+      <header className="mb-12 text-left">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">{t('realizationsPage.eyebrow')}</p>
         <h1 className="text-3xl md:text-4xl font-black text-white mb-4">{t('realizationsPage.title')}</h1>
         <p className="text-gray-300 max-w-2xl text-sm">{t('realizationsPage.intro')}</p>

@@ -8,6 +8,10 @@ import { navigateTo } from '../utils/navigation';
 import { SubpageContactSection } from './SubpageContactSection';
 import { realizationPortableTextComponents } from './portableTextComponents';
 
+/** Ten sam układ co lista `/realizacje`: max-w-7xl + padding wyrównany do lewej krawędzi logo w navbarze. */
+const realizacjaShellClass =
+  'max-w-7xl mx-auto pl-3 pr-4 sm:pl-5 sm:pr-6 lg:pl-7 lg:pr-8 pb-24';
+
 interface Props {
   slug: string;
 }
@@ -37,38 +41,42 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ slug }) => {
 
   if (loading) {
     return (
-      <section className="max-w-5xl mx-auto px-4 pb-24">
-        <p className="text-gray-400 text-sm font-bold uppercase tracking-widest">{t('realizationDetail.loading')}</p>
+      <section className={realizacjaShellClass}>
+        <p className="text-gray-400 text-sm font-bold uppercase tracking-widest text-left">{t('realizationDetail.loading')}</p>
       </section>
     );
   }
 
   if (error && !realization) {
     return (
-      <section className="max-w-4xl mx-auto px-4 pb-24">
-        <h1 className="text-2xl md:text-3xl font-black text-white mb-4">{t('realizationDetail.errorLoadTitle')}</h1>
-        <p className="text-sm text-gray-300 mb-6">{t('realizationDetail.errorLoadBody')}</p>
-        <button
-          onClick={() => navigateTo('/realizacje')}
-          className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-[#8ab925] text-black text-xs font-extrabold tracking-wider uppercase shadow-lg hover:bg-[#9ed02e] active:scale-95 transition-all"
-        >
-          {t('realizationDetail.backToList')}
-        </button>
+      <section className={realizacjaShellClass}>
+        <div className="text-left">
+          <h1 className="text-2xl md:text-3xl font-black text-white mb-4">{t('realizationDetail.errorLoadTitle')}</h1>
+          <p className="text-sm text-gray-300 mb-6 max-w-2xl">{t('realizationDetail.errorLoadBody')}</p>
+          <button
+            onClick={() => navigateTo('/realizacje')}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-[#8ab925] text-black text-xs font-extrabold tracking-wider uppercase shadow-lg hover:bg-[#9ed02e] active:scale-95 transition-all"
+          >
+            {t('realizationDetail.backToList')}
+          </button>
+        </div>
       </section>
     );
   }
 
   if (!realization) {
     return (
-      <section className="max-w-4xl mx-auto px-4 pb-24">
-        <h1 className="text-2xl md:text-3xl font-black text-white mb-4">{t('realizationDetail.notFoundTitle')}</h1>
-        <p className="text-sm text-gray-300 mb-6">{t('realizationDetail.notFoundBody')}</p>
-        <button
-          onClick={() => navigateTo('/realizacje')}
-          className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-[#8ab925] text-black text-xs font-extrabold tracking-wider uppercase shadow-lg hover:bg-[#9ed02e] active:scale-95 transition-all"
-        >
-          {t('realizationDetail.backToList')}
-        </button>
+      <section className={realizacjaShellClass}>
+        <div className="text-left">
+          <h1 className="text-2xl md:text-3xl font-black text-white mb-4">{t('realizationDetail.notFoundTitle')}</h1>
+          <p className="text-sm text-gray-300 mb-6 max-w-2xl">{t('realizationDetail.notFoundBody')}</p>
+          <button
+            onClick={() => navigateTo('/realizacje')}
+            className="inline-flex items-center justify-center px-6 py-3 rounded-2xl bg-[#8ab925] text-black text-xs font-extrabold tracking-wider uppercase shadow-lg hover:bg-[#9ed02e] active:scale-95 transition-all"
+          >
+            {t('realizationDetail.backToList')}
+          </button>
+        </div>
       </section>
     );
   }
@@ -77,8 +85,8 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ slug }) => {
   const orderLabel = String(realization.order).padStart(2, '0');
 
   return (
-    <section className="max-w-5xl mx-auto px-4 pb-24">
-      <header className="mb-16">
+    <section className={realizacjaShellClass}>
+      <header className="mb-16 text-left">
         <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">{t('realizationDetail.eyebrow')}</p>
         <h1 className="text-4xl md:text-5xl font-black text-white mb-6 uppercase tracking-tighter">
           {t('realizationDetail.heroTitle')} <span className="text-[#8ab925]">{t('realizationDetail.heroTitleAccent')}</span>
@@ -89,7 +97,7 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ slug }) => {
       </header>
 
       <div className="mb-16">
-        <div className="mb-10">
+        <div className="mb-10 text-left">
           <p className="text-xs font-semibold tracking-[0.3em] text-[#8ab925] uppercase mb-4">
             {t('realizations.itemEyebrow', { number: orderLabel })}
           </p>
@@ -162,7 +170,7 @@ export const RealizacjaDetailPage: React.FC<Props> = ({ slug }) => {
       </div>
 
       <div className="mb-16">
-        <h2 className="text-xl font-black text-white mb-6 uppercase tracking-tight">
+        <h2 className="text-xl font-black text-white mb-6 uppercase tracking-tight text-left">
           {t('realizationDetail.otherHeading')} <span className="text-[#8ab925]">{t('realizationDetail.otherHeadingAccent')}</span>
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

@@ -4,13 +4,15 @@ import { getImage } from '../utils/db';
 import { navigateTo } from '../utils/navigation';
 import { useI18n } from '../i18n/I18nProvider';
 
+const blogSectionShellClass = 'max-w-7xl mx-auto pl-3 pr-4 sm:pl-5 sm:pr-6 lg:pl-7 lg:pr-8';
+
 export const BlogSection: React.FC = () => {
   const { t } = useI18n();
   const { posts, loading, error } = useBlogPosts();
 
   return (
     <section id="blog" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className={blogSectionShellClass}>
         <div className="flex justify-between items-end mb-12">
           <div>
             <p className="text-primary font-extrabold uppercase tracking-widest text-xs mb-2">
@@ -56,11 +58,11 @@ export const BlogSection: React.FC = () => {
                 onClick={() => navigateTo(`/blog/${post.slug}`)}
                 className="text-left w-full"
               >
-                <div className="relative overflow-hidden rounded-2xl mb-6 h-64 shadow-md">
+                <div className="relative overflow-hidden rounded-2xl mb-6 h-72 sm:h-80 md:h-96 shadow-md">
                   <img
                     src={getImage(`blog_${post.slug}`, post.image)}
                     alt={post.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute top-4 left-4 bg-primary text-white text-[10px] font-extrabold px-3 py-1.5 rounded-lg uppercase tracking-wider shadow-lg">
                     {post.category}
