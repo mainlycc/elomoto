@@ -1,9 +1,18 @@
 import React from 'react';
 import { navigateTo } from '../utils/navigation';
 import { useI18n } from '../i18n/I18nProvider';
+import { GoogleStationsMap } from './GoogleStationsMap';
 
 export const ChargingStationsMapSection: React.FC = () => {
   const { t } = useI18n();
+  const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const googleMapsDarkMapId = import.meta.env.VITE_GOOGLE_MAP_ID_DARK;
+
+  // Źródło punktów jest nadal to samo (My Maps) — tylko render mapy jest już „prawdziwy” i stylowalny.
+  const myMapsMid = '1VIBuF_LiB9G35xzG6bk510nFnfjnw24';
+  const myMapsEmbedUrl = `https://www.google.com/maps/d/embed?mid=${myMapsMid}&ehbc=2E312F`;
+  // KML jest synchronizowany do /public/stacje-data.kml (skrypt `npm run sync:kml` / predev / prebuild)
+  const localKmlUrl = '/stacje-data.kml';
 
   return (
     <section id="charging-map" className="py-32 bg-[#020617] relative overflow-hidden">
@@ -77,13 +86,26 @@ export const ChargingStationsMapSection: React.FC = () => {
 
             {/* Osadzona mapa Google */}
             <div className="relative flex-1 min-h-0">
-              <iframe
-                src="https://www.google.com/maps/d/embed?mid=1VIBuF_LiB9G35xzG6bk510nFnfjnw24&ehbc=2E312F"
-                className="w-full h-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title={t('chargingMap.mapTitle')}
-              />
+              {googleMapsApiKey ? (
+                <GoogleStationsMap
+                  apiKey={googleMapsApiKey}
+                  mapId={googleMapsDarkMapId}
+                  kmlUrl={localKmlUrl}
+                  className="w-full h-full"
+                />
+              ) : (
+                <iframe
+                  src={myMapsEmbedUrl}
+                  className="w-full h-full border-0"
+                  style={{
+                    // Google My Maps embed nie wspiera natywnie ciemnego stylu; filtr daje spójny dark look.
+                    filter: 'invert(92%) hue-rotate(180deg) saturate(120%) contrast(105%)',
+                  }}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title={t('chargingMap.mapTitle')}
+                />
+              )}
             </div>
           </div>
         </div>

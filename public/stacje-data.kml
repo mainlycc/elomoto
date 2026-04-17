@@ -1,0 +1,906 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>Stacje ładowania Elomoto</name>
+    <description/>
+    <Style id="icon-1787-000000-normal">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1787-000000-highlight">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1787-000000">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1787-000000-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1787-000000-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1787-000000-labelson-nodesc">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1787-000000-nodesc-normal">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1787-000000-nodesc-highlight">
+      <IconStyle>
+        <color>ff000000</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <StyleMap id="icon-1787-000000-nodesc">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1787-000000-nodesc-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1787-000000-nodesc-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="icon-1787-7CB342-labelson">
+      <IconStyle>
+        <color>ff42b37c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1787-7CB342-labelson-nodesc">
+      <IconStyle>
+        <color>ff42b37c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1787-9C27B0-labelson">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+    </Style>
+    <Style id="icon-1787-9C27B0-labelson-nodesc">
+      <IconStyle>
+        <color>ffb0279c</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Style id="icon-1787-FFEA00-labelson-nodesc">
+      <IconStyle>
+        <color>ff00eaff</color>
+        <scale>1</scale>
+        <Icon>
+          <href>https://www.gstatic.com/mapspro/images/stock/503-wht-blank_maps.png</href>
+        </Icon>
+      </IconStyle>
+      <BalloonStyle>
+        <text><![CDATA[<h3>$[name]</h3>]]></text>
+      </BalloonStyle>
+    </Style>
+    <Folder>
+      <name>Untitled layer</name>
+      <Placemark>
+        <name>Elomoto Zdrojowa 1/2 Połczyn-Zdrój</name>
+        <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X4CJuOXAeOGwbS2T_nUUfZzUNV4oGkkzXQ-ZBNf-mpdH84TESkM_PmQEzntbWKy0lq-gPwQm0EEL9-1qE4nfnyyx30cFo9v7qmOGzMs9CU1PkMdfwaqfRGIVgdCJv-vAbBEnbb_PREZ45HyltH2SrL3OTokYrdY_mELbXAZgmE70ucwA-GB2yeQIm-hrf5Oczj5h8z-FBHxh1LnTIr8HL6U4WXIFLRMPPWPtGs__uxFw1QeM9TPcs_AKlA?fife=s16383" height="200" width="auto" /><br><br>]]></description>
+        <styleUrl>#icon-1787-7CB342-labelson</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X4CJuOXAeOGwbS2T_nUUfZzUNV4oGkkzXQ-ZBNf-mpdH84TESkM_PmQEzntbWKy0lq-gPwQm0EEL9-1qE4nfnyyx30cFo9v7qmOGzMs9CU1PkMdfwaqfRGIVgdCJv-vAbBEnbb_PREZ45HyltH2SrL3OTokYrdY_mELbXAZgmE70ucwA-GB2yeQIm-hrf5Oczj5h8z-FBHxh1LnTIr8HL6U4WXIFLRMPPWPtGs__uxFw1QeM9TPcs_AKlA?fife=s16383</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            16.0942709,53.7626837,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Droga Męczenników Majdanka 74</name>
+        <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X66pRWMYdDN7r6X2lxzLgHCCcgjGwCpuCxJd632Yw1Rqe7tIUAwBLTD7Vdm4IDj37bL5_rcqvCZdanP8pGuYQ9b4Cqh-r7vNkqq-6v93sy7GMFfUKMUQd_Kxj_Pwa2NP_tNfA__QTS-jcJYKfFhBMUD-lbbBojm6zIDnRZTbDq-YmUB4-yWWaYFj3eC9vN-0TgPVSbjSb3DYJiuKXoKEq1kmk7jwGiQsuS6VRPDPzFxW3SO3-vchaJrrBU?fife=s16383" height="200" width="auto" /><br><br>]]></description>
+        <styleUrl>#icon-1787-7CB342-labelson</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X66pRWMYdDN7r6X2lxzLgHCCcgjGwCpuCxJd632Yw1Rqe7tIUAwBLTD7Vdm4IDj37bL5_rcqvCZdanP8pGuYQ9b4Cqh-r7vNkqq-6v93sy7GMFfUKMUQd_Kxj_Pwa2NP_tNfA__QTS-jcJYKfFhBMUD-lbbBojm6zIDnRZTbDq-YmUB4-yWWaYFj3eC9vN-0TgPVSbjSb3DYJiuKXoKEq1kmk7jwGiQsuS6VRPDPzFxW3SO3-vchaJrrBU?fife=s16383</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            22.6120314,51.2248549,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Rynek 2</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.357544,53.483297,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Dolina Drwęcy 40</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            18.7830869,53.0369572,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Michalinów 21A, 62-571 Stare Miasto</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            17.8992411,52.1327721,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Wadowicka 3A, 34-120 Andrychów</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            19.3729814,49.8583077,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto DC Huta Żabiowolska</name>
+        <styleUrl>#icon-1787-FFEA00-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            20.6745513,52.0287462,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Władysława Beliny-Prażmowskiego 15</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.1570998,51.3930533,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Obroki 77</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            18.9675302,50.2670445,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Strzelecka 2A</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            16.504081,50.5768187,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Domaniewska 47</name>
+        <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X53XcpYBSt8SbD0BN2Fg6yUzFS48HjqTKuwN0Q6vQJS3bhsG8DsnXCTbizYDssQ3rWOCj0Nt_aF1phxN58TsWjoiMZ9hwP_e7u7UQ5iNsPaxlYb_jmYBxhoHkgJXGD0VbItY3NTvXeT81qkjtnb8OZHTU3aC7q0ale1oDe9tgxqdHuakrF1WKLNLIQ43DVYIxmGFdGp5JPv8aZ2zHgSh9SD9o28aBapJIx0GBXMk7ueIy-5b7lIM27djh0?fife=s16383" height="200" width="auto" /><br><br>]]></description>
+        <styleUrl>#icon-1787-7CB342-labelson</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X53XcpYBSt8SbD0BN2Fg6yUzFS48HjqTKuwN0Q6vQJS3bhsG8DsnXCTbizYDssQ3rWOCj0Nt_aF1phxN58TsWjoiMZ9hwP_e7u7UQ5iNsPaxlYb_jmYBxhoHkgJXGD0VbItY3NTvXeT81qkjtnb8OZHTU3aC7q0ale1oDe9tgxqdHuakrF1WKLNLIQ43DVYIxmGFdGp5JPv8aZ2zHgSh9SD9o28aBapJIx0GBXMk7ueIy-5b7lIM27djh0?fife=s16383</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            20.9936294,52.1827829,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Klifowa 5</name>
+        <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X7saHNJuOTbWLOibuHDsO-F7zLaNLPVRGgK6u-vGBalWBg2irI-bnINaeWDCr3tDLKQLZ4brfS85qDmVW4r__iBmRGON51AEygZwSk2krGEAiJjhXKbERhmjWQ2j8DZYCCh6IrL98mySMPxdeRYyB3bOfjyIDsTidIh34G7dCKcIgXRaKXklVvjzDL5NSAwXPXjw9_ADUTabjzPSOAaPAEgKlY_m0NkLK-QvFDAvCst0MqZsjvTaKUm_cQ?fife=s16383" height="200" width="auto" /><br><br>]]></description>
+        <styleUrl>#icon-1787-7CB342-labelson</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X7saHNJuOTbWLOibuHDsO-F7zLaNLPVRGgK6u-vGBalWBg2irI-bnINaeWDCr3tDLKQLZ4brfS85qDmVW4r__iBmRGON51AEygZwSk2krGEAiJjhXKbERhmjWQ2j8DZYCCh6IrL98mySMPxdeRYyB3bOfjyIDsTidIh34G7dCKcIgXRaKXklVvjzDL5NSAwXPXjw9_ADUTabjzPSOAaPAEgKlY_m0NkLK-QvFDAvCst0MqZsjvTaKUm_cQ?fife=s16383</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            18.3286325,54.8334413,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Edwarda Habicha</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            20.8808501,52.2048389,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Studzienna 7</name>
+        <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X5enuF4IC7ZhisLG3YY4ipQYrel0xtKOUTKD0Ughm00DgaT_4WSb4OpVXEi0BIZPUUEA2In_HVIDRHQf6UrpQiMxEyQv-FdY-y1N0RqO0tTf5_RdxwUrvb3bTe_KiC07RGZLV-uwLLRUJpsqMvSAj1A77AWy_7iqqbxEgq54VFfDxot5jQiCgVAFUA2MNvAE9FbmaEcUKECGKbRDPEB0twMNjDO5u6db1-Ky4ZIFZcJ8cUuOi-58QOxP9E?fife=s16383" height="200" width="auto" /><br><br>]]></description>
+        <styleUrl>#icon-1787-7CB342-labelson</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X5enuF4IC7ZhisLG3YY4ipQYrel0xtKOUTKD0Ughm00DgaT_4WSb4OpVXEi0BIZPUUEA2In_HVIDRHQf6UrpQiMxEyQv-FdY-y1N0RqO0tTf5_RdxwUrvb3bTe_KiC07RGZLV-uwLLRUJpsqMvSAj1A77AWy_7iqqbxEgq54VFfDxot5jQiCgVAFUA2MNvAE9FbmaEcUKECGKbRDPEB0twMNjDO5u6db1-Ky4ZIFZcJ8cUuOi-58QOxP9E?fife=s16383</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            20.9285509,52.221977,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Marywilska 68</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            20.9970362,52.3211716,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Składowa 2</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            18.6309036,52.2112066,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Piastowska 1</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            19.4309225,50.4855909,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Miąskowo 14A</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            17.3818689,52.163393,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Księdza Jerzego Popiełuszki 2</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            18.2835943,52.2303441,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Cykady 2</name>
+        <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X5g2d68uiSMYBPgiNB2HfShPjeZRmdjrTyLUQzd2gF5p68SvButBzccMLBI5J4ESspHFIxcZfuvgyzMpMrytR_PYF6qyYHr--sQtlDf7dQv1r-3MBNOJBOOuOF4ZYJhuhfPeTYUtWjINMjV1erJIHpPowfFLBjypSeDAhC_5_0f3Th87hnlZnuolItBQkktK8Ga5Y0G98SNlHsh3mGTRjzN_J1BWRrIDAGB8kwPWY-wnCbo0xHc4RKARyE?fife=s16383" height="200" width="auto" /><br><br>]]></description>
+        <styleUrl>#icon-1787-7CB342-labelson</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X5g2d68uiSMYBPgiNB2HfShPjeZRmdjrTyLUQzd2gF5p68SvButBzccMLBI5J4ESspHFIxcZfuvgyzMpMrytR_PYF6qyYHr--sQtlDf7dQv1r-3MBNOJBOOuOF4ZYJhuhfPeTYUtWjINMjV1erJIHpPowfFLBjypSeDAhC_5_0f3Th87hnlZnuolItBQkktK8Ga5Y0G98SNlHsh3mGTRjzN_J1BWRrIDAGB8kwPWY-wnCbo0xHc4RKARyE?fife=s16383</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            20.8912376,52.2063054,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Spokojna 20C</name>
+        <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X7RGHzCrHriBPyAf6w3sudEJdim45H5eKAwLMJAxeopXHqwsgKPLG40tAzxdd6O0OTcRMfQNIcDy29qShLaFrY2hg_HoMh3icSGnqekmNWLWyQOzmat3Xe3UcZqbH6bXTOis_Hm_ZlBOfZdR5ZjBtG-T43T_fNA60Dzum-T2V33oVP_KPquJzAlk1E9HNmNcOjVR67khXfPJsrvXosmq7QNWQmU6ttUsRggvoyIe0PapQTvym2Gxrw3dmA?fife=s16383" height="200" width="auto" /><br><br>]]></description>
+        <styleUrl>#icon-1787-7CB342-labelson</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X7RGHzCrHriBPyAf6w3sudEJdim45H5eKAwLMJAxeopXHqwsgKPLG40tAzxdd6O0OTcRMfQNIcDy29qShLaFrY2hg_HoMh3icSGnqekmNWLWyQOzmat3Xe3UcZqbH6bXTOis_Hm_ZlBOfZdR5ZjBtG-T43T_fNA60Dzum-T2V33oVP_KPquJzAlk1E9HNmNcOjVR67khXfPJsrvXosmq7QNWQmU6ttUsRggvoyIe0PapQTvym2Gxrw3dmA?fife=s16383</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            20.9839369,50.034216,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Zielonogórska 23</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            16.2512608,52.1335974,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Zagonowa</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            17.506531,51.955141,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Wodna 1a</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.2311233,52.1261467,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Kaniówka 32A</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            20.1089277,49.3670895,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Osiedle Łużyckie</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            15.5340996,52.2400421,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Kasprzaka 1A</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            17.509246,51.9773499,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Piastów 17</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            17.589592,52.322867,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Sosnowa 9A</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            19.5576688,50.3424622,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Adama Mickiewicza</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.810518,53.3993426,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Bartoszycka 29</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            20.6032052,54.1300806,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Ostrzycka 1</name>
+        <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X7Oo6MpYVzYjyfCEeM8bsm9MbjCUI-qyrFb3-Cru3PHcMTIqX9Wu_H46iiyLxwB5M1D3RidxiYM73E2BDrcSQnBReVBooHHBbBjjgV5gf-NDEG8meU3JKLFgyhwHGjkY5a0gXhnpnCyKzJjPAQ78zx5gFMa-Q8WiFUSEpzu94jtNLUPWXRSIQ93zxpknZCnTBMuFgeTjiuYjJbkilF5k0I1a1MtVdLFRArWswUqda4khsy8wA0Z3pk8GZY?fife=s16383" height="200" width="auto" /><br><br>]]></description>
+        <styleUrl>#icon-1787-9C27B0-labelson</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X7Oo6MpYVzYjyfCEeM8bsm9MbjCUI-qyrFb3-Cru3PHcMTIqX9Wu_H46iiyLxwB5M1D3RidxiYM73E2BDrcSQnBReVBooHHBbBjjgV5gf-NDEG8meU3JKLFgyhwHGjkY5a0gXhnpnCyKzJjPAQ78zx5gFMa-Q8WiFUSEpzu94jtNLUPWXRSIQ93zxpknZCnTBMuFgeTjiuYjJbkilF5k0I1a1MtVdLFRArWswUqda4khsy8wA0Z3pk8GZY?fife=s16383</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            18.5537318,54.32902,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Potockiego</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            17.7341493,52.8486122,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Rąblowska 20</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.5369915,51.2054351,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Szosa Ciechocińska 1E</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            18.7439376,52.8679196,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Podkarpacka 54</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.9617801,50.0075177,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Beksińskiego 4</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.217896,49.548401,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Pułanki 110</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.6103133,49.8458162,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Redutowa 11</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            20.9405418,52.2292275,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Armii Krajowej 55A</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.2407676,50.0662451,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Bursaki 29</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.7756265,49.6924635,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Przemysłowa 15</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.3888234,51.9363125,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Aleja Poznańska 28</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            16.7547582,53.1361877,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Czesława Niemena 2/4 4a</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            16.9597682,52.3952748,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Martiany 21</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.5292429,54.0373879,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Trycza 375b</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.5524966,50.15792,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name><![CDATA[coming soon Elomoto Antyczny Dwór Hotel Wellness & Spa | Wesela | Imprezy Plenerowe | Rzeszów]]></name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.9528586,50.0936953,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Chodzież</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            16.9198184,52.995267,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Klub Deski</name>
+        <description><![CDATA[<img src="https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X5oG8gbxUsjgWEVm4U8itbv4hVwyseFkkM46_94uW0c75E67uwgixLfcVOGcwmteFUKi-wyR0FQSaoXHLhfbbZbb4j3dywv91dgImI8XgRfHj2ryebmJz0aSX1xlCMmPVUUPAjTpSeLCzhMMHxQUT-8YZ5clq6VLViP3wJ-pIS2zvZNtGhnniGfFLoBW7x3M4m2zxfzHU4lkwTdu2RPWk5oo7U2RmceMK7TTKR3CeBVmNr2NA6fktq0yWE?fife=s16383" height="200" width="auto" /><br><br>]]></description>
+        <styleUrl>#icon-1787-7CB342-labelson</styleUrl>
+        <ExtendedData>
+          <Data name="gx_media_links">
+            <value>https://mymaps.usercontent.google.com/hostedimage/m/*/3AL_Y2X5oG8gbxUsjgWEVm4U8itbv4hVwyseFkkM46_94uW0c75E67uwgixLfcVOGcwmteFUKi-wyR0FQSaoXHLhfbbZbb4j3dywv91dgImI8XgRfHj2ryebmJz0aSX1xlCMmPVUUPAjTpSeLCzhMMHxQUT-8YZ5clq6VLViP3wJ-pIS2zvZNtGhnniGfFLoBW7x3M4m2zxfzHU4lkwTdu2RPWk5oo7U2RmceMK7TTKR3CeBVmNr2NA6fktq0yWE?fife=s16383</value>
+          </Data>
+        </ExtendedData>
+        <Point>
+          <coordinates>
+            21.0478989,52.222261,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto 3 Maja</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.0249969,49.6905148,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Kazimierza Pużaka 49</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.747763,49.6920535,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Romualda Traugutta</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.0152472,52.2390972,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kościerska 1A</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            18.5496853,54.4101592,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Dołżyca 32
+</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.3462438,49.2227488,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Papierni Prądnickich 78/72 i 74</name>
+        <styleUrl>#icon-1787-9C27B0-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            19.9516381,50.100684,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Osiedle Zielony Zakątek</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            18.6021837,53.0533933,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto Nowy Świat 38B</name>
+        <description>Hotel Vesaria</description>
+        <styleUrl>#icon-1787-7CB342-labelson</styleUrl>
+        <Point>
+          <coordinates>
+            22.5632025,51.2251952,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Goduszyńska 13A</name>
+        <styleUrl>#icon-1787-FFEA00-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            15.6818297,50.8929849,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Zamkowa 1</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.3929309,49.8210731,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Metropolo Krakow by Golden Tulip</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            19.9233976,50.0125945,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Szafarnia 10</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            18.660924,54.348645,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Armii Krajowej 57</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.2414693,50.0672599,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Kąkolewska</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            16.6030949,51.8494716,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Jana Szypowskiego 7</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.7296806,50.4095466,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Zdrojowa 396/8</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.81679,49.57141,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Modlińska 15a</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            20.9327523,52.3648823,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Mielno 9</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            20.19256,53.512134,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Traugutta</name>
+        <styleUrl>#icon-1787-000000-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.1994065,49.5713752,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto - Wiosny Ludów 1A</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            20.8983359,52.2003984,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto - Wysowa-Zdrój 107</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.183751,49.4436332,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto - Hotel Bellotto</name>
+        <styleUrl>#icon-1787-7CB342-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.0120543,52.2452265,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto -Akademia Górniczo-Hutnicza</name>
+        <styleUrl>#icon-1787-9C27B0-labelson-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            19.9234119,50.064878,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>cooming soon</name>
+      <Placemark>
+        <name>Grudzińskich 10</name>
+        <styleUrl>#icon-1787-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            16.9227479,52.9856173,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Elomoto - Brneńska 7</name>
+        <description>Resi4Rent</description>
+        <styleUrl>#icon-1787-000000</styleUrl>
+        <Point>
+          <coordinates>
+            16.9597132,52.3934279,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>Rudna Mała 409</name>
+        <styleUrl>#icon-1787-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            21.9769628,50.1054741,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Biała Panieńska 36, 62-570 Biała Panieńska</name>
+        <styleUrl>#icon-1787-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            18.1458623,52.0067698,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>coming soon Elomoto Fajsławice 108, 21-060 Fajsławice</name>
+        <styleUrl>#icon-1787-000000-nodesc</styleUrl>
+        <Point>
+          <coordinates>
+            22.9521929,51.096936,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Warstwa bez nazwy</name>
+    </Folder>
+  </Document>
+</kml>

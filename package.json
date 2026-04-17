@@ -4,6 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "sync:kml": "node scripts/sync-kml.mjs",
+    "predev": "node scripts/sync-kml.mjs",
+    "prebuild": "node scripts/sync-kml.mjs",
     "dev": "vite --open",
     "start": "vite --open",
     "build": "vite build",
