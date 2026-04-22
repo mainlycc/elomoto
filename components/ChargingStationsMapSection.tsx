@@ -14,6 +14,15 @@ export const ChargingStationsMapSection: React.FC = () => {
   // KML jest synchronizowany do /public/stacje-data.kml (skrypt `npm run sync:kml` / predev / prebuild)
   const localKmlUrl = '/stacje-data.kml';
 
+  const [stations, setStations] = React.useState<
+    Array<{ id: string; name: string; lat: number; lng: number; comingSoon: boolean }>
+  >([]);
+  const [stationAddresses, setStationAddresses] = React.useState<Record<string, string>>({});
+  const [isStationsOpen, setIsStationsOpen] = React.useState(false);
+  const [selectedStationId, setSelectedStationId] = React.useState<string>('');
+
+  const selectedLabel = 'Stacje ładowania';
+
   return (
     <section id="charging-map" className="py-32 bg-[#020617] relative overflow-hidden">
       {/* Tła glow podobne do innych sekcji */}
@@ -86,11 +95,119 @@ export const ChargingStationsMapSection: React.FC = () => {
 
             {/* Osadzona mapa Google */}
             <div className="relative flex-1 min-h-0">
+              {/* Przycisk otwierania/zamykania panelu — tuż nad panelem */}
+              {googleMapsApiKey ? (
+                <div className="absolute top-4 left-4 z-40">
+                  <button
+                    type="button"
+                    onClick={() => setIsStationsOpen((v) => !v)}
+                    className="group inline-flex items-center gap-2 rounded-2xl px-3 py-2 bg-[#060b16]/85 border border-white/10 text-gray-200 hover:border-[#8ab925]/40 hover:bg-[#060b16] transition-all max-w-[260px] shadow-[0_20px_60px_rgba(0,0,0,0.55)] backdrop-blur"
+                    aria-haspopup="dialog"
+                    aria-expanded={isStationsOpen}
+                    aria-label="Otwórz listę stacji ładowania"
+                  >
+                    <span className="truncate text-[12px] font-extrabold tracking-[0.06em] uppercase">
+                      {selectedLabel}
+                    </span>
+                    <span className="text-gray-400 group-hover:text-[#8ab925] transition-colors" aria-hidden="true">
+                      {isStationsOpen ? '◀' : '▶'}
+                    </span>
+                  </button>
+                </div>
+              ) : null}
+
+              {/* Panel z listą stacji — przy lewej krawędzi, na całą wysokość mapy */}
+              {googleMapsApiKey ? (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => setIsStationsOpen(false)}
+                    className={`absolute inset-0 z-20 bg-black/40 transition-opacity ${
+                      isStationsOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                    }`}
+                    aria-label="Zamknij listę stacji"
+                  />
+
+                  <aside
+                    role="dialog"
+                    aria-label="Lista stacji ładowania"
+                    className={`absolute top-0 left-0 bottom-0 z-30 w-[380px] max-w-[92vw] bg-[#060b16] border-r border-white/10 shadow-[30px_0_90px_rgba(0,0,0,0.75)] transform transition-transform duration-300 ${
+                      isStationsOpen ? 'translate-x-0' : '-translate-x-full'
+                    }`}
+                  >
+                    {/* Bez nagłówka: przycisk nad panelem pełni też rolę zamknij/otwórz */}
+                    <div className="h-full overflow-auto pt-16">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedStationId('');
+                          setIsStationsOpen(false);
+                        }}
+                        className={`w-full text-left px-4 py-3 border-b border-white/10 hover:bg-white/5 transition-colors ${
+                          !selectedStationId ? 'bg-white/5' : ''
+                        }`}
+                      >
+                        <div className="text-[12px] font-extrabold text-gray-100 tracking-[0.08em] uppercase">
+                          Wszystkie stacje
+                        </div>
+                        <div className="text-[11px] font-semibold text-gray-400 mt-1">
+                          Pokaż wszystkie punkty na mapie
+                        </div>
+                      </button>
+
+                      {stations.map((s) => {
+                        const addr =
+                          stationAddresses[s.id] || `${Number(s.lat).toFixed(6)}, ${Number(s.lng).toFixed(6)}`;
+                        const isActive = selectedStationId === s.id;
+                        return (
+                          <button
+                            key={s.id}
+                            type="button"
+                            onClick={() => {
+                              setSelectedStationId(s.id);
+                              setIsStationsOpen(false);
+                            }}
+                            className={`w-full text-left px-4 py-3 border-b border-white/10 hover:bg-white/5 transition-colors ${
+                              isActive ? 'bg-white/5' : ''
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-3">
+                              <div className="min-w-0">
+                                <div className="text-[12px] font-extrabold text-gray-100 tracking-[0.04em] truncate">
+                                  {s.name}
+                                </div>
+                                <div className="text-[11px] font-semibold text-gray-400 mt-1 line-clamp-2">
+                                  {addr}
+                                </div>
+                              </div>
+                              <div className="flex items-center gap-2 shrink-0">
+                                {s.comingSoon ? (
+                                  <span className="text-[10px] font-extrabold uppercase tracking-[0.18em] text-gray-300 bg-white/5 border border-white/10 rounded-full px-2 py-1">
+                                    wkrótce
+                                  </span>
+                                ) : (
+                                  <span className="w-2 h-2 rounded-full bg-[#8ab925]" aria-hidden="true" />
+                                )}
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </aside>
+                </>
+              ) : null}
+
               {googleMapsApiKey ? (
                 <GoogleStationsMap
                   apiKey={googleMapsApiKey}
                   mapId={googleMapsDarkMapId}
                   kmlUrl={localKmlUrl}
+                  selectedStationId={selectedStationId || undefined}
+                  onStationsLoaded={(list) => setStations(list)}
+                  onStationAddressResolved={({ id, address }) =>
+                    setStationAddresses((prev) => (prev[id] === address ? prev : { ...prev, [id]: address }))
+                  }
                   className="w-full h-full"
                 />
               ) : (

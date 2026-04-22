@@ -6,6 +6,9 @@ type GoogleStationsMapProps = {
   mapId?: string;
   kmlUrl: string;
   className?: string;
+  selectedStationId?: string;
+  onStationsLoaded?: (stations: Array<{ id: string; name: string; lat: number; lng: number; comingSoon: boolean }>) => void;
+  onStationAddressResolved?: (args: { id: string; address: string }) => void;
 };
 
 const darkMapStyles = [
@@ -28,6 +31,9 @@ export const GoogleStationsMap: React.FC<GoogleStationsMapProps> = ({
   mapId,
   kmlUrl,
   className,
+  selectedStationId,
+  onStationsLoaded,
+  onStationAddressResolved,
 }) => {
   const normalizedMapId = React.useMemo(() => {
     const raw = (mapId ?? '').trim();
@@ -42,6 +48,34 @@ export const GoogleStationsMap: React.FC<GoogleStationsMapProps> = ({
   const infoWindowRef = React.useRef<any>(null);
   const geocoderRef = React.useRef<any>(null);
   const geocodeCacheRef = React.useRef<Map<string, string>>(new Map());
+  const stationsByIdRef = React.useRef<
+    Map<
+      string,
+      {
+        id: string;
+        name: string;
+        lat: number;
+        lng: number;
+        comingSoon: boolean;
+        mediaHtml?: string | null;
+      }
+    >
+  >(new Map());
+  const openStationRef = React.useRef<
+    ((stationId: string) => void) | null
+  >(null);
+  const onStationsLoadedRef = React.useRef<GoogleStationsMapProps['onStationsLoaded']>(onStationsLoaded);
+  const onStationAddressResolvedRef = React.useRef<GoogleStationsMapProps['onStationAddressResolved']>(
+    onStationAddressResolved,
+  );
+
+  React.useEffect(() => {
+    onStationsLoadedRef.current = onStationsLoaded;
+  }, [onStationsLoaded]);
+
+  React.useEffect(() => {
+    onStationAddressResolvedRef.current = onStationAddressResolved;
+  }, [onStationAddressResolved]);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -133,6 +167,8 @@ export const GoogleStationsMap: React.FC<GoogleStationsMapProps> = ({
         }
       }
       markersRef.current = [];
+      stationsByIdRef.current = new Map();
+      openStationRef.current = null;
 
       // Pobierz i sparsuj KML (lokalnie z /public — bez problemów CORS).
       const kmlText = await fetch(kmlUrl, { cache: 'no-store' }).then((r) => r.text());
@@ -172,6 +208,28 @@ export const GoogleStationsMap: React.FC<GoogleStationsMapProps> = ({
         el.style.border = '2px solid rgba(2,6,23,.9)';
         return el;
       };
+
+      const stationIdFromCoords = (lat: number, lng: number) => `${lat.toFixed(6)},${lng.toFixed(6)}`;
+
+      const geocodeAddressFor = (station: { id: string; lat: number; lng: number }) =>
+        new Promise<string | null>((resolve) => {
+          try {
+            if (!geocoderRef.current) return resolve(null);
+            const latLng = new google.maps.LatLng(station.lat, station.lng);
+            const cacheKey = `${latLng.lat().toFixed(6)},${latLng.lng().toFixed(6)}`;
+            const cached = geocodeCacheRef.current.get(cacheKey);
+            if (cached) return resolve(cached);
+            geocoderRef.current.geocode({ location: latLng }, (results: any, status: any) => {
+              if (status !== 'OK' || !results?.length) return resolve(null);
+              const formatted = results[0]?.formatted_address;
+              if (!formatted) return resolve(null);
+              geocodeCacheRef.current.set(cacheKey, formatted);
+              resolve(formatted);
+            });
+          } catch {
+            resolve(null);
+          }
+        });
 
       const openCard = (opts: {
         name: string;
@@ -269,6 +327,24 @@ export const GoogleStationsMap: React.FC<GoogleStationsMapProps> = ({
         }
       };
 
+      openStationRef.current = (stationId: string) => {
+        const st = stationsByIdRef.current.get(stationId);
+        if (!st) return;
+        try {
+          mapRef.current?.panTo?.({ lat: st.lat, lng: st.lng });
+          mapRef.current?.setZoom?.(Math.max(mapRef.current?.getZoom?.() ?? 10, 12));
+        } catch {
+          // ignore
+        }
+        openCard({
+          name: st.name,
+          lat: st.lat,
+          lng: st.lng,
+          mediaHtml: st.mediaHtml,
+          comingSoon: st.comingSoon,
+        });
+      };
+
       // Stwórz markery z KML
       for (const pm of placemarks) {
         const nameEl = pm.getElementsByTagName('name')?.[0];
@@ -283,6 +359,16 @@ export const GoogleStationsMap: React.FC<GoogleStationsMapProps> = ({
         const comingSoon = /^coming\s+soon\b/i.test(name);
         const content = makePinEl(comingSoon ? 'comingSoon' : 'active');
 
+        const id = stationIdFromCoords(coords.lat, coords.lng);
+        stationsByIdRef.current.set(id, {
+          id,
+          name: name || 'Stacja ładowania',
+          lat: coords.lat,
+          lng: coords.lng,
+          comingSoon,
+          mediaHtml,
+        });
+
         const marker = new AdvancedMarkerElement({
           map: mapRef.current,
           position: coords,
@@ -293,6 +379,27 @@ export const GoogleStationsMap: React.FC<GoogleStationsMapProps> = ({
           openCard({ name, lat: coords.lat, lng: coords.lng, mediaHtml, comingSoon });
         });
         markersRef.current.push(marker);
+      }
+
+      const stationsList = Array.from(stationsByIdRef.current.values())
+        .map((s) => ({ id: s.id, name: s.name, lat: s.lat, lng: s.lng, comingSoon: s.comingSoon }))
+        .sort((a, b) => a.name.localeCompare(b.name, 'pl', { sensitivity: 'base' }));
+      onStationsLoadedRef.current?.(stationsList);
+
+      // Dociągnij adresy dla dropdown (sekwencyjnie + cache).
+      (async () => {
+        for (const st of stationsList) {
+          if (cancelled) return;
+          const address = await geocodeAddressFor(st);
+          if (cancelled) return;
+          if (address) onStationAddressResolvedRef.current?.({ id: st.id, address });
+          await new Promise((r) => setTimeout(r, 150));
+        }
+      })();
+
+      // Jeśli od razu jest wybrana stacja, otwórz jej popup.
+      if (selectedStationId) {
+        openStationRef.current?.(selectedStationId);
       }
     }
 
@@ -314,11 +421,18 @@ export const GoogleStationsMap: React.FC<GoogleStationsMapProps> = ({
           }
         }
         markersRef.current = [];
+        stationsByIdRef.current = new Map();
+        openStationRef.current = null;
       } catch {
         // ignore
       }
     };
   }, [apiKey, hasMapId, normalizedMapId, kmlUrl]);
+
+  React.useEffect(() => {
+    if (!selectedStationId) return;
+    openStationRef.current?.(selectedStationId);
+  }, [selectedStationId]);
 
   return <div ref={containerRef} className={className} />;
 };

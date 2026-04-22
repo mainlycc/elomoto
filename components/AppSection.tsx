@@ -29,11 +29,11 @@ export const AppSection: React.FC = () => {
                 href="https://apps.apple.com/pl/app/elomoto/id6453553261?l=pl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white rounded-2xl py-4 px-8 flex items-center space-x-4 hover:scale-105 transition-transform duration-300 shadow-xl active:scale-95"
+                className="bg-white rounded-2xl h-16 min-w-[220px] px-8 flex items-center gap-4 hover:scale-105 transition-transform duration-300 shadow-xl active:scale-95"
               >
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-sm">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-visible rounded-sm">
                   <svg
-                    className="h-full w-full origin-center scale-[1.22] text-black"
+                    className="h-full w-full text-black"
                     viewBox="0 0 384 512"
                     fill="currentColor"
                     aria-hidden
@@ -52,7 +52,7 @@ export const AppSection: React.FC = () => {
                 href="https://play.google.com/store/apps/details?id=eco.elomoto.android.app&hl=pl"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-white rounded-2xl py-4 px-8 flex items-center space-x-4 hover:scale-105 transition-transform duration-300 shadow-xl active:scale-95"
+                className="bg-white rounded-2xl h-16 min-w-[220px] px-8 flex items-center gap-4 hover:scale-105 transition-transform duration-300 shadow-xl active:scale-95"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center overflow-hidden rounded-sm">
                   <svg className="h-full w-full text-black" viewBox="0 0 512 512" fill="currentColor" aria-hidden>

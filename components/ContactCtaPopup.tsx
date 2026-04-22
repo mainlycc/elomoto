@@ -19,7 +19,7 @@ function canUseSessionStorage(): boolean {
 export const ContactCtaPopup: React.FC<ContactCtaPopupProps> = ({ delayMs = 10_000 }) => {
   const { t } = useI18n();
   const [isOpen, setIsOpen] = useState(false);
-  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const laterButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     if (typeof window === 'undefined') {
@@ -52,7 +52,7 @@ export const ContactCtaPopup: React.FC<ContactCtaPopupProps> = ({ delayMs = 10_0
 
     // focus primary dismiss control
     window.setTimeout(() => {
-      closeButtonRef.current?.focus();
+      laterButtonRef.current?.focus();
     }, 0);
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -103,15 +103,6 @@ export const ContactCtaPopup: React.FC<ContactCtaPopupProps> = ({ delayMs = 10_0
               {t('contactPopup.title')}
             </p>
           </div>
-
-          <button
-            ref={closeButtonRef}
-            type="button"
-            onClick={dismiss}
-            className="shrink-0 rounded-xl border border-black/10 bg-black/5 hover:bg-black/10 text-black/70 hover:text-black transition-colors px-3 py-2 text-xs font-extrabold uppercase tracking-wider active:scale-95"
-          >
-            {t('contactPopup.close')}
-          </button>
         </div>
 
         <div className="mt-5 flex flex-col sm:flex-row gap-3">
@@ -123,6 +114,7 @@ export const ContactCtaPopup: React.FC<ContactCtaPopupProps> = ({ delayMs = 10_0
             {t('contactPopup.cta')}
           </button>
           <button
+            ref={laterButtonRef}
             type="button"
             onClick={dismiss}
             className="w-full sm:w-auto px-6 py-4 rounded-2xl text-xs font-extrabold uppercase tracking-wider text-black/70 hover:text-black bg-black/5 hover:bg-black/10 border border-black/10 transition-colors active:scale-95"
