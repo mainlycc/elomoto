@@ -24,3 +24,6 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Cursor/IDE project settings (local)
+.cursor/

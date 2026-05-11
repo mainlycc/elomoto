@@ -1,6 +1,6 @@
 /**
  * Usuwa wszystkie dokumenty `teamMember` i tworzy 7 osób zgodnych z dotychczasową stroną „O nas”.
- * Próbuje wgrać lokalne pliki zdjęć z katalogu głównego repo (obok folderu `studio/`).
+ * Nie wymaga lokalnych zdjęć. Jeśli plik nie istnieje, pozostawi `legacyPhotoUrl` jako placeholder.
  *
  *   SANITY_API_WRITE_TOKEN=sk... node ./scripts/replaceTeamMembers.mjs
  */
@@ -28,53 +28,54 @@ const TEAM = [
     order: 1,
     fullName: 'Michał Suska',
     position: 'CEO',
-    file: '1. Michal-Suska.jpg',
+    file: null,
   },
   {
     _id: 'teamMember-andrzej-smiegielski',
     order: 2,
     fullName: 'Andrzej Śmigielski',
     position: 'CFO',
-    file: '2.Andrzej-Smiegielski.jpg',
+    file: null,
   },
   {
     _id: 'teamMember-marcel-hulewicz',
     order: 3,
     fullName: 'Marcel Hulewicz',
     position: 'Head of Marketing and Business Development',
-    file: '3.Marcel Hulewicz.png',
+    file: null,
   },
   {
     _id: 'teamMember-lukasz-gradowski',
     order: 4,
     fullName: 'Łukasz Gradowski',
     position: 'COO',
-    file: '4. Lukasz-Gradowski.jpg',
+    file: null,
   },
   {
     _id: 'teamMember-kamil-jankowski',
     order: 5,
     fullName: 'Kamil Jankowski',
     position: 'Kierownik ds. Technicznych',
-    file: '5. Kamil-Jankowski.jpg',
+    file: null,
   },
   {
     _id: 'teamMember-kamila-krawczyk',
     order: 6,
     fullName: 'Kamila Krawczyk',
     position: 'Specjalista ds. Rekrutacji',
-    file: '6.Kamila Krawczyk.jpg',
+    file: null,
   },
   {
     _id: 'teamMember-damian-pietrucha',
     order: 7,
     fullName: 'Damian Pietrucha',
     position: 'Zespół Elomoto',
-    file: '7.Damian Pietrucha.png',
+    file: null,
   },
 ];
 
 async function uploadPhoto(client, filename) {
+  if (!filename) return null;
   const abs = path.join(projectRoot, filename);
   if (!fs.existsSync(abs)) {
     console.warn(`Brak pliku (pomijam upload): ${filename}`);

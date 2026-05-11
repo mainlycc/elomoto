@@ -3,15 +3,37 @@ import { sanityClient, sanityConfigured } from '../lib/sanityClient';
 import { mapSanityTeamMember } from '../lib/sanityMappers';
 import { teamMembersQuery } from '../lib/sanityQueries';
 import type { TeamMember } from '../types';
-import michalSuskaPhoto from '../1. Michal-Suska.jpg';
-import andrzejSmiegielskiPhoto from '../2.Andrzej-Smiegielski.jpg';
-import marcelHulewiczPhoto from '../3.Marcel Hulewicz.png';
-import lukaszGradowskiPhoto from '../4. Lukasz-Gradowski.jpg';
-import kamilJankowskiPhoto from '../5. Kamil-Jankowski.jpg';
-import kamilaKrawczykPhoto from '../6.Kamila Krawczyk.jpg';
-import damianPietruchaPhoto from '../7.Damian Pietrucha.png';
 
 type Row = Parameters<typeof mapSanityTeamMember>[0];
+
+function initials(fullName: string): string {
+  const parts = fullName
+    .trim()
+    .split(/\s+/)
+    .filter(Boolean);
+
+  const first = parts[0]?.[0] ?? '';
+  const last = parts.length > 1 ? (parts[parts.length - 1]?.[0] ?? '') : '';
+  return (first + last).toUpperCase();
+}
+
+function placeholderAvatarDataUrl(label: string): string {
+  const safeLabel = label.replace(/[<>&"]/g, '');
+  const svg = `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="${safeLabel}">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0a1a14"/>
+      <stop offset="1" stop-color="#8ab925"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="64" fill="url(#g)"/>
+  <circle cx="256" cy="210" r="88" fill="rgba(255,255,255,0.18)"/>
+  <path d="M128 420c20-86 92-132 128-132s108 46 128 132" fill="rgba(255,255,255,0.18)"/>
+  <text x="256" y="286" text-anchor="middle" font-family="Plus Jakarta Sans, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="72" font-weight="800" fill="rgba(255,255,255,0.85)">${safeLabel}</text>
+</svg>`;
+  return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+}
 
 /** Używane tylko gdy brak konfiguracji Sanity albo pusty dataset — nie scalamy z CMS. */
 const fallbackMembers: TeamMember[] = [
@@ -21,8 +43,8 @@ const fallbackMembers: TeamMember[] = [
     fullName: 'Michał Suska',
     position: 'CEO',
     bio: 'Współtworzy rozwój projektów i standardów obsługi w obszarze elektromobilności.',
-    photo: michalSuskaPhoto,
-    photoAlt: 'Michał Suska - Zespół Elomoto',
+    photo: placeholderAvatarDataUrl(initials('Michał Suska')),
+    photoAlt: 'Członek zespołu Elomoto',
   },
   {
     id: 'fallback-andrzej-smiegielski',
@@ -30,8 +52,8 @@ const fallbackMembers: TeamMember[] = [
     fullName: 'Andrzej Śmigielski',
     position: 'CFO',
     bio: 'Wspiera realizację inwestycji i rozwój infrastruktury ładowania w skali ogólnopolskiej.',
-    photo: andrzejSmiegielskiPhoto,
-    photoAlt: 'Andrzej Śmigielski - Zespół Elomoto',
+    photo: placeholderAvatarDataUrl(initials('Andrzej Śmigielski')),
+    photoAlt: 'Członek zespołu Elomoto',
   },
   {
     id: 'fallback-marcel-hulewicz',
@@ -39,8 +61,8 @@ const fallbackMembers: TeamMember[] = [
     fullName: 'Marcel Hulewicz',
     position: 'Head of Marketing and Business Development',
     bio: 'Odpowiada za sprawną koordynację działań operacyjnych i wdrożeniowych.',
-    photo: marcelHulewiczPhoto,
-    photoAlt: 'Marcel Hulewicz - Zespół Elomoto',
+    photo: placeholderAvatarDataUrl(initials('Marcel Hulewicz')),
+    photoAlt: 'Członek zespołu Elomoto',
   },
   {
     id: 'fallback-lukasz-gradowski',
@@ -48,8 +70,8 @@ const fallbackMembers: TeamMember[] = [
     fullName: 'Łukasz Gradowski',
     position: 'COO',
     bio: 'Koncentruje się na jakości wykonania oraz terminowej realizacji kolejnych etapów projektów.',
-    photo: lukaszGradowskiPhoto,
-    photoAlt: 'Łukasz Gradowski - Zespół Elomoto',
+    photo: placeholderAvatarDataUrl(initials('Łukasz Gradowski')),
+    photoAlt: 'Członek zespołu Elomoto',
   },
   {
     id: 'fallback-kamil-jankowski',
@@ -57,8 +79,8 @@ const fallbackMembers: TeamMember[] = [
     fullName: 'Kamil Jankowski',
     position: 'Kierownik ds. Technicznych',
     bio: 'Wspiera obszar techniczny i rozwój niezawodnych rozwiązań dla użytkowników stacji.',
-    photo: kamilJankowskiPhoto,
-    photoAlt: 'Kamil Jankowski - Zespół Elomoto',
+    photo: placeholderAvatarDataUrl(initials('Kamil Jankowski')),
+    photoAlt: 'Członek zespołu Elomoto',
   },
   {
     id: 'fallback-kamila-krawczyk',
@@ -66,8 +88,8 @@ const fallbackMembers: TeamMember[] = [
     fullName: 'Kamila Krawczyk',
     position: 'Specjalista ds. Rekrutacji',
     bio: 'Dba o komunikację i organizację procesów, które przekładają się na wysoką jakość obsługi.',
-    photo: kamilaKrawczykPhoto,
-    photoAlt: 'Kamila Krawczyk - Zespół Elomoto',
+    photo: placeholderAvatarDataUrl(initials('Kamila Krawczyk')),
+    photoAlt: 'Członek zespołu Elomoto',
   },
   {
     id: 'fallback-damian-pietrucha',
@@ -75,8 +97,8 @@ const fallbackMembers: TeamMember[] = [
     fullName: 'Damian Pietrucha',
     position: 'Zespół Elomoto',
     bio: 'Współuczestniczy w rozwoju narzędzi i procesów wspierających skalowanie sieci ładowania.',
-    photo: damianPietruchaPhoto,
-    photoAlt: 'Damian Pietrucha - Zespół Elomoto',
+    photo: placeholderAvatarDataUrl(initials('Damian Pietrucha')),
+    photoAlt: 'Członek zespołu Elomoto',
   },
 ];
 
