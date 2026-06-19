@@ -12,6 +12,8 @@ interface ContactFormPayload {
   consent: boolean;
 }
 
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'mainly.agn@gmail.com';
+
 const TOPIC_LABELS: Record<ContactTopicId, string> = {
   subsidies: 'Dotacje',
   install: 'Zakup i montaz',
@@ -122,33 +124,47 @@ export default async function handler(req: any, res: any) {
   const topicLabel = TOPIC_LABELS[payload.topic];
   const submittedAt = new Date().toISOString();
 
-  try {
-    const sendResult = await resend.emails.send({
-      from: resendFromEmail,
-      to: payload.email,
-      subject: `Potwierdzenie zgloszenia: ${topicLabel}`,
-      text: [
-        'Dziekujemy za zgloszenie z formularza kontaktowego.',
-        '',
-        `Temat: ${topicLabel}`,
-        `Imie i nazwisko: ${payload.name}`,
-        `Email: ${payload.email}`,
-        payload.phone ? `Telefon: ${payload.phone}` : null,
-        `Data wyslania (UTC): ${submittedAt}`,
-        '',
-        'Twoja wiadomosc:',
-        payload.message,
-        '',
-        'Skontaktujemy sie z Toba najszybciej, jak to mozliwe.',
-      ]
-        .filter((line): line is string => typeof line === 'string' && line.length > 0)
-        .join('\n'),
-    });
+  const formDetails = [
+    `Temat: ${topicLabel}`,
+    `Imie i nazwisko: ${payload.name}`,
+    `Email: ${payload.email}`,
+    payload.phone ? `Telefon: ${payload.phone}` : null,
+    `Data wyslania (UTC): ${submittedAt}`,
+    '',
+    'Wiadomosc:',
+    payload.message,
+  ]
+    .filter((line): line is string => typeof line === 'string' && line.length > 0)
+    .join('\n');
 
-    if (sendResult.error) {
+  try {
+    const [notificationResult, confirmationResult] = await Promise.all([
+      resend.emails.send({
+        from: resendFromEmail,
+        to: CONTACT_TO_EMAIL,
+        replyTo: payload.email,
+        subject: `Nowe zgloszenie: ${topicLabel}`,
+        text: ['Nowe zgloszenie z formularza kontaktowego.', '', formDetails].join('\n'),
+      }),
+      resend.emails.send({
+        from: resendFromEmail,
+        to: payload.email,
+        subject: `Potwierdzenie zgloszenia: ${topicLabel}`,
+        text: [
+          'Dziekujemy za zgloszenie z formularza kontaktowego.',
+          '',
+          formDetails,
+          '',
+          'Skontaktujemy sie z Toba najszybciej, jak to mozliwe.',
+        ].join('\n'),
+      }),
+    ]);
+
+    const sendError = notificationResult.error || confirmationResult.error;
+    if (sendError) {
       const providerMessage =
-        typeof sendResult.error.message === 'string' && sendResult.error.message.length > 0
-          ? sendResult.error.message
+        typeof sendError.message === 'string' && sendError.message.length > 0
+          ? sendError.message
           : 'Email provider error.';
 
       return res.status(502).json({ ok: false, message: providerMessage });
