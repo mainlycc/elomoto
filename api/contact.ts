@@ -12,7 +12,23 @@ interface ContactFormPayload {
   consent: boolean;
 }
 
-const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL || 'mainly.agn@gmail.com';
+const DEFAULT_CONTACT_TO_EMAILS = ['mainly.agn@gmail.com', 'biuro@elomoto.eco'];
+
+const isValidEmail = (value: string): boolean =>
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+const parseContactToEmails = (value: string | undefined): string[] => {
+  if (!value?.trim()) {
+    return DEFAULT_CONTACT_TO_EMAILS;
+  }
+
+  const emails = value
+    .split(/[,;]/)
+    .map((entry) => entry.trim())
+    .filter((entry) => isValidEmail(entry));
+
+  return emails.length > 0 ? emails : DEFAULT_CONTACT_TO_EMAILS;
+};
 
 const TOPIC_LABELS: Record<ContactTopicId, string> = {
   subsidies: 'Dotacje',
@@ -21,9 +37,6 @@ const TOPIC_LABELS: Record<ContactTopicId, string> = {
   operator: 'Usluga operatorska',
   audit: 'Ekspertyza punktu',
 };
-
-const isValidEmail = (value: string): boolean =>
-  /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
 const countDigits = (value: string): number => (value.match(/\d/g) ?? []).length;
 
@@ -123,6 +136,7 @@ export default async function handler(req: any, res: any) {
 
   const topicLabel = TOPIC_LABELS[payload.topic];
   const submittedAt = new Date().toISOString();
+  const contactToEmails = parseContactToEmails(process.env.CONTACT_TO_EMAIL);
 
   const formDetails = [
     `Temat: ${topicLabel}`,
@@ -141,7 +155,7 @@ export default async function handler(req: any, res: any) {
     const [notificationResult, confirmationResult] = await Promise.all([
       resend.emails.send({
         from: resendFromEmail,
-        to: CONTACT_TO_EMAIL,
+        to: contactToEmails,
         replyTo: payload.email,
         subject: `Nowe zgloszenie: ${topicLabel}`,
         text: ['Nowe zgloszenie z formularza kontaktowego.', '', formDetails].join('\n'),
