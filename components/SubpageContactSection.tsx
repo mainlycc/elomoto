@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useState } from 'react';
 import type { ContactFormPayload } from '../types';
 import { useI18n } from '../i18n/I18nProvider';
 
@@ -30,24 +30,6 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus>('idle');
   const [statusMessage, setStatusMessage] = useState('');
-
-  const canSubmit = useMemo(() => {
-    if (isSubmitting) {
-      return false;
-    }
-
-    const trimmedPhone = phone.trim();
-    const isPhoneValid =
-      trimmedPhone.length === 0 || (countDigits(trimmedPhone) >= 7 && trimmedPhone.length <= 40);
-
-    return (
-      name.trim().length >= 2 &&
-      email.trim().length > 0 &&
-      isPhoneValid &&
-      message.trim().length >= 10 &&
-      consent
-    );
-  }, [consent, email, isSubmitting, message, name, phone]);
 
   const validatePayload = (payload: ContactFormPayload): string | null => {
     if (payload.name.trim().length < 2) {
@@ -249,7 +231,7 @@ export const SubpageContactSection: React.FC<SubpageContactSectionProps> = ({
 
             <button
               type="submit"
-              disabled={!canSubmit}
+              disabled={isSubmitting}
               className="w-full sm:w-auto bg-[#8ab925] disabled:bg-slate-300 disabled:cursor-not-allowed text-white font-black py-5 px-16 rounded-2xl text-xs uppercase tracking-[0.2em] shadow-lg shadow-[#8ab925]/20 hover:shadow-xl hover:-translate-y-1 transition-all active:scale-95"
             >
               {isSubmitting ? t('subpageContact.submitting') : t('subpageContact.submit')}
