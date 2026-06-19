@@ -1,7 +1,7 @@
 import type { PortableTextBlock } from '@portabletext/types';
 import type { Locale } from '../i18n/i18n';
 import type { BlogPost, Realization, RealizationHighlight, TeamMember } from '../types';
-import { urlForImage } from './sanityImage';
+import { applySanityImageParams, resolveImageUrl } from './sanityImage';
 
 export function formatBlogDate(iso: string | undefined, locale: Locale = 'pl'): string {
   if (!iso) return '';
@@ -20,19 +20,32 @@ type SanityBlogRow = {
   publishedAt?: string;
   category?: string;
   excerpt?: string;
+  imageUrl?: string;
   mainImage?: unknown;
   legacyImageUrl?: string;
 };
 
+function resolveMappedImage(
+  imageUrl: string | undefined,
+  mainImage: unknown,
+  legacyImageUrl: string | undefined,
+  options: { width?: number; height?: number; quality?: number; fit?: 'crop' | 'max' }
+): string {
+  const fromQuery = applySanityImageParams(imageUrl, options);
+  if (fromQuery) return fromQuery;
+
+  const fromAsset = resolveImageUrl(mainImage, options);
+  if (fromAsset) return fromAsset;
+
+  return legacyImageUrl || '';
+}
+
 export function mapSanityBlogPost(row: SanityBlogRow, locale: Locale = 'pl'): BlogPost | null {
   if (!row.slug || !row.title) return null;
-  const fromAsset = row.mainImage
-    ? urlForImage(row.mainImage as never)
-        ?.width(900)
-        .quality(85)
-        .url()
-    : undefined;
-  const image = fromAsset || row.legacyImageUrl || '';
+  const image = resolveMappedImage(row.imageUrl, row.mainImage, row.legacyImageUrl, {
+    width: 900,
+    quality: 85,
+  });
   return {
     id: row._id,
     slug: row.slug,
@@ -51,6 +64,7 @@ type SanityRealizationRow = {
   title?: string;
   slug?: string;
   order?: number;
+  imageUrl?: string;
   mainImage?: unknown;
   legacyImageUrl?: string;
   intro?: string;
@@ -76,13 +90,10 @@ function mapEffectHighlights(rows: SanityEffectHighlight[] | undefined): Realiza
 
 export function mapSanityRealization(row: SanityRealizationRow): Realization | null {
   if (!row.slug || !row.title) return null;
-  const fromAsset = row.mainImage
-    ? urlForImage(row.mainImage as never)
-        ?.width(800)
-        .quality(85)
-        .url()
-    : undefined;
-  const image = fromAsset || row.legacyImageUrl || '';
+  const image = resolveMappedImage(row.imageUrl, row.mainImage, row.legacyImageUrl, {
+    width: 800,
+    quality: 85,
+  });
   return {
     id: row._id,
     order: typeof row.order === 'number' ? row.order : 0,
@@ -105,6 +116,7 @@ type SanityTeamMemberRow = {
   fullName?: string;
   position?: string;
   order?: number;
+  photoUrl?: string;
   legacyPhotoUrl?: string;
   photo?: {
     alt?: string;
@@ -113,15 +125,12 @@ type SanityTeamMemberRow = {
 
 export function mapSanityTeamMember(row: SanityTeamMemberRow): TeamMember | null {
   if (!row.fullName || !row.position) return null;
-  const fromAsset = row.photo
-    ? urlForImage(row.photo as never)
-        ?.width(720)
-        .height(960)
-        .fit('crop')
-        .quality(85)
-        .url()
-    : undefined;
-  const photo = fromAsset || row.legacyPhotoUrl || '';
+  const photo = resolveMappedImage(row.photoUrl, row.photo, row.legacyPhotoUrl, {
+    width: 720,
+    height: 960,
+    quality: 85,
+    fit: 'crop',
+  });
 
   return {
     id: row._id,

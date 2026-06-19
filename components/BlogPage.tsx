@@ -41,7 +41,7 @@ export const BlogPage: React.FC = () => {
             ) : null}
           </div>
         ) : null}
-        {!loading && posts.length === 0 ? (
+        {!loading && !error && posts.length === 0 ? (
           <p className="text-gray-500 text-sm w-full max-w-6xl text-left">{t('blog.empty')}</p>
         ) : null}
 

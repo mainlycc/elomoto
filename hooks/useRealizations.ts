@@ -28,7 +28,13 @@ export function useRealizations() {
       .then((rows) => {
         if (cancelled) return;
         const mapped = rows
-          .map((row) => mapSanityRealization(row))
+          .map((row) => {
+            try {
+              return mapSanityRealization(row);
+            } catch {
+              return null;
+            }
+          })
           .filter((r): r is Realization => r !== null);
         setItems(mapped);
         setError(null);

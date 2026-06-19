@@ -28,7 +28,13 @@ export function useBlogPosts() {
       .then((rows) => {
         if (cancelled) return;
         const mapped = rows
-          .map((row) => mapSanityBlogPost(row, locale))
+          .map((row) => {
+            try {
+              return mapSanityBlogPost(row, locale);
+            } catch {
+              return null;
+            }
+          })
           .filter((p): p is BlogPost => p !== null);
         setPosts(mapped);
         setError(null);

@@ -5,6 +5,7 @@ export const blogPostsQuery = `*[_type == "blogPost" && coalesce(locale, "pl") =
   publishedAt,
   category,
   excerpt,
+  "imageUrl": coalesce(mainImage.asset->url, legacyImageUrl),
   mainImage,
   legacyImageUrl
 }`;
@@ -16,6 +17,7 @@ export const blogPostBySlugQuery = `*[_type == "blogPost" && slug.current == $sl
   publishedAt,
   category,
   excerpt,
+  "imageUrl": coalesce(mainImage.asset->url, legacyImageUrl),
   mainImage,
   legacyImageUrl,
   body
@@ -26,6 +28,7 @@ export const realizationsQuery = `*[_type == "realization" && coalesce(locale, "
   title,
   "slug": slug.current,
   order,
+  "imageUrl": coalesce(mainImage.asset->url, legacyImageUrl),
   mainImage,
   legacyImageUrl,
   intro
@@ -36,6 +39,7 @@ export const realizationBySlugQuery = `*[_type == "realization" && slug.current 
   title,
   "slug": slug.current,
   order,
+  "imageUrl": coalesce(mainImage.asset->url, legacyImageUrl),
   mainImage,
   legacyImageUrl,
   intro,
@@ -53,6 +57,7 @@ export const teamMembersQuery = `*[_type == "teamMember"] | order(order asc) {
   fullName,
   position,
   order,
+  "photoUrl": coalesce(photo.asset->url, legacyPhotoUrl),
   photo,
   legacyPhotoUrl
 }`;

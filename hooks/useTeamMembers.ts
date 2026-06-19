@@ -122,7 +122,13 @@ export function useTeamMembers() {
       .then((rows) => {
         if (cancelled) return;
         const mapped = rows
-          .map((row) => mapSanityTeamMember(row))
+          .map((row) => {
+            try {
+              return mapSanityTeamMember(row);
+            } catch {
+              return null;
+            }
+          })
           .filter((member): member is TeamMember => member !== null)
           .sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
 
