@@ -56,12 +56,9 @@ Używane przez endpoint `api/contact.ts`.
 - `RESEND_API_KEY`
 - `RESEND_FROM_EMAIL`
 
-### Google Maps (mapa stacji)
+### Mapa stacji
 
-- `VITE_GOOGLE_MAPS_API_KEY`
-- `VITE_GOOGLE_MAP_ID_DARK` (opcjonalnie)
-
-Uwaga: zmienne `VITE_*` są wbudowywane do aplikacji frontendowej. Klucz Google Maps będzie widoczny po stronie przeglądarki, dlatego ustaw restrykcje w Google Cloud (HTTP referrers/domeny oraz ograniczenie do wymaganych API).
+Sekcja stacji korzysta z darmowej mapy OpenFreeMap (dane OpenStreetMap) i lokalnego pliku KML. Nie potrzebuje klucza.
 
 ## Dane stacji ładowania (KML)
 

@@ -12,6 +12,9 @@ export default defineConfig(({ mode }) => {
         open: true,
       },
       plugins: [react(), apiDevPlugin(env)],
+      optimizeDeps: {
+        exclude: ['maplibre-gl'],
+      },
       ssr: {
         noExternal: ['resend'],
       },

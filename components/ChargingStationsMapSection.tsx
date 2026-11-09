@@ -1,23 +1,20 @@
 import React from 'react';
 import { navigateTo } from '../utils/navigation';
 import { useI18n } from '../i18n/I18nProvider';
-import { GoogleStationsMap } from './GoogleStationsMap';
+import { StationsMap } from './StationsMap';
+
+const stationSubtitle = (name: string) =>
+  name.replace(/^coming\s+soon\s+/i, '').replace(/^elomoto\s+/i, '').trim();
 
 export const ChargingStationsMapSection: React.FC = () => {
   const { t } = useI18n();
-  const googleMapsApiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
-  const googleMapsDarkMapId = import.meta.env.VITE_GOOGLE_MAP_ID_DARK;
 
-  // Źródło punktów jest nadal to samo (My Maps) — tylko render mapy jest już „prawdziwy” i stylowalny.
-  const myMapsMid = '1VIBuF_LiB9G35xzG6bk510nFnfjnw24';
-  const myMapsEmbedUrl = `https://www.google.com/maps/d/embed?mid=${myMapsMid}&ehbc=2E312F`;
   // KML jest synchronizowany do /public/stacje-data.kml (skrypt `npm run sync:kml` / predev / prebuild)
   const localKmlUrl = '/stacje-data.kml';
 
   const [stations, setStations] = React.useState<
     Array<{ id: string; name: string; lat: number; lng: number; comingSoon: boolean }>
   >([]);
-  const [stationAddresses, setStationAddresses] = React.useState<Record<string, string>>({});
   const [isStationsOpen, setIsStationsOpen] = React.useState(false);
   const [selectedStationId, setSelectedStationId] = React.useState<string>('');
 
@@ -93,11 +90,10 @@ export const ChargingStationsMapSection: React.FC = () => {
               </div>
             </div>
 
-            {/* Osadzona mapa Google */}
+            {/* Mapa stacji na kafelkach OpenStreetMap */}
             <div className="relative flex-1 min-h-0">
               {/* Przycisk otwierania/zamykania panelu — tuż nad panelem */}
-              {googleMapsApiKey ? (
-                <div className="absolute top-4 left-4 z-40">
+              <div className="absolute top-4 left-4 z-40">
                   <button
                     type="button"
                     onClick={() => setIsStationsOpen((v) => !v)}
@@ -114,10 +110,8 @@ export const ChargingStationsMapSection: React.FC = () => {
                     </span>
                   </button>
                 </div>
-              ) : null}
 
               {/* Panel z listą stacji — przy lewej krawędzi, na całą wysokość mapy */}
-              {googleMapsApiKey ? (
                 <>
                   <button
                     type="button"
@@ -156,8 +150,7 @@ export const ChargingStationsMapSection: React.FC = () => {
                       </button>
 
                       {stations.map((s) => {
-                        const addr =
-                          stationAddresses[s.id] || `${Number(s.lat).toFixed(6)}, ${Number(s.lng).toFixed(6)}`;
+                        const addr = stationSubtitle(s.name);
                         const isActive = selectedStationId === s.id;
                         return (
                           <button
@@ -196,33 +189,13 @@ export const ChargingStationsMapSection: React.FC = () => {
                     </div>
                   </aside>
                 </>
-              ) : null}
 
-              {googleMapsApiKey ? (
-                <GoogleStationsMap
-                  apiKey={googleMapsApiKey}
-                  mapId={googleMapsDarkMapId}
-                  kmlUrl={localKmlUrl}
-                  selectedStationId={selectedStationId || undefined}
-                  onStationsLoaded={(list) => setStations(list)}
-                  onStationAddressResolved={({ id, address }) =>
-                    setStationAddresses((prev) => (prev[id] === address ? prev : { ...prev, [id]: address }))
-                  }
-                  className="w-full h-full"
-                />
-              ) : (
-                <iframe
-                  src={myMapsEmbedUrl}
-                  className="w-full h-full border-0"
-                  style={{
-                    // Google My Maps embed nie wspiera natywnie ciemnego stylu; filtr daje spójny dark look.
-                    filter: 'invert(92%) hue-rotate(180deg) saturate(120%) contrast(105%)',
-                  }}
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title={t('chargingMap.mapTitle')}
-                />
-              )}
+              <StationsMap
+                kmlUrl={localKmlUrl}
+                selectedStationId={selectedStationId || undefined}
+                onStationsLoaded={(list) => setStations(list)}
+                className="w-full h-full"
+              />
             </div>
           </div>
         </div>

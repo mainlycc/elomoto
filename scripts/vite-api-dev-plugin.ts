@@ -1,5 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'node:http';
 import type { Plugin, ViteDevServer } from 'vite';
+import { loadStationPhoto } from '../lib/stationPhoto';
 
 function readRequestBody(req: IncomingMessage): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -40,6 +41,31 @@ export function apiDevPlugin(env: Record<string, string>): Plugin {
 
       server.middlewares.use(async (req, res, next) => {
         const pathname = req.url?.split('?')[0];
+        if (pathname === '/api/station-photo') {
+          try {
+            const src = new URL(req.url || '', 'http://localhost').searchParams.get('src') || '';
+            const result = await loadStationPhoto(src);
+            if (!result.ok) {
+              res.statusCode = result.status;
+              res.end();
+              return;
+            }
+            res.statusCode = 200;
+            res.setHeader('Content-Type', result.contentType);
+            res.setHeader('Content-Length', String(result.body.length));
+            res.setHeader('Cache-Control', 'public, max-age=86400');
+            res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
+            res.end(req.method === 'HEAD' ? undefined : result.body);
+          } catch (error) {
+            console.error('[api-dev] /api/station-photo error:', error);
+            if (!res.headersSent) {
+              res.statusCode = 500;
+              res.end();
+            }
+          }
+          return;
+        }
+
         if (pathname !== '/api/contact') {
           next();
           return;
